@@ -12,13 +12,13 @@
 		<link rel="stylesheet" href="/ddev-wp-boilerplate/_app/assets/start-c446e5f0.css">
 		<link rel="stylesheet" href="/ddev-wp-boilerplate/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-wp-boilerplate/_app/assets/pages/__layout.svelte-4e723f17.css">
-		<link rel="modulepreload" href="/ddev-wp-boilerplate/_app/start-1b3a39e4.js">
+		<link rel="modulepreload" href="/ddev-wp-boilerplate/_app/start-a8304290.js">
 		<link rel="modulepreload" href="/ddev-wp-boilerplate/_app/chunks/vendor-8428adaf.js">
 		<link rel="modulepreload" href="/ddev-wp-boilerplate/_app/pages/__layout.svelte-0d071881.js">
-		<link rel="modulepreload" href="/ddev-wp-boilerplate/_app/pages/index.svelte-57031637.js">
+		<link rel="modulepreload" href="/ddev-wp-boilerplate/_app/pages/index.svelte-572dde8d.js">
 
 		<script type="module">
-			import { start } from "/ddev-wp-boilerplate/_app/start-1b3a39e4.js";
+			import { start } from "/ddev-wp-boilerplate/_app/start-a8304290.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-wp-boilerplate","assets":"/ddev-wp-boilerplate"},
@@ -31,7 +31,7 @@
 					error: null,
 					nodes: [
 						import("/ddev-wp-boilerplate/_app/pages/__layout.svelte-0d071881.js"),
-						import("/ddev-wp-boilerplate/_app/pages/index.svelte-57031637.js")
+						import("/ddev-wp-boilerplate/_app/pages/index.svelte-572dde8d.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -111,7 +111,7 @@
 
 <h2>Code Generator:</h2>
 
-<h3>.ddev/config.yaml</h3>
+<h3>1. .ddev/config.yaml</h3>
 
   <pre data-language="yaml" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->    <span class="hljs-attr">name:</span> <span class="hljs-string">my-project</span>
     <span class="hljs-attr">type:</span> <span class="hljs-string">wordpress</span>
@@ -134,17 +134,135 @@
     <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span><!-- HTML_TAG_END --></code></pre>
 
 
-<h3>.ddev/providers/wp-production.yaml</h3>
+<h3>2. .gitignore</h3>
 
-TODO: ...
+TODO: GENERATE CHILD THEME PATTERN FOR GITIGNORE
 
-<h3>.gitignore</h3>
+<h3>3. .ddev/providers/wp-production.yaml</h3>
 
-TODO: CHILD THEME IN GITIGNORE
+
+  <pre data-language="yaml" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-comment"># Pull a live site into DDEV</span>
+
+<span class="hljs-comment"># This pulls a live wordpress site via SSH, </span>
+<span class="hljs-comment"># WP-CLI (or mysqldump) and rsync into DDEV.</span>
+
+<span class="hljs-comment"># Usage:</span>
+<span class="hljs-comment"># 1. Add environment as web_environment to config.yaml</span>
+<span class="hljs-comment"># 2. Run &#x27;ddev pull wp-production&#x27;</span>
+
+<span class="hljs-comment"># More general information regarding the DDEV pull feature:</span>
+<span class="hljs-comment"># https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/</span>
+
+<span class="hljs-comment"># !! MAKE SURE YOU GOT DDEV VERSION &gt;= 1.18.2 !!</span>
+<span class="hljs-comment"># https://github.com/drud/ddev/releases</span>
+<span class="hljs-comment"># (Otherwise overriding files_import_command won&#x27;t work)</span>
+
+<span class="hljs-attr">environment_variables:</span>
+  <span class="hljs-attr">sshUser:</span> <span class="hljs-string">${PRODUCTION_SSH_USER}</span>
+  <span class="hljs-attr">sshHost:</span> <span class="hljs-string">${PRODUCTION_SSH_HOST}</span>
+  <span class="hljs-attr">sshWpDir:</span> <span class="hljs-string">${PRODUCTION_SSH_WP_DIR}</span>
+  <span class="hljs-comment"># These values are loaded via .ddev/config.yaml, you need </span>
+  <span class="hljs-comment"># to add the following to .ddev/config.yaml and run &#x27;ddev restart&#x27;:</span>
+  <span class="hljs-comment"># </span>
+  <span class="hljs-comment"># web_environment:</span>
+  <span class="hljs-comment"># - PRODUCTION_SSH_USER=ssh12345678</span>
+  <span class="hljs-comment"># - PRODUCTION_SSH_HOST=ngcobalt12345678.manitu.net</span>
+  <span class="hljs-comment"># - PRODUCTION_SSH_WP_DIR=/home/sites/site12345678/web/nature-blog.mandrasch.eu</span>
+  <span class="hljs-comment"># </span>
+  <span class="hljs-comment"># See: https://ddev.readthedocs.io/en/stable/users/extend/customization-extendibility/#providing-custom-environment-variables-to-a-container</span>
+
+<span class="hljs-comment"># 1. Add ssh keys to the user agent</span>
+<span class="hljs-attr">auth_command:</span>
+  <span class="hljs-attr">command:</span> <span class="hljs-string">|
+    ssh-add -l &gt;/dev/null || ( echo &quot;Please &#x27;ddev auth ssh&#x27; before running this command.&quot; &amp;&amp; exit 1 )
+</span>
+<span class="hljs-comment"># 2. Pull a fresh database dump via SSH</span>
+<span class="hljs-comment"># </span>
+<span class="hljs-comment"># (The database url replace-search will be done later in</span>
+<span class="hljs-comment"># files_import_command,because we need wp-config.php for it)</span>
+<span class="hljs-comment"># </span>
+<span class="hljs-comment"># If WP-CLI is available on server: </span>
+<span class="hljs-comment"># Use &#x27;wp db export&#x27; command, it&#x27;ll use wp-config.php DB settings </span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># If WP-CLI is not available, try with mysqldump:</span>
+<span class="hljs-comment"># Use mysqldump and get db connection from wp-config.php via bash,</span>
+<span class="hljs-comment"># thanks to https://tomjn.com/2014/03/01/wordpress-bash-magic/</span>
+<span class="hljs-comment"># Important: Use backslash for mysqldump values, thanks to </span>
+<span class="hljs-comment"># https://stackoverflow.com/a/13826220</span>
+<span class="hljs-comment"># </span>
+<span class="hljs-attr">db_pull_command:</span>
+  <span class="hljs-attr">command:</span> <span class="hljs-string">|
+    # set -x   # You can enable bash debugging output by uncommenting
+    set -eu -o pipefail
+    pushd &quot;/var/www/html/${DDEV_DOCROOT}&quot; &gt;/dev/null
+    echo &quot;Connect to SSH and check if WP-CLI is available ...&quot;
+    # TODO: is there a more robust way? Any unexpected output will cause an error?
+    WP_CLI_AVAILABLE=&quot;$(ssh ${sshUser}@${sshHost} &quot;cd ${sshWpDir} &amp;&amp; if [[ -x &#x27;command -v wp&#x27; ]]; then echo &quot;1&quot;; else echo &quot;0&quot;; fi&quot;)&quot;
+    if [ &quot;$WP_CLI_AVAILABLE&quot; = &quot;1&quot; ]; then echo &quot;WP-CLI is available remotely&quot;; else echo &quot;WP-CLI not available remotely, we&#x27;ll try mysqldump instead&quot;; fi
+    #
+    # Database dump via WP-CLI &#x27;wp db export&#x27;:
+    # 
+    if [ &quot;$WP_CLI_AVAILABLE&quot; = &quot;1&quot; ]; then ssh ${sshUser}@${sshHost} &quot;cd ${sshWpDir} &amp;&amp; wp db export | gzip -9 -c&quot; &gt; .ddev/.downloads/db.sql.gz; fi
+    #
+    # Database dump via mysqldump (if WP-CLI not available):
+    #
+    if [ &quot;$WP_CLI_AVAILABLE&quot; = &quot;0&quot; ]; then ssh ${sshUser}@${sshHost} &quot;cd ${sshWpDir} &amp;&amp; mysqldump --user=$(cat wp-config.php | grep DB_USER | cut -d &#x27; -f 4) --password=$(cat wp-config.php | grep DB_PASSWORD | cut -d &#x27; -f 4) --host=$(cat wp-config.php | grep DB_HOST | cut -d &#x27; -f 4) $(cat wp-config.php | grep DB_NAME | cut -d &#x27; -f 4) | gzip -9 -c&quot; &gt; .ddev/.downloads/db.sql.gz; fi
+    # 
+</span>  <span class="hljs-attr">service:</span> <span class="hljs-string">web</span>
+
+<span class="hljs-comment"># 3. Rsync all the files (except git-tracked ones)</span>
+<span class="hljs-comment"># </span>
+<span class="hljs-comment"># We rsync files from remote to local docroot which are _not_ tracked via git</span>
+<span class="hljs-comment"># (This allows us to track a child theme in git and doesnt&#x27;t overwrite it. It is</span>
+<span class="hljs-comment"># achieved with --include-from=&#x27;.gitignore&#x27; --exclude=&#x27;*&#x27;)</span>
+<span class="hljs-attr">files_pull_command:</span>
+  <span class="hljs-attr">command:</span> <span class="hljs-string">|
+    # set -x   # You can enable bash debugging output by uncommenting
+    set -eu -o pipefail
+    ls /var/www/html/.ddev &gt;/dev/null # This just refreshes stale NFS if possible
+    pushd /var/www/html/${DDEV_DOCROOT} &gt;/dev/null
+    # Add trailing slash for sshWpDir if missing, 
+    # thanks to https://gist.github.com/luciomartinez/c322327605d40f86ee0c
+    [[ &quot;${sshWpDir}&quot; != */ ]] &amp;&amp; sshWpDir=&quot;${sshWpDir}/&quot;
+    # Sync files from remote (${sshUser}@${sshHost}:${sshWpDir}) to local docroot (.)
+    rsync -azh --progress --stats --include-from=&#x27;.gitignore&#x27; --exclude=&#x27;*&#x27; ${sshUser}@${sshHost}:${sshWpDir} .
+</span>  <span class="hljs-attr">service:</span> <span class="hljs-string">web</span>
+
+<span class="hljs-comment"># 4. Set database connection + migrate URLs in DB</span>
+<span class="hljs-comment"># </span>
+<span class="hljs-comment"># We use this step to run some important WP-CLI commands locally</span>
+<span class="hljs-comment"># a) Replace db connection settings in wp-config.php</span>
+<span class="hljs-comment"># b) Replace live site url (determined from backup)</span>
+<span class="hljs-comment"># with DDEV_PRIMARY_URL (&lt;your-project&gt;.ddev.site) in local databse</span>
+<span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> c) re-generate permalinks? other steps needed?</span>
+<span class="hljs-attr">files_import_command:</span>
+  <span class="hljs-attr">command:</span> <span class="hljs-string">|
+    # set -x  # You can enable bash debugging output by uncommenting
+    set -eu -o pipefail
+    pushd &quot;/var/www/html/${DDEV_DOCROOT}&quot; &gt;/dev/null
+    echo &quot;Adjusting wp-config db connection settings for DDEV ...&quot;
+    wp config set DB_NAME &quot;db&quot; &amp;&amp; wp config set DB_USER &quot;db&quot; &amp;&amp; wp config set DB_PASSWORD &quot;db&quot; &amp;&amp; wp config set DB_HOST &quot;db&quot;
+    # Important use wp search-replace for URL replacement
+    echo &quot;Replacing the old URL ($(wp option get siteurl)) in database with DDEV local url (${DDEV_PRIMARY_URL})...&quot;
+    wp search-replace $(wp option get siteurl) &quot;${DDEV_PRIMARY_URL}&quot;
+    # echo &quot;Deleting config path for WP Super Cache (if installed) ...&quot;
+    # wp config delete WPCACHEHOME
+    echo &quot;All set, have fun! Run &#x27;ddev launch&#x27; to open your site.&quot;
+</span>  <span class="hljs-attr">service:</span> <span class="hljs-string">web</span>
+<!-- HTML_TAG_END --></code></pre>
+
+https://github.com/mandrasch/ddev-wp-groundstation/blob/main/.ddev/providers/wp-production.yaml
 
 <h2>Afterwards:</h2>
 
-1. Copy these files to a project folder 2. ddev start<br>3. ddev pull wp-production</div></div>
+<ol><li>Create a new project folder (or create empty GitHub project)</li>
+	<li>Copy the generated file contents to the new project folder</li>
+	<li>Download your child theme into wp-content/themes/your-child-theme to manage it via git-tracked
+	</li>
+	<li>Run &quot;ddev start&quot;</li>
+	<li>Run &quot;ddev auth ssh&quot;</li>
+	<li>Pull your live site to the local project: &quot;ddev pull wp-production&quot;</li>
+	<li>Optional: Git commit &amp; setup child theme via WPPusher (or other methods)</li></ol></div></div>
 </main>
 
 </div>
