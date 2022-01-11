@@ -1,3 +1,11 @@
+
+- npm init svelte@next
+- npm install
+- npm i bootstrap sass autoprefixer postcss
+- npm i -D @sveltejs/adapter-static@next
+- npm i -D svelte-preprocess
+
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
