@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<link rel="icon" href="./favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>DDEV WP Boilerplate Generator</title><!-- HTML_TAG_START --><style>pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#abb2bf;background:#282c34}.hljs-comment,.hljs-quote{color:#5c6370;font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#c678dd}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#e06c75}.hljs-literal{color:#56b6c2}.hljs-addition,.hljs-attribute,.hljs-meta .hljs-string,.hljs-regexp,.hljs-string{color:#98c379}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#d19a66}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#61aeee}.hljs-built_in,.hljs-class .hljs-title,.hljs-title.class_{color:#e6c07b}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}</style><!-- HTML_TAG_END -->
+
+		
+
+		<link rel="stylesheet" href="/_app/assets/start-c446e5f0.css">
+		<link rel="stylesheet" href="/_app/assets/vendor-4e7da6e6.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-4e723f17.css">
+		<link rel="modulepreload" href="/_app/start-a015394c.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-8428adaf.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-0d071881.js">
+		<link rel="modulepreload" href="/_app/pages/index.svelte-f326bb31.js">
+
+		<script type="module">
+			import { start } from "/_app/start-a015394c.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/pages/__layout.svelte-0d071881.js"),
+						import("/_app/pages/index.svelte-f326bb31.js")
+					],
+					url: new URL("http://prerender/"),
+					params: {}
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div id="svelte">
+
+
+
+
+<main><div class="container px-5 my-5"><h1>DDEV WP Boilerplate Generator</h1>
+	<div class="container px-5 my-5"><form id="contactForm"><div class="mb-3"><label class="form-label" for="projectName">Project name</label>
+		<input class="form-control" id="projectName" type="text" placeholder="Project name" value="my-project"></div>
+	<div class="mb-3"><label class="form-label d-block">PHP version</label>
+		<div class="form-check form-check-inline"><input class="form-check-input" id="5.6" type="radio" name="phpVersion" value="5.6">
+				<label class="form-check-label" for="5.6">5.6</label>
+			</div><div class="form-check form-check-inline"><input class="form-check-input" id="7.0" type="radio" name="phpVersion" value="7.0">
+				<label class="form-check-label" for="7.0">7.0</label>
+			</div><div class="form-check form-check-inline"><input class="form-check-input" id="7.1" type="radio" name="phpVersion" value="7.1">
+				<label class="form-check-label" for="7.1">7.1</label>
+			</div><div class="form-check form-check-inline"><input class="form-check-input" id="7.2" type="radio" name="phpVersion" value="7.2">
+				<label class="form-check-label" for="7.2">7.2</label>
+			</div><div class="form-check form-check-inline"><input class="form-check-input" id="7.3" type="radio" name="phpVersion" value="7.3">
+				<label class="form-check-label" for="7.3">7.3</label>
+			</div><div class="form-check form-check-inline"><input class="form-check-input" id="7.4" type="radio" name="phpVersion" value="7.4" checked>
+				<label class="form-check-label" for="7.4">7.4</label>
+			</div><div class="form-check form-check-inline"><input class="form-check-input" id="8.0" type="radio" name="phpVersion" value="8.0">
+				<label class="form-check-label" for="8.0">8.0</label>
+			</div></div>
+	<div class="mb-3"><label class="form-label" for="database">Database version</label>
+		<div class="form-check form-check-inline"><input class="form-check-input" id="dbVersion0" type="radio" name="dbVersion" value="maria-10.3" checked>
+				<label class="form-check-label" for="dbVersion0">MariaDB 10.3</label>
+			</div><div class="form-check form-check-inline"><input class="form-check-input" id="dbVersion1" type="radio" name="dbVersion" value="maria-10.4">
+				<label class="form-check-label" for="dbVersion1">MariaDB 10.4</label>
+			</div><div class="form-check form-check-inline"><input class="form-check-input" id="dbVersion2" type="radio" name="dbVersion" value="maria-10.5">
+				<label class="form-check-label" for="dbVersion2">MariaDB 10.5</label>
+			</div><div class="form-check form-check-inline"><input class="form-check-input" id="dbVersion3" type="radio" name="dbVersion" value="maria-10.6">
+				<label class="form-check-label" for="dbVersion3">MariaDB 10.6</label>
+			</div><div class="form-check form-check-inline"><input class="form-check-input" id="dbVersion4" type="radio" name="dbVersion" value="mysql-5.5">
+				<label class="form-check-label" for="dbVersion4">MySQL 5.5</label>
+			</div><div class="form-check form-check-inline"><input class="form-check-input" id="dbVersion5" type="radio" name="dbVersion" value="mysql-5.6">
+				<label class="form-check-label" for="dbVersion5">MySQL 5.6</label>
+			</div><div class="form-check form-check-inline"><input class="form-check-input" id="dbVersion6" type="radio" name="dbVersion" value="mysql-5.7">
+				<label class="form-check-label" for="dbVersion6">MySQL 5.7</label>
+			</div><div class="form-check form-check-inline"><input class="form-check-input" id="dbVersion7" type="radio" name="dbVersion" value="mysql80">
+				<label class="form-check-label" for="dbVersion7">MySQL 8.0</label>
+			</div></div>
+	<div class="mb-3"><label class="form-label d-block">Web server</label>
+		<div class="form-check form-check-inline"><input class="form-check-input" id="nginx" type="radio" name="webServer">
+			<label class="form-check-label" for="nginx">nginx</label></div>
+		<div class="form-check form-check-inline"><input class="form-check-input" id="apache2" type="radio" name="webServer" data-sb-validations="">
+			<label class="form-check-label" for="apache2">Apache2</label></div></div>
+	<div class="mb-3"><label class="form-label" for="childThemeFolderInWpContentThemes">Child theme folder (in wp-content/themes/)</label>
+		<input class="form-control" id="childThemeFolderInWpContentThemes" type="text" placeholder="Child theme folder (in wp-content/themes/)" data-sb-validations="required">
+		<div class="invalid-feedback" data-sb-feedback="childThemeFolderInWpContentThemes:required">Child theme folder (in wp-content/themes/) is required.
+		</div></div>
+	<div class="mb-3"><label class="form-label" for="sshHost">SSH host</label>
+		<input class="form-control" id="sshHost" type="text" placeholder="SSH host" data-sb-validations="required">
+		<div class="invalid-feedback" data-sb-feedback="sshHost:required">SSH host is required.</div></div>
+	<div class="mb-3"><label class="form-label" for="sshUsername">SSH username</label>
+		<input class="form-control" id="sshUsername" type="text" placeholder="SSH username" data-sb-validations="required">
+		<div class="invalid-feedback" data-sb-feedback="sshUsername:required">SSH username is required.
+		</div></div>
+	<div class="mb-3"><label class="form-label" for="pathToWordPressOnServer">Path to WordPress on server</label>
+		<input class="form-control" id="pathToWordPressOnServer" type="text" placeholder="Path to WordPress on server" data-sb-validations="required">
+		<div class="invalid-feedback" data-sb-feedback="pathToWordPressOnServer:required">Path to WordPress on server is required.
+		</div></div>
+	<div class="d-none" id="submitSuccessMessage"><div class="text-center mb-3"><div class="fw-bolder">Form submission successful!</div>
+			<p>To activate this form, sign up at</p>
+			<a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a></div></div>
+	<div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+	<div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div></form></div>
+	<div class="container px-5 my-5">
+
+<h2>Code Generator:</h2>
+
+<h3>.ddev/config.yaml</h3>
+
+  <pre data-language="yaml" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->    <span class="hljs-attr">name:</span> <span class="hljs-string">my-project</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">wordpress</span>
+    <span class="hljs-attr">docroot:</span> <span class="hljs-string">&quot;&quot;</span>
+    <span class="hljs-attr">php_version:</span> <span class="hljs-string">&quot;7.4&quot;</span>
+    <span class="hljs-attr">webserver_type:</span> <span class="hljs-string">nginx-fpm</span>
+    <span class="hljs-attr">router_http_port:</span> <span class="hljs-string">&quot;80&quot;</span>
+    <span class="hljs-attr">router_https_port:</span> <span class="hljs-string">&quot;443&quot;</span>
+    <span class="hljs-attr">xdebug_enabled:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">additional_hostnames:</span> []
+    <span class="hljs-attr">additional_fqdns:</span> []
+    <span class="hljs-attr">mariadb_version:</span> <span class="hljs-string">&quot;10.3&quot;</span>
+    <span class="hljs-attr">nfs_mount_enabled:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">mutagen_enabled:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">use_dns_when_possible:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">composer_version:</span> <span class="hljs-string">&quot;2&quot;</span>
+    <span class="hljs-attr">web_environment:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_USER=</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_HOST=</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span><!-- HTML_TAG_END --></code></pre>
+
+
+<h3>.ddev/providers/wp-production.yaml</h3>
+
+TODO: ...
+
+<h3>.gitignore</h3>
+
+TODO: CHILD THEME IN GITIGNORE
+
+<h2>Afterwards:</h2>
+
+1. Copy these files to a project folder 2. ddev start<br>3. ddev pull wp-production</div></div>
+</main>
+
+</div>
+	</body>
+</html>
