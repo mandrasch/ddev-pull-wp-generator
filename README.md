@@ -1,10 +1,28 @@
+# DDEV WP Boilerplate Generator
+
+Generate DDEV config files to pull a site via SSH and git-manage your child theme.
+
+State: _Work in progress_
+
+## TODOs
+
+- [ ] add all form fields to store
+- [ ] add gitignore pattern
+- [ ] add good descriptions
+- [ ] add screencast
+- [ ] optional: is it possible to generate a folder, zip it & download it?
+
+## How was this created?
 
 - npm init svelte@next
 - npm install
 - npm i bootstrap sass autoprefixer postcss
 - npm i -D @sveltejs/adapter-static@next
 - npm i -D svelte-preprocess
+- add configs to svelte.config.json, \_\_layout.svelte, etc.
+- Important: add `static/.nojekyll`
 
+<hr>
 
 # create-svelte
 
