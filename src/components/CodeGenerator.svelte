@@ -31,6 +31,116 @@
     - PRODUCTION_SSH_USER=
     - PRODUCTION_SSH_HOST=
     - PRODUCTION_SSH_WP_DIR=`;
+
+	const providersYaml = `# Pull a live site into DDEV
+
+# This pulls a live wordpress site via SSH, 
+# WP-CLI (or mysqldump) and rsync into DDEV.
+
+# Usage:
+# 1. Add environment as web_environment to config.yaml
+# 2. Run 'ddev pull wp-production'
+
+# More general information regarding the DDEV pull feature:
+# https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/
+
+# !! MAKE SURE YOU GOT DDEV VERSION >= 1.18.2 !!
+# https://github.com/drud/ddev/releases
+# (Otherwise overriding files_import_command won't work)
+
+environment_variables:
+  sshUser: \${PRODUCTION_SSH_USER}
+  sshHost: \${PRODUCTION_SSH_HOST}
+  sshWpDir: \${PRODUCTION_SSH_WP_DIR}
+  # These values are loaded via .ddev/config.yaml, you need 
+  # to add the following to .ddev/config.yaml and run 'ddev restart':
+  # 
+  # web_environment:
+  # - PRODUCTION_SSH_USER=ssh12345678
+  # - PRODUCTION_SSH_HOST=ngcobalt12345678.manitu.net
+  # - PRODUCTION_SSH_WP_DIR=/home/sites/site12345678/web/nature-blog.mandrasch.eu
+  # 
+  # See: https://ddev.readthedocs.io/en/stable/users/extend/customization-extendibility/#providing-custom-environment-variables-to-a-container
+
+# 1. Add ssh keys to the user agent
+auth_command:
+  command: |
+    ssh-add -l >/dev/null || ( echo "Please 'ddev auth ssh' before running this command." && exit 1 )
+
+# 2. Pull a fresh database dump via SSH
+# 
+# (The database url replace-search will be done later in
+# files_import_command,because we need wp-config.php for it)
+# 
+# If WP-CLI is available on server: 
+# Use 'wp db export' command, it'll use wp-config.php DB settings 
+#
+# If WP-CLI is not available, try with mysqldump:
+# Use mysqldump and get db connection from wp-config.php via bash,
+# thanks to https://tomjn.com/2014/03/01/wordpress-bash-magic/
+# Important: Use backslash for mysqldump values, thanks to 
+# https://stackoverflow.com/a/13826220
+# 
+db_pull_command:
+  command: |
+    # set -x   # You can enable bash debugging output by uncommenting
+    set -eu -o pipefail
+    pushd "/var/www/html/\${DDEV_DOCROOT}" >/dev/null
+    echo "Connect to SSH and check if WP-CLI is available ..."
+    # TODO: is there a more robust way? Any unexpected output will cause an error?
+    WP_CLI_AVAILABLE="$(ssh \${sshUser}@\${sshHost} "cd \${sshWpDir} && if [[ -x 'command -v wp' ]]; then echo "1"; else echo "0"; fi")"
+    if [ "$WP_CLI_AVAILABLE" = "1" ]; then echo "WP-CLI is available remotely"; else echo "WP-CLI not available remotely, we'll try mysqldump instead"; fi
+    #
+    # Database dump via WP-CLI 'wp db export':
+    # 
+    if [ "$WP_CLI_AVAILABLE" = "1" ]; then ssh \${sshUser}@\${sshHost} "cd \${sshWpDir} && wp db export | gzip -9 -c" > .ddev/.downloads/db.sql.gz; fi
+    #
+    # Database dump via mysqldump (if WP-CLI not available):
+    #
+    if [ "$WP_CLI_AVAILABLE" = "0" ]; then ssh \${sshUser}@\${sshHost} "cd \${sshWpDir} && mysqldump --user=\$(cat wp-config.php | grep DB_USER | cut -d \' -f 4) --password=\$(cat wp-config.php | grep DB_PASSWORD | cut -d \' -f 4) --host=\$(cat wp-config.php | grep DB_HOST | cut -d \' -f 4) \$(cat wp-config.php | grep DB_NAME | cut -d \' -f 4) | gzip -9 -c" > .ddev/.downloads/db.sql.gz; fi
+    # 
+  service: web
+
+# 3. Rsync all the files (except git-tracked ones)
+# 
+# We rsync files from remote to local docroot which are _not_ tracked via git
+# (This allows us to track a child theme in git and doesnt't overwrite it. It is
+# achieved with --include-from='.gitignore' --exclude='*')
+files_pull_command:
+  command: |
+    # set -x   # You can enable bash debugging output by uncommenting
+    set -eu -o pipefail
+    ls /var/www/html/.ddev >/dev/null # This just refreshes stale NFS if possible
+    pushd /var/www/html/\${DDEV_DOCROOT} >/dev/null
+    # Add trailing slash for sshWpDir if missing, 
+    # thanks to https://gist.github.com/luciomartinez/c322327605d40f86ee0c
+    [[ "\${sshWpDir}" != */ ]] && sshWpDir="\${sshWpDir}/"
+    # Sync files from remote (\${sshUser}@\${sshHost}:\${sshWpDir}) to local docroot (.)
+    rsync -azh --progress --stats --include-from='.gitignore' --exclude='*' \${sshUser}@\${sshHost}:\${sshWpDir} .
+  service: web
+
+# 4. Set database connection + migrate URLs in DB
+# 
+# We use this step to run some important WP-CLI commands locally
+# a) Replace db connection settings in wp-config.php
+# b) Replace live site url (determined from backup)
+# with DDEV_PRIMARY_URL (<your-project>.ddev.site) in local databse
+# TODO: c) re-generate permalinks? other steps needed?
+files_import_command:
+  command: |
+    # set -x  # You can enable bash debugging output by uncommenting
+    set -eu -o pipefail
+    pushd "/var/www/html/\${DDEV_DOCROOT}" >/dev/null
+    echo "Adjusting wp-config db connection settings for DDEV ..."
+    wp config set DB_NAME "db" && wp config set DB_USER "db" && wp config set DB_PASSWORD "db" && wp config set DB_HOST "db"
+    # Important use wp search-replace for URL replacement
+    echo "Replacing the old URL ($(wp option get siteurl)) in database with DDEV local url (\${DDEV_PRIMARY_URL})..."
+    wp search-replace $(wp option get siteurl) "\${DDEV_PRIMARY_URL}"
+    # echo "Deleting config path for WP Super Cache (if installed) ..."
+    # wp config delete WPCACHEHOME
+    echo "All set, have fun! Run 'ddev launch' to open your site."
+  service: web
+`;
 </script>
 
 <svelte:head>
@@ -39,17 +149,28 @@
 
 <h2>Code Generator:</h2>
 
-<h3>.ddev/config.yaml</h3>
+<h3>1. .ddev/config.yaml</h3>
 <Highlight language={yaml} code={configYaml} />
 
-<h3>.ddev/providers/wp-production.yaml</h3>
+<h3>2. .gitignore</h3>
 
-TODO: ...
+TODO: GENERATE CHILD THEME PATTERN FOR GITIGNORE
 
-<h3>.gitignore</h3>
+<h3>3. .ddev/providers/wp-production.yaml</h3>
 
-TODO: CHILD THEME IN GITIGNORE
+<Highlight language={yaml} code={providersYaml} />
+https://github.com/mandrasch/ddev-wp-groundstation/blob/main/.ddev/providers/wp-production.yaml
 
 <h2>Afterwards:</h2>
 
-1. Copy these files to a project folder 2. ddev start<br />3. ddev pull wp-production
+<ol>
+	<li>Create a new project folder (or create empty GitHub project)</li>
+	<li>Copy the generated file contents to the new project folder</li>
+	<li>
+		Download your child theme into wp-content/themes/your-child-theme to manage it via git-tracked
+	</li>
+	<li>Run "ddev start"</li>
+	<li>Run "ddev auth ssh"</li>
+	<li>Pull your live site to the local project: "ddev pull wp-production"</li>
+	<li>Optional: Git commit & setup child theme via WPPusher (or other methods)</li>
+</ol>
