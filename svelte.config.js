@@ -7,6 +7,9 @@ const dev = process.env.NODE_ENV === 'development';
 // postcss autoprefixer, recommended for bootstrap sass handling (https://getbootstrap.com/docs/5.0/getting-started/download/#source-files)
 import autoprefixer from 'autoprefixer';
 
+// prefix for ghpages, because this will be hosted in subdirectory
+const pathsBase = process.env.PATHS_BASE === undefined ? '' : process.env.PATHS_BASE;
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	preprocess: sveltePreprocess({
@@ -17,7 +20,9 @@ const config = {
 	}),
 	kit: {
 		adapter: adapter(),
-
+		paths: {
+			base: pathsBase
+		},
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',
 		// add syntax highlighting via svelte-highlight (https://svhe.onrender.com/)
