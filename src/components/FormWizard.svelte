@@ -1,33 +1,34 @@
 <script>
-	import { selectedPhpVersion } from '../stores/stores.js';
+	import { projectName, selectedPhpVersion, selectedDbVersionString } from '../stores/stores.js';
+	// TODO: move them to store as well
 	let phpVersions = ['5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0'];
 	let dbVersions = [
 		{
-			value: 'maria103',
+			value: 'maria-10.3',
 			displayText: 'MariaDB 10.3'
 		},
 		{
-			value: 'maria104',
+			value: 'maria-10.4',
 			displayText: 'MariaDB 10.4'
 		},
 		{
-			value: 'maria105',
+			value: 'maria-10.5',
 			displayText: 'MariaDB 10.5'
 		},
 		{
-			value: 'maria106',
+			value: 'maria-10.6',
 			displayText: 'MariaDB 10.6'
 		},
 		{
-			value: 'mysql55',
+			value: 'mysql-5.5',
 			displayText: 'MySQL 5.5'
 		},
 		{
-			value: 'mysql56',
+			value: 'mysql-5.6',
 			displayText: 'MySQL 5.6'
 		},
 		{
-			value: 'mysql57',
+			value: 'mysql-5.7',
 			displayText: 'MySQL 5.7'
 		},
 		{
@@ -35,22 +36,18 @@
 			displayText: 'MySQL 8.0'
 		}
 	];
-	let selectedDbVersion = 'maria103';
 </script>
 
 <form id="contactForm">
 	<div class="mb-3">
-		<label class="form-label" for="projectTitle">Project title</label>
+		<label class="form-label" for="projectName">Project name</label>
 		<input
 			class="form-control"
-			id="projectTitle"
+			id="projectName"
 			type="text"
-			placeholder="Project title"
-			data-sb-validations="required"
+			bind:value={$projectName}
+			placeholder="Project name"
 		/>
-		<div class="invalid-feedback" data-sb-feedback="projectTitle:required">
-			Project title is required.
-		</div>
 	</div>
 	<div class="mb-3">
 		<label class="form-label d-block">PHP version</label>
@@ -77,7 +74,7 @@
 					id={'dbVersion' + i}
 					type="radio"
 					name="dbVersion"
-					bind:group={selectedDbVersion}
+					bind:group={$selectedDbVersionString}
 					{value}
 				/>
 				<label class="form-check-label" for={'dbVersion' + i}>{displayText}</label>
