@@ -32,7 +32,7 @@
 			displayText: 'MySQL 5.7'
 		},
 		{
-			value: 'mysql80',
+			value: 'mysql-8.0',
 			displayText: 'MySQL 8.0'
 		}
 	];
