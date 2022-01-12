@@ -1,11 +1,21 @@
 <script>
-	import { projectName, selectedPhpVersion, selectedDbVersionString } from '../stores/stores.js';
+	import {
+		projectName,
+		childThemeFolderName,
+		webServerType,
+		selectedPhpVersion,
+		selectedDbVersionString,
+		sshHost,
+		sshUser,
+		pathToWordPressOnServer
+	} from '../stores/stores.js';
 	// TODO: move them to store as well
-	let phpVersions = ['5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0'];
+	let phpVersions = ['8.0', '7.4', '7.3', '7.2', '7.1', '7.0', '5.6'];
 	let dbVersions = [
 		{
 			value: 'maria-10.3',
-			displayText: 'MariaDB 10.3'
+
+			displayText: 'MariaDB 10.3 (default)'
 		},
 		{
 			value: 'maria-10.4',
@@ -68,7 +78,7 @@
 	<div class="mb-3">
 		<label class="form-label" for="database">Database version</label>
 		{#each dbVersions as { displayText, value }, i}
-			<div class="form-check form-check-inline">
+			<div class="form-check">
 				<input
 					class="form-check-input"
 					id={'dbVersion' + i}
@@ -84,7 +94,14 @@
 	<div class="mb-3">
 		<label class="form-label d-block">Web server</label>
 		<div class="form-check form-check-inline">
-			<input class="form-check-input" id="nginx" type="radio" name="webServer" />
+			<input
+				class="form-check-input"
+				id="nginx"
+				type="radio"
+				name="webServerType"
+				value="nginx"
+				bind:group={$webServerType}
+			/>
 			<label class="form-check-label" for="nginx">nginx</label>
 		</div>
 		<div class="form-check form-check-inline">
@@ -92,22 +109,23 @@
 				class="form-check-input"
 				id="apache2"
 				type="radio"
-				name="webServer"
-				data-sb-validations=""
+				value="apache2"
+				name="webServerType"
+				bind:group={$webServerType}
 			/>
-			<label class="form-check-label" for="apache2">Apache2</label>
+			<label class="form-check-label" for="apache2">apache2</label>
 		</div>
 	</div>
 	<div class="mb-3">
-		<label class="form-label" for="childThemeFolderInWpContentThemes"
+		<label class="form-label" for="childThemeFolderName"
 			>Child theme folder (in wp-content/themes/)</label
 		>
 		<input
 			class="form-control"
-			id="childThemeFolderInWpContentThemes"
+			id="childThemeFolderName"
 			type="text"
-			placeholder="Child theme folder (in wp-content/themes/)"
-			data-sb-validations="required"
+			placeholder="twentytwentyone-child"
+			bind:value={$childThemeFolderName}
 		/>
 		<div class="invalid-feedback" data-sb-feedback="childThemeFolderInWpContentThemes:required">
 			Child theme folder (in wp-content/themes/) is required.
@@ -119,10 +137,9 @@
 			class="form-control"
 			id="sshHost"
 			type="text"
-			placeholder="SSH host"
-			data-sb-validations="required"
+			placeholder="example.org"
+			bind:value={$sshHost}
 		/>
-		<div class="invalid-feedback" data-sb-feedback="sshHost:required">SSH host is required.</div>
 	</div>
 	<div class="mb-3">
 		<label class="form-label" for="sshUsername">SSH username</label>
@@ -130,12 +147,9 @@
 			class="form-control"
 			id="sshUsername"
 			type="text"
-			placeholder="SSH username"
-			data-sb-validations="required"
+			placeholder="user123"
+			bind:value={$sshUser}
 		/>
-		<div class="invalid-feedback" data-sb-feedback="sshUsername:required">
-			SSH username is required.
-		</div>
 	</div>
 	<div class="mb-3">
 		<label class="form-label" for="pathToWordPressOnServer">Path to WordPress on server</label>
@@ -143,12 +157,9 @@
 			class="form-control"
 			id="pathToWordPressOnServer"
 			type="text"
-			placeholder="Path to WordPress on server"
-			data-sb-validations="required"
+			placeholder="/sites/my-website.eu/"
+			bind:value={$pathToWordPressOnServer}
 		/>
-		<div class="invalid-feedback" data-sb-feedback="pathToWordPressOnServer:required">
-			Path to WordPress on server is required.
-		</div>
 	</div>
 	<div class="d-none" id="submitSuccessMessage">
 		<div class="text-center mb-3">

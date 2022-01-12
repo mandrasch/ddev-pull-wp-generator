@@ -1,10 +1,16 @@
 <script>
 	import {
 		projectName,
-		selectedDbVersionType,
+		childThemeFolderName,
+		webServerType,
+		selectedPhpVersion,
+		selectedDbVersionString,
 		selectedDbVersionNumber,
-		selectedPhpVersion
-	} from '../stores/stores';
+		selectedDbVersionType,
+		sshHost,
+		sshUser,
+		pathToWordPressOnServer
+	} from '../stores/stores.js';
 
 	import Highlight from 'svelte-highlight';
 	import yaml from 'svelte-highlight/src/languages/yaml';
@@ -16,7 +22,7 @@
 type: wordpress
 docroot: ""
 php_version: "${$selectedPhpVersion}"
-webserver_type: nginx-fpm
+webserver_type: ${$webServerType}
 router_http_port: "80"
 router_https_port: "443"
 xdebug_enabled: false
@@ -28,9 +34,35 @@ mutagen_enabled: false
 use_dns_when_possible: true
 composer_version: "2"
 web_environment:
-- PRODUCTION_SSH_USER=
-- PRODUCTION_SSH_HOST=
-- PRODUCTION_SSH_WP_DIR=`;
+- PRODUCTION_SSH_USER=${$sshUser}
+- PRODUCTION_SSH_HOST=${$sshHost}
+- PRODUCTION_SSH_WP_DIR=${$pathToWordPressOnServer}`;
+
+	$: gitIgnoreContent = `
+# Ignore all ...
+*
+
+# ... but track specific files / folders: 
+
+!.gitignore
+!/README.md
+!/LICENSE
+
+# DDEV config
+!/.ddev
+/.ddev/*
+!/.ddev/config.yaml
+!/.ddev/providers
+/.ddev/providers/*
+!/.ddev/providers/wp-production.yaml
+
+# child theme:
+!/wp-content
+/wp-content/*
+!/wp-content/themes
+/wp-content/themes/*
+!/wp-content/themes/${$childThemeFolderName}
+`;
 
 	const providersYaml = `# Pull a live site into DDEV
 
@@ -154,23 +186,28 @@ files_import_command:
 
 <h3>2. .gitignore</h3>
 
-TODO: GENERATE CHILD THEME PATTERN FOR GITIGNORE
+<Highlight code={gitIgnoreContent} />
 
 <h3>3. .ddev/providers/wp-production.yaml</h3>
 
 <Highlight language={yaml} code={providersYaml} />
-https://github.com/mandrasch/ddev-wp-groundstation/blob/main/.ddev/providers/wp-production.yaml
+Source:
+<a
+	href="https://github.com/mandrasch/ddev-wp-groundstation/blob/main/.ddev/providers/wp-production.yaml"
+	>https://github.com/mandrasch/ddev-wp-groundstation/blob/main/.ddev/providers/wp-production.yaml</a
+>
+<div class="row">
+	<h2>Afterwards:</h2>
 
-<h2>Afterwards:</h2>
-
-<ol>
-	<li>Create a new project folder (or create empty GitHub project)</li>
-	<li>Copy the generated file contents to the new project folder</li>
-	<li>
-		Download your child theme into wp-content/themes/your-child-theme to manage it via git-tracked
-	</li>
-	<li>Run "ddev start"</li>
-	<li>Run "ddev auth ssh"</li>
-	<li>Pull your live site to the local project: "ddev pull wp-production"</li>
-	<li>Optional: Git commit & setup child theme via WPPusher (or other methods)</li>
-</ol>
+	<ol>
+		<li>Create a new project folder (or create empty GitHub project)</li>
+		<li>Copy the generated file contents to the new project folder</li>
+		<li>
+			Download your child theme into wp-content/themes/your-child-theme to manage it via git-tracked
+		</li>
+		<li>Run "ddev start"</li>
+		<li>Run "ddev auth ssh"</li>
+		<li>Pull your live site to the local project: "ddev pull wp-production"</li>
+		<li>Optional: Git commit & setup child theme via WPPusher (or other methods)</li>
+	</ol>
+</div>
