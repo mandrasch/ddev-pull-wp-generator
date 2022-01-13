@@ -40,7 +40,8 @@ composer_version: "2"
 web_environment:
 - PRODUCTION_SSH_HOST=${$sshHost}
 - PRODUCTION_SSH_USER=${$sshUser}
-- PRODUCTION_SSH_WP_DIR=${$pathToWordPressOnServer}`;
+- PRODUCTION_SSH_WP_DIR=${$pathToWordPressOnServer}
+- CHILD_THEME_FOLDER_NAME=${$childThemeFolderName}`;
 
 	$: gitIgnoreContent = `
 # Ignore all ...
@@ -69,12 +70,36 @@ web_environment:
 `;
 
 	const providersYaml = `# Pull a live site into DDEV
-# These values are loaded via .ddev/config.yaml
-# (Use 'ddev restart' if you change .ddev/config.yaml)
+
+# This pulls a live wordpress site via SSH, 
+# WP-CLI (or mysqldump) and rsync into DDEV.
+
+# Usage:
+# 1. Add environment as web_environment to config.yaml
+# 2. Run 'ddev pull wp-production'
+
+# More general information regarding the DDEV pull feature:
+# https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/
+
+# !! MAKE SURE YOU GOT DDEV VERSION >= 1.18.2 !!
+# https://github.com/drud/ddev/releases
+# (Otherwise overriding files_import_command won't work)
+
 environment_variables:
   sshUser: \${PRODUCTION_SSH_USER}
   sshHost: \${PRODUCTION_SSH_HOST}
   sshWpDir: \${PRODUCTION_SSH_WP_DIR}
+  childThemeFolder: \${CHILD_THEME_FOLDER_NAME}
+  
+  # These values are loaded via .ddev/config.yaml, you need 
+  # to add the following to .ddev/config.yaml and run 'ddev restart':
+  # 
+  # web_environment:
+  # - PRODUCTION_SSH_USER=ssh12345678
+  # - PRODUCTION_SSH_HOST=ngcobalt12345678.manitu.net
+  # - PRODUCTION_SSH_WP_DIR=/home/sites/site12345678/web/nature-blog.mandrasch.eu
+  # 
+  # See: https://ddev.readthedocs.io/en/stable/users/extend/customization-extendibility/#providing-custom-environment-variables-to-a-container
 
 # 1. Add ssh keys to the user agent
 auth_command:
@@ -82,7 +107,19 @@ auth_command:
     ssh-add -l >/dev/null || ( echo "Please 'ddev auth ssh' before running this command." && exit 1 )
 
 # 2. Pull a fresh database dump via SSH
-# (Either via WP-CLI or - if WP-CLI is not available - via mysqldump)
+# 
+# (The database url replace-search will be done later in
+# files_import_command,because we need wp-config.php for it)
+# 
+# If WP-CLI is available on server: 
+# Use 'wp db export' command, it'll use wp-config.php DB settings 
+#
+# If WP-CLI is not available, try with mysqldump:
+# Use mysqldump and get db connection from wp-config.php via bash,
+# thanks to https://tomjn.com/2014/03/01/wordpress-bash-magic/
+# Important: Use backslash for mysqldump values, thanks to 
+# https://stackoverflow.com/a/13826220
+# 
 db_pull_command:
   command: |
     # set -x   # You can enable bash debugging output by uncommenting
@@ -117,8 +154,12 @@ files_pull_command:
     # Add trailing slash for sshWpDir if missing, 
     # thanks to https://gist.github.com/luciomartinez/c322327605d40f86ee0c
     [[ "\${sshWpDir}" != */ ]] && sshWpDir="\${sshWpDir}/"
+    # TODO: use reverse .gitignore file to include, but include-from does not work with /path/-, only used for patterns
     # Sync files from remote (\${sshUser}@\${sshHost}:\${sshWpDir}) to local docroot (.)
-    rsync -azh --progress --stats --include-from='.gitignore' --exclude='*' \${sshUser}@\${sshHost}:\${sshWpDir} .
+    # not working, because it uses pattern, but .gitignore uses paths --> rsync -azh --progress --stats --include-from='.gitignore' --exclude='*' \${sshUser}@\${sshHost}:\${sshWpDir} .
+    # not working as well rsync -azhvv --progress --stats --filter='merge,+ .gitignore' \${sshUser}@\${sshHost}:\${sshWpDir} .
+    # current implementation:
+    rsync -azh --progress --stats --exclude="wp-content/themes/\${childThemeFolder}" --exclude=".git/" --exclude=".ddev/" \${sshUser}@\${sshHost}:\${sshWpDir} .
   service: web
 
 # 4. Set database connection + migrate URLs in DB
