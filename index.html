@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-4e723f17.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-63e26aac.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-c8606968.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-b186e4e9.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-11a33a56.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-373196fa.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-7b769f55.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-f364ae1e.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-c8606968.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-b186e4e9.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -31,8 +31,8 @@
 					status: 200,
 					error: null,
 					nodes: [
-						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-373196fa.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-7b769f55.js")
+						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js"),
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-f364ae1e.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -319,12 +319,16 @@
 				<li class="list-group-item">Run &quot;ddev auth ssh&quot;</li>
 				<li class="list-group-item">Run &quot;ddev pull wp-production&quot; to pull your live site to the local project
 				</li>
-				<li class="list-group-item">Run &quot;ddev launch&quot; to open your local site in the browser</li>
-				<li class="list-group-item">Optional: Git commit &amp; setup child theme via WPPusher (or other methods)
-				</li></ol></div></div>
+				<li class="list-group-item">Run &quot;ddev launch&quot; to open your local site in the browser</li></ol>
+			<p class="mt-3">Optional: Setup your child theme via WPPusher (or other methods) on your live site, see
+				&quot;Step 7&quot; <a href="https://github.com/mandrasch/ddev-wp-groundstation">here</a>.
+			</p></div></div>
 </div></main>
 
-<footer class="text-center text-secondary">Made with SvelteKit // <a href="https://github.com/mandrasch/ddev-pull-wp-generator" target="_blank">GitHub</a> // Imprint: // Stop the climate emergency!
+<footer class="text-center text-secondary"><hr>
+	Made with SvelteKit, check out at  <a href="https://github.com/mandrasch/ddev-pull-wp-generator" target="_blank">GitHub</a>
+	//
+	<a href="https://matthias-andrasch.eu/blog/impressum-datenschutz/" target="_blank">Imprint &amp; Terms</a> // Stop the climate emergency!
 </footer>
 
 </div>
