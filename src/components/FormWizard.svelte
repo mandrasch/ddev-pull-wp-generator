@@ -169,7 +169,8 @@
 			bind:value={$childThemeFolderName}
 		/>
 		<div class="form-text">
-			If you don't use a child theme currently, just leave this setting. Can be changed later.
+			If you don't use a child theme currently, just leave this setting. It can be changed later as
+			well.
 		</div>
 	</div>
 	<div class="mb-3">
