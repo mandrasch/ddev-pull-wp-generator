@@ -9,12 +9,14 @@
 		sshUser,
 		pathToWordPressOnServer
 	} from '../stores/stores.js';
+
+	import DatabaseRadioButton from './DatabaseRadioButton.svelte';
+
 	// TODO: move them to store as well
 	let phpVersions = ['8.0', '7.4', '7.3', '7.2', '7.1', '7.0', '5.6'];
-	let dbVersions = [
+	let databaseVersions = [
 		{
 			value: 'maria-10.3',
-
 			displayText: 'MariaDB 10.3 (default)'
 		},
 		{
@@ -46,9 +48,20 @@
 			displayText: 'MySQL 8.0'
 		}
 	];
+
+	// filter for {#each}, thanks to https://stackoverflow.com/a/64016553
+	function getDatabaseVersionsForType(databaseVersions, stringToMatch) {
+		if (stringToMatch) {
+			return databaseVersions.filter((version) => {
+				return version.value.includes(stringToMatch);
+			});
+		} else {
+			return databaseVersions;
+		}
+	}
 </script>
 
-<form id="contactForm">
+<form>
 	<div class="mb-3">
 		<label class="form-label" for="projectName">Project name</label>
 		<input
@@ -60,61 +73,89 @@
 		/>
 	</div>
 	<div class="mb-3">
-		<label class="form-label d-block">PHP version</label>
-		{#each phpVersions as phpVersion, i}
+		<fieldset>
+			<legend>PHP version</legend>
+			{#each phpVersions as phpVersion, i}
+				<div class="form-check form-check-inline">
+					<input
+						class="form-check-input"
+						id={phpVersion}
+						type="radio"
+						name="phpVersion"
+						bind:group={$selectedPhpVersion}
+						value={phpVersion}
+					/>
+					<label class="form-check-label" for={phpVersion}>{phpVersion}</label>
+				</div>
+			{/each}
+		</fieldset>
+	</div>
+
+	<fieldset>
+		<legend>Database version</legend>
+		<!-- TODO: this is double coded currently, need to figure out how to use bind:group in nested components, see https://github.com/sveltejs/svelte/issues/2308 and then use: 
+					<DatabaseRadioButton {displayText} {value} /> -->
+		<div class="row">
+			<div class="col">
+				{#each getDatabaseVersionsForType(databaseVersions, 'maria') as { displayText, value }, i}
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							id={'radioDbVersion-' + value}
+							type="radio"
+							name="dbVersion"
+							bind:group={$selectedDbVersionString}
+							{value}
+						/>
+						<label class="form-check-label" for={'radioDbVersion-' + value}>{displayText}</label>
+					</div>
+				{/each}
+			</div>
+			<div class="col">
+				{#each getDatabaseVersionsForType(databaseVersions, 'mysql') as { displayText, value }, i}
+					<!-- <DatabaseRadioButton {displayText} {value} /> -->
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							id={'radioDbVersion-' + value}
+							type="radio"
+							name="dbVersion"
+							bind:group={$selectedDbVersionString}
+							{value}
+						/>
+						<label class="form-check-label" for={'radioDbVersion-' + value}>{displayText}</label>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</fieldset>
+
+	<div class="mb-3">
+		<fieldset>
+			<legend>Web Server</legend>
 			<div class="form-check form-check-inline">
 				<input
 					class="form-check-input"
-					id={phpVersion}
+					id="nginx"
 					type="radio"
-					name="phpVersion"
-					bind:group={$selectedPhpVersion}
-					value={phpVersion}
+					name="webServerType"
+					value="nginx"
+					bind:group={$webServerType}
 				/>
-				<label class="form-check-label" for={phpVersion}>{phpVersion}</label>
+				<label class="form-check-label" for="nginx">nginx</label>
 			</div>
-		{/each}
-	</div>
-	<div class="mb-3">
-		<label class="form-label" for="database">Database version</label>
-		{#each dbVersions as { displayText, value }, i}
-			<div class="form-check">
+			<div class="form-check form-check-inline">
 				<input
 					class="form-check-input"
-					id={'dbVersion' + i}
+					id="apache2"
 					type="radio"
-					name="dbVersion"
-					bind:group={$selectedDbVersionString}
-					{value}
+					value="apache2"
+					name="webServerType"
+					bind:group={$webServerType}
 				/>
-				<label class="form-check-label" for={'dbVersion' + i}>{displayText}</label>
+				<label class="form-check-label" for="apache2">apache2</label>
 			</div>
-		{/each}
-	</div>
-	<div class="mb-3">
-		<label class="form-label d-block">Web server</label>
-		<div class="form-check form-check-inline">
-			<input
-				class="form-check-input"
-				id="nginx"
-				type="radio"
-				name="webServerType"
-				value="nginx"
-				bind:group={$webServerType}
-			/>
-			<label class="form-check-label" for="nginx">nginx</label>
-		</div>
-		<div class="form-check form-check-inline">
-			<input
-				class="form-check-input"
-				id="apache2"
-				type="radio"
-				value="apache2"
-				name="webServerType"
-				bind:group={$webServerType}
-			/>
-			<label class="form-check-label" for="apache2">apache2</label>
-		</div>
+		</fieldset>
 	</div>
 	<div class="mb-3">
 		<label class="form-label" for="childThemeFolderName"
@@ -127,8 +168,8 @@
 			placeholder="twentytwentyone-child"
 			bind:value={$childThemeFolderName}
 		/>
-		<div class="invalid-feedback" data-sb-feedback="childThemeFolderInWpContentThemes:required">
-			Child theme folder (in wp-content/themes/) is required.
+		<div class="form-text">
+			If you don't use a child theme currently, just leave this setting. Can be changed later.
 		</div>
 	</div>
 	<div class="mb-3">
@@ -160,20 +201,28 @@
 			placeholder="/sites/my-website.eu/"
 			bind:value={$pathToWordPressOnServer}
 		/>
-	</div>
-	<div class="d-none" id="submitSuccessMessage">
-		<div class="text-center mb-3">
-			<div class="fw-bolder">Form submission successful!</div>
-			<p>To activate this form, sign up at</p>
-			<a href="https://startbootstrap.com/solution/contact-forms"
-				>https://startbootstrap.com/solution/contact-forms</a
-			>
+		<div class="form-text">
+			Get it from <a href="https://yoast.com/wordpress-site-health/" target="_blank">Site Health</a>
+			&raquo; Info &raquo; Directories & sizes &raquo; WordPress directory location
 		</div>
 	</div>
-	<div class="d-none" id="submitErrorMessage">
-		<div class="text-center text-danger mb-3">Error sending message!</div>
-	</div>
+	<!-- 
 	<div class="d-grid">
 		<button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button>
 	</div>
+	-->
 </form>
+
+<style lang="scss">
+	input[type='radio'],
+	label {
+		cursor: pointer;
+	}
+	fieldset {
+		margin-top: 5px;
+	}
+
+	legend {
+		font-size: 1rem;
+	}
+</style>

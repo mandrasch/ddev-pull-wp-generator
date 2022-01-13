@@ -16,6 +16,10 @@
 	import yaml from 'svelte-highlight/src/languages/yaml';
 	import atomOneDark from 'svelte-highlight/src/styles/atom-one-dark';
 
+	import { FileCode } from 'svelte-bootstrap-icons';
+
+	export let showOnlyConfigYaml; // prop for this component
+
 	const code = 'const add = (a: number, b: number) => a + b;';
 
 	$: configYaml = `name: ${$projectName}
@@ -34,8 +38,8 @@ mutagen_enabled: false
 use_dns_when_possible: true
 composer_version: "2"
 web_environment:
-- PRODUCTION_SSH_USER=${$sshUser}
 - PRODUCTION_SSH_HOST=${$sshHost}
+- PRODUCTION_SSH_USER=${$sshUser}
 - PRODUCTION_SSH_WP_DIR=${$pathToWordPressOnServer}`;
 
 	$: gitIgnoreContent = `
@@ -56,7 +60,7 @@ web_environment:
 /.ddev/providers/*
 !/.ddev/providers/wp-production.yaml
 
-# child theme:
+# Child theme:
 !/wp-content
 /wp-content/*
 !/wp-content/themes
@@ -65,34 +69,12 @@ web_environment:
 `;
 
 	const providersYaml = `# Pull a live site into DDEV
-
-# This pulls a live wordpress site via SSH, 
-# WP-CLI (or mysqldump) and rsync into DDEV.
-
-# Usage:
-# 1. Add environment as web_environment to config.yaml
-# 2. Run 'ddev pull wp-production'
-
-# More general information regarding the DDEV pull feature:
-# https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/
-
-# !! MAKE SURE YOU GOT DDEV VERSION >= 1.18.2 !!
-# https://github.com/drud/ddev/releases
-# (Otherwise overriding files_import_command won't work)
-
+# These values are loaded via .ddev/config.yaml
+# (Use 'ddev restart' if you change .ddev/config.yaml)
 environment_variables:
   sshUser: \${PRODUCTION_SSH_USER}
   sshHost: \${PRODUCTION_SSH_HOST}
   sshWpDir: \${PRODUCTION_SSH_WP_DIR}
-  # These values are loaded via .ddev/config.yaml, you need 
-  # to add the following to .ddev/config.yaml and run 'ddev restart':
-  # 
-  # web_environment:
-  # - PRODUCTION_SSH_USER=ssh12345678
-  # - PRODUCTION_SSH_HOST=ngcobalt12345678.manitu.net
-  # - PRODUCTION_SSH_WP_DIR=/home/sites/site12345678/web/nature-blog.mandrasch.eu
-  # 
-  # See: https://ddev.readthedocs.io/en/stable/users/extend/customization-extendibility/#providing-custom-environment-variables-to-a-container
 
 # 1. Add ssh keys to the user agent
 auth_command:
@@ -100,19 +82,7 @@ auth_command:
     ssh-add -l >/dev/null || ( echo "Please 'ddev auth ssh' before running this command." && exit 1 )
 
 # 2. Pull a fresh database dump via SSH
-# 
-# (The database url replace-search will be done later in
-# files_import_command,because we need wp-config.php for it)
-# 
-# If WP-CLI is available on server: 
-# Use 'wp db export' command, it'll use wp-config.php DB settings 
-#
-# If WP-CLI is not available, try with mysqldump:
-# Use mysqldump and get db connection from wp-config.php via bash,
-# thanks to https://tomjn.com/2014/03/01/wordpress-bash-magic/
-# Important: Use backslash for mysqldump values, thanks to 
-# https://stackoverflow.com/a/13826220
-# 
+# (Either via WP-CLI or - if WP-CLI is not available - via mysqldump)
 db_pull_command:
   command: |
     # set -x   # You can enable bash debugging output by uncommenting
@@ -179,35 +149,112 @@ files_import_command:
 	{@html atomOneDark}
 </svelte:head>
 
-<h2>Code Generator:</h2>
+{#if showOnlyConfigYaml}
+	<Highlight language={yaml} code={configYaml} />
+{:else}
+	<div class="card card-small">
+		<div class="card-body">
+			<h5 class="card-title">.ddev/config.yaml</h5>
+			<h6 class="card-subtitle mb-2 text-muted">DDEV project configuration</h6>
+			<p class="card-text">
+				<Highlight language={yaml} code={configYaml} />
+				<details>
+					<summary>Why is this file needed?</summary>
+					<p>
+						This is the DDEV configuration of your project folder. The <i>web_environment</i>-values
+						are our custom variables. These will then be used in the provider pull script, see
+						below. The awesome thing is that this config can be shared via git: This means it can be
+						used in team projects as well and everyone uses the same webserver configuration. Check
+						out the DDEV documentation for more information:
+						<a
+							href="https://ddev.readthedocs.io/en/stable/users/extend/config_yaml/"
+							target="_blank">config.yaml-docs</a
+						>.
+					</p>
+				</details>
+			</p>
+			<!-- <a href="#" class="card-link">Card link</a>
+			<a href="#" class="card-link">Another link</a> -->
+		</div>
+	</div>
 
-<h3>1. .ddev/config.yaml</h3>
-<Highlight language={yaml} code={configYaml} />
+	<div class="card card-small">
+		<div class="card-body">
+			<h5 class="card-title">.gitignore</h5>
+			<h6 class="card-subtitle mb-2 text-muted">
+				Ignore pattern for tracking only the child theme
+			</h6>
+			<p class="card-text">
+				<Highlight code={gitIgnoreContent} />
+				<details>
+					<summary>Why is this needed?</summary>
+					<p>
+						This is needed to track the child theme via git. On synchronization (<i
+							>ddev pull wp-production</i
+						>) the whole website is downloaded to the local project folder - but we don't want to
+						override the child theme, because maybe we changed some styles already and just want to
+						test them with the newest site content. The sync uses rsync with the option
+						<i>--include-from='.gitignore' --exclude='*'</i>, therefore it syncs everything except
+						the child theme folder.)
+					</p>
+				</details>
+			</p>
+			<!-- <a href="#" class="card-link">Card link</a>
+			<a href="#" class="card-link">Another link</a> -->
+		</div>
+	</div>
 
-<h3>2. .gitignore</h3>
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">.ddev/providers/wp-production.yaml</h5>
+			<h6 class="card-subtitle mb-2 text-muted">
+				The actual pull script, runs via 'ddev pull wp-production'
+			</h6>
+			<p class="card-text">
+				<small
+					>Requirement: <a href="https://github.com/drud/ddev/releases/tag/v1.18.2" target="_blank"
+						>DDEV >= 1.18.2</a
+					></small
+				>
+				<Highlight language={yaml} code={providersYaml} />
 
-<Highlight code={gitIgnoreContent} />
+				<details>
+					<summary>Why is this file needed?</summary>
+					<p>
+						This is our pull script which takes care of pulling the live web site to your local DDEV
+						project. See DDEV docs for more information:<a
+							href="https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/"
+							target="_blank">Hosting Provider Integration</a
+						>
+					</p>
+				</details>
+			</p>
+			<!-- <a href="#" class="card-link">Card link</a>
+			<a href="#" class="card-link">Another link</a> -->
+		</div>
+	</div>
+{/if}
 
-<h3>3. .ddev/providers/wp-production.yaml</h3>
-
-<Highlight language={yaml} code={providersYaml} />
-Source:
-<a
-	href="https://github.com/mandrasch/ddev-wp-groundstation/blob/main/.ddev/providers/wp-production.yaml"
-	>https://github.com/mandrasch/ddev-wp-groundstation/blob/main/.ddev/providers/wp-production.yaml</a
->
-<div class="row">
-	<h2>Afterwards:</h2>
-
-	<ol>
-		<li>Create a new project folder (or create empty GitHub project)</li>
-		<li>Copy the generated file contents to the new project folder</li>
-		<li>
-			Download your child theme into wp-content/themes/your-child-theme to manage it via git-tracked
-		</li>
-		<li>Run "ddev start"</li>
-		<li>Run "ddev auth ssh"</li>
-		<li>Pull your live site to the local project: "ddev pull wp-production"</li>
-		<li>Optional: Git commit & setup child theme via WPPusher (or other methods)</li>
-	</ol>
-</div>
+<style lang="scss">
+	h3 {
+		font-size: 1.15rem;
+	}
+	details {
+		margin: 10px auto;
+		p {
+			margin-top: 5px;
+			padding: 5px;
+			font-size: 0.85rem;
+			// TODO: how can we use bootstrap variables in here?
+			// color: $secondary;
+			color: #6c757d;
+		}
+	}
+	.card {
+		margin: 20px auto;
+		max-width: 50rem;
+		&.card-small {
+			/*width: 35rem;*/
+		}
+	}
+</style>

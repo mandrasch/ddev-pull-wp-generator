@@ -1,6 +1,6 @@
 import { writable, derived } from 'svelte/store';
 
-export const projectName = writable('my-project');
+export const projectName = writable('my-wp-site');
 export const childThemeFolderName = writable('twentytwentyone-child');
 export const webServerType = writable('nginx');
 export const selectedPhpVersion = writable('7.4');
