@@ -7,7 +7,8 @@
 
 <div class="container px-5 my-5">
 	<div class="alert alert-warning" role="alert">
-		This generator is work in progress, please use it with caution.
+		This generator is work in progress, please use it with caution. There are still some bugs to
+		fix. Stay tuned! :-)
 	</div>
 
 	<h1><i>ddev pull wp</i>-Generator</h1>
