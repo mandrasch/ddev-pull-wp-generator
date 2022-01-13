@@ -139,17 +139,17 @@
 					id="nginx"
 					type="radio"
 					name="webServerType"
-					value="nginx"
+					value="nginx-fpm"
 					bind:group={$webServerType}
 				/>
-				<label class="form-check-label" for="nginx">nginx</label>
+				<label class="form-check-label" for="nginx">nginx (default)</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input
 					class="form-check-input"
 					id="apache2"
 					type="radio"
-					value="apache2"
+					value="apache-fpm"
 					name="webServerType"
 					bind:group={$webServerType}
 				/>
