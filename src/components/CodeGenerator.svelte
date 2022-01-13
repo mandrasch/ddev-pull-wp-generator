@@ -234,9 +234,11 @@ files_import_command:
 							>ddev pull wp-production</i
 						>) the whole website is downloaded to the local project folder - but we don't want to
 						override the child theme, because maybe we changed some styles already and just want to
-						test them with the newest site content. The sync uses rsync with the option
+						test them with the newest site content. <!-- The sync uses rsync with the option
 						<i>--include-from='.gitignore' --exclude='*'</i>, therefore it syncs everything except
-						the child theme folder.)
+						the child theme folder.)-->
+						The sync uses "--exclude=wp-content/themes/{$childThemeFolderName}" to avoid overriding
+						local changes.
 					</p>
 				</details>
 			</p>
@@ -257,7 +259,16 @@ files_import_command:
 						>DDEV >= 1.18.2</a
 					></small
 				>
-				<Highlight language={yaml} code={providersYaml} />
+				<br />
+				<br />
+				This file is work in progress. Please copy the latest version from <br /><br />
+				<a
+					href="https://github.com/mandrasch/ddev-wp-groundstation/blob/main/.ddev/providers/wp-production.yaml"
+					target="_blank">GitHub: .ddev/providers/wp-production.yaml</a
+				><br /><br />
+				(It will be added later here for copy & paste).
+				<!-- 
+				<Highlight language={yaml} code={providersYaml} />-->
 
 				<details>
 					<summary>Why is this file needed?</summary>
