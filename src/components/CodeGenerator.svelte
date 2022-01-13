@@ -44,7 +44,7 @@ web_environment:
 
 	$: gitIgnoreContent = `
 # Ignore all ...
-*
+/*
 
 # ... but track specific files / folders: 
 
