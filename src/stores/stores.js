@@ -2,7 +2,7 @@ import { writable, derived } from 'svelte/store';
 
 export const projectName = writable('my-wp-site');
 export const childThemeFolderName = writable('twentytwentyone-child');
-export const webServerType = writable('nginx');
+export const webServerType = writable('nginx-fpm');
 export const selectedPhpVersion = writable('7.4');
 export const selectedDbVersionString = writable('maria-10.3');
 export const sshHost = writable('');
