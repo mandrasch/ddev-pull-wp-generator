@@ -12,5 +12,9 @@
 	<slot />
 </main>
 
+<footer class="text-center text-secondary">
+	Made with SvelteKit // <a href="">Source</a> // Imprint: // Stop the climate emergency!
+</footer>
+
 <style>
 </style>

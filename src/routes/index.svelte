@@ -23,7 +23,7 @@
 	</div>
 	<div class="row">
 		<div class="col-12 px-4 mb-3">
-			<h2>2. Copy the generated files to your project folder</h2>
+			<h2>2. Create your project folder</h2>
 			<p>Create a new project folder and insert these files:</p>
 		</div>
 		<div class="col-12 px-4">
@@ -33,7 +33,8 @@
 
 	<div class="row">
 		<div class="col-12">
-			<h2>3. Run it</h2>
+			<h2 class="mb-3">3. Pull it</h2>
+			<p>Screencast: coming soon</p>
 
 			<ol class="list-group list-group-numbered">
 				<!-- <li class="list-group-item">
@@ -44,17 +45,20 @@
 				<li class="list-group-item">
 					Download the current state of your child theme into <i
 						>wp-content/themes/{$childThemeFolderName}</i
-					>
-					to manage it via git <br /><small
+					>. If you want to download it from WP dashboard, you can use the
+					<a href="https://wordpress.org/plugins/download-plugins-dashboard/" target="_blank"
+						>Download Plugins and Themes from Dashboard plugin</a
+					>.<br /><small
 						>(If you already manage your child theme via git or you don't have a child theme
-						currently, you can skip this step)</small
+						currently, you can skip this step.)</small
 					>
 				</li>
 				<li class="list-group-item">Run "ddev start"</li>
 				<li class="list-group-item">Run "ddev auth ssh"</li>
 				<li class="list-group-item">
-					Pull your live site to the local project: "ddev pull wp-production"
+					Run "ddev pull wp-production" to pull your live site to the local project
 				</li>
+				<li class="list-group-item">Run "ddev launch" to open your local site in the browser</li>
 				<li class="list-group-item">
 					Optional: Git commit & setup child theme via WPPusher (or other methods)
 				</li>
