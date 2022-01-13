@@ -7,7 +7,14 @@
 
 <div class="container px-5 my-5">
 	<h1><i>ddev pull wp</i>-Generator</h1>
-	<p>This generators enables you to pull a live WordPress site into your local DDEV project.</p>
+	<p>
+		This generators enables you to pull a live WordPress site into your local DDEV project. It
+		requires connecting to your webspace via SSH and it needs WP-CLI or mysqldump available on your
+		webspace.(If your webspace doesn't meet these requirements, check out <a
+			href="https://github.com/mandrasch/ddev-pull-backwpupfile"
+			target="_blank">ddev pull backwpupfile</a
+		>).
+	</p>
 
 	<div class="row">
 		<div class="col-12 px-4 mb-3">
@@ -33,7 +40,7 @@
 
 	<div class="row">
 		<div class="col-12">
-			<h2 class="mb-3">3. Pull it</h2>
+			<h2 class="mb-3">3. Start DDEV project & pull all the files</h2>
 			<p>Screencast: coming soon</p>
 
 			<ol class="list-group list-group-numbered">
