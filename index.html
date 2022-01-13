@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-4e723f17.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-63e26aac.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-b186e4e9.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-a4db69c5.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-11a33a56.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-f364ae1e.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-01790a6f.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-b186e4e9.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-a4db69c5.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -32,7 +32,7 @@
 					error: null,
 					nodes: [
 						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-f364ae1e.js")
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-01790a6f.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -51,9 +51,8 @@
 
 	<h1><i>ddev pull wp</i>-Generator</h1>
 	<p>This generators enables you to pull a live WordPress site into your local DDEV project. It
-		requires connecting to your webspace via SSH and it needs WP-CLI or mysqldump available on your
-		webspace.(If your webspace doesn&#39;t meet these requirements, check out <a href="https://github.com/mandrasch/ddev-pull-backwpupfile" target="_blank">ddev pull backwpupfile</a>).
-	</p>
+		requires connecting to your webspace via SSH (password-less via SSH keys) and it needs WP-CLI or
+		mysqldump available on your webspace.<i>(If your webspace doesn&#39;t meet these requirements, check out <a href="https://github.com/mandrasch/ddev-pull-backwpupfile" target="_blank">ddev pull backwpupfile</a>).</i></p>
 
 	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">1. Create your configuration</h2></div>
 		<div class="col-lg-6 px-4"><div class="mb-2">.ddev/config.yaml</div>
