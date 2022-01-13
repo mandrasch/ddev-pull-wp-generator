@@ -6,6 +6,10 @@
 </script>
 
 <div class="container px-5 my-5">
+	<div class="alert alert-warning" role="alert">
+		This generator is work in progress, please use it with caution.
+	</div>
+
 	<h1><i>ddev pull wp</i>-Generator</h1>
 	<p>
 		This generators enables you to pull a live WordPress site into your local DDEV project. It
