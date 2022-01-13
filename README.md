@@ -1,4 +1,4 @@
-# DDEV WP Boilerplate Generator
+# DDEV pull wp generator
 
 Generate DDEV config files to pull a site via SSH and git-manage your child theme.
 
@@ -21,6 +21,11 @@ State: _Work in progress_
 - npm i -D svelte-preprocess
 - add configs to svelte.config.json, \_\_layout.svelte, etc.
 - Important: add `static/.nojekyll`
+
+## License
+
+- my own code is public domain, have fun forking!
+- check out package.json for third party (open source) packages
 
 <hr>
 
