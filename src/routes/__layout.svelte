@@ -13,10 +13,15 @@
 </main>
 
 <footer class="text-center text-secondary">
-	Made with SvelteKit // <a
+	<hr />
+	Made with SvelteKit, check out at &nbsp;<a
 		href="https://github.com/mandrasch/ddev-pull-wp-generator"
 		target="_blank">GitHub</a
-	> // Imprint: // Stop the climate emergency!
+	>
+	//
+	<a href="https://matthias-andrasch.eu/blog/impressum-datenschutz/" target="_blank"
+		>Imprint & Terms</a
+	> // Stop the climate emergency!
 </footer>
 
 <style>

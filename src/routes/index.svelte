@@ -70,10 +70,11 @@
 					Run "ddev pull wp-production" to pull your live site to the local project
 				</li>
 				<li class="list-group-item">Run "ddev launch" to open your local site in the browser</li>
-				<li class="list-group-item">
-					Optional: Git commit & setup child theme via WPPusher (or other methods)
-				</li>
 			</ol>
+			<p class="mt-3">
+				Optional: Setup your child theme via WPPusher (or other methods) on your live site, see
+				"Step 7" <a href="https://github.com/mandrasch/ddev-wp-groundstation">here</a>.
+			</p>
 		</div>
 	</div>
 </div>
