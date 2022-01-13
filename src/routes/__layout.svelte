@@ -13,7 +13,10 @@
 </main>
 
 <footer class="text-center text-secondary">
-	Made with SvelteKit // <a href="">Source</a> // Imprint: // Stop the climate emergency!
+	Made with SvelteKit // <a
+		href="https://github.com/mandrasch/ddev-pull-wp-generator"
+		target="_blank">GitHub</a
+	> // Imprint: // Stop the climate emergency!
 </footer>
 
 <style>
