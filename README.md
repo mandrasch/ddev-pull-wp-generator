@@ -6,9 +6,10 @@ State: _Work in progress_
 
 ## TODOs
 
-- [ ] add all form fields to store
-- [ ] add gitignore pattern
-- [ ] add good descriptions
+- [ ] easier config.yaml, see https://twitter.com/randyfay/status/1481745262640914433
+- [ ] Move config values to provider script, config.yaml requires 'ddev restart' every time?
+- [x] add all form fields to store
+- [ ] ask fellow devs if we just can't use reverse rsync which includes from .gitignore with path instead of pattern and exludes everything else
 - [ ] add screencast
 - [ ] optional: is it possible to generate a folder, zip it & download it?
 
