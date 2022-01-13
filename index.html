@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-4e723f17.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-63e26aac.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-b9d2c213.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-c7397b63.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-11a33a56.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-a6f46ff0.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-253808d5.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-b9d2c213.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-c7397b63.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -32,7 +32,7 @@
 					error: null,
 					nodes: [
 						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-a6f46ff0.js")
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-253808d5.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -78,7 +78,8 @@
 <span class="hljs-attr">web_environment:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_HOST=</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_USER=</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span><!-- HTML_TAG_END --></code></pre>
+<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">CHILD_THEME_FOLDER_NAME=twentytwentyone-child</span><!-- HTML_TAG_END --></code></pre>
 </div>
 		<div class="col-lg-6 px-4"><form><div class="mb-3"><label class="form-label svelte-12n678h" for="projectName">Project name</label>
 		<input class="form-control" id="projectName" type="text" placeholder="Project name" value="my-wp-site"></div>
@@ -169,7 +170,8 @@
 <span class="hljs-attr">web_environment:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_HOST=</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_USER=</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span><!-- HTML_TAG_END --></code></pre>
+<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">CHILD_THEME_FOLDER_NAME=twentytwentyone-child</span><!-- HTML_TAG_END --></code></pre>
 
 				<details class="svelte-2rtgml"><summary>Why is this file needed?</summary>
 					<p class="svelte-2rtgml">This is the DDEV configuration of your project folder. The <i>web_environment</i>-values
@@ -226,12 +228,36 @@
 			<p class="card-text"><small>Requirement: <a href="https://github.com/drud/ddev/releases/tag/v1.18.2" target="_blank">DDEV &gt;= 1.18.2</a></small>
 				
   <pre data-language="yaml" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-comment"># Pull a live site into DDEV</span>
-<span class="hljs-comment"># These values are loaded via .ddev/config.yaml</span>
-<span class="hljs-comment"># (Use &#x27;ddev restart&#x27; if you change .ddev/config.yaml)</span>
+
+<span class="hljs-comment"># This pulls a live wordpress site via SSH, </span>
+<span class="hljs-comment"># WP-CLI (or mysqldump) and rsync into DDEV.</span>
+
+<span class="hljs-comment"># Usage:</span>
+<span class="hljs-comment"># 1. Add environment as web_environment to config.yaml</span>
+<span class="hljs-comment"># 2. Run &#x27;ddev pull wp-production&#x27;</span>
+
+<span class="hljs-comment"># More general information regarding the DDEV pull feature:</span>
+<span class="hljs-comment"># https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/</span>
+
+<span class="hljs-comment"># !! MAKE SURE YOU GOT DDEV VERSION &gt;= 1.18.2 !!</span>
+<span class="hljs-comment"># https://github.com/drud/ddev/releases</span>
+<span class="hljs-comment"># (Otherwise overriding files_import_command won&#x27;t work)</span>
+
 <span class="hljs-attr">environment_variables:</span>
   <span class="hljs-attr">sshUser:</span> <span class="hljs-string">${PRODUCTION_SSH_USER}</span>
   <span class="hljs-attr">sshHost:</span> <span class="hljs-string">${PRODUCTION_SSH_HOST}</span>
   <span class="hljs-attr">sshWpDir:</span> <span class="hljs-string">${PRODUCTION_SSH_WP_DIR}</span>
+  <span class="hljs-attr">childThemeFolder:</span> <span class="hljs-string">${CHILD_THEME_FOLDER_NAME}</span>
+  
+  <span class="hljs-comment"># These values are loaded via .ddev/config.yaml, you need </span>
+  <span class="hljs-comment"># to add the following to .ddev/config.yaml and run &#x27;ddev restart&#x27;:</span>
+  <span class="hljs-comment"># </span>
+  <span class="hljs-comment"># web_environment:</span>
+  <span class="hljs-comment"># - PRODUCTION_SSH_USER=ssh12345678</span>
+  <span class="hljs-comment"># - PRODUCTION_SSH_HOST=ngcobalt12345678.manitu.net</span>
+  <span class="hljs-comment"># - PRODUCTION_SSH_WP_DIR=/home/sites/site12345678/web/nature-blog.mandrasch.eu</span>
+  <span class="hljs-comment"># </span>
+  <span class="hljs-comment"># See: https://ddev.readthedocs.io/en/stable/users/extend/customization-extendibility/#providing-custom-environment-variables-to-a-container</span>
 
 <span class="hljs-comment"># 1. Add ssh keys to the user agent</span>
 <span class="hljs-attr">auth_command:</span>
@@ -239,7 +265,19 @@
     ssh-add -l &gt;/dev/null || ( echo &quot;Please &#x27;ddev auth ssh&#x27; before running this command.&quot; &amp;&amp; exit 1 )
 </span>
 <span class="hljs-comment"># 2. Pull a fresh database dump via SSH</span>
-<span class="hljs-comment"># (Either via WP-CLI or - if WP-CLI is not available - via mysqldump)</span>
+<span class="hljs-comment"># </span>
+<span class="hljs-comment"># (The database url replace-search will be done later in</span>
+<span class="hljs-comment"># files_import_command,because we need wp-config.php for it)</span>
+<span class="hljs-comment"># </span>
+<span class="hljs-comment"># If WP-CLI is available on server: </span>
+<span class="hljs-comment"># Use &#x27;wp db export&#x27; command, it&#x27;ll use wp-config.php DB settings </span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># If WP-CLI is not available, try with mysqldump:</span>
+<span class="hljs-comment"># Use mysqldump and get db connection from wp-config.php via bash,</span>
+<span class="hljs-comment"># thanks to https://tomjn.com/2014/03/01/wordpress-bash-magic/</span>
+<span class="hljs-comment"># Important: Use backslash for mysqldump values, thanks to </span>
+<span class="hljs-comment"># https://stackoverflow.com/a/13826220</span>
+<span class="hljs-comment"># </span>
 <span class="hljs-attr">db_pull_command:</span>
   <span class="hljs-attr">command:</span> <span class="hljs-string">|
     # set -x   # You can enable bash debugging output by uncommenting
@@ -274,8 +312,12 @@
     # Add trailing slash for sshWpDir if missing, 
     # thanks to https://gist.github.com/luciomartinez/c322327605d40f86ee0c
     [[ &quot;${sshWpDir}&quot; != */ ]] &amp;&amp; sshWpDir=&quot;${sshWpDir}/&quot;
+    # TODO: use reverse .gitignore file to include, but include-from does not work with /path/-, only used for patterns
     # Sync files from remote (${sshUser}@${sshHost}:${sshWpDir}) to local docroot (.)
-    rsync -azh --progress --stats --include-from=&#x27;.gitignore&#x27; --exclude=&#x27;*&#x27; ${sshUser}@${sshHost}:${sshWpDir} .
+    # not working, because it uses pattern, but .gitignore uses paths --&gt; rsync -azh --progress --stats --include-from=&#x27;.gitignore&#x27; --exclude=&#x27;*&#x27; ${sshUser}@${sshHost}:${sshWpDir} .
+    # not working as well rsync -azhvv --progress --stats --filter=&#x27;merge,+ .gitignore&#x27; ${sshUser}@${sshHost}:${sshWpDir} .
+    # current implementation:
+    rsync -azh --progress --stats --exclude=&quot;wp-content/themes/${childThemeFolder}&quot; --exclude=&quot;.git/&quot; --exclude=&quot;.ddev/&quot; ${sshUser}@${sshHost}:${sshWpDir} .
 </span>  <span class="hljs-attr">service:</span> <span class="hljs-string">web</span>
 
 <span class="hljs-comment"># 4. Set database connection + migrate URLs in DB</span>
