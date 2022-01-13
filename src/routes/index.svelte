@@ -13,11 +13,13 @@
 	<h1><i>ddev pull wp</i>-Generator</h1>
 	<p>
 		This generators enables you to pull a live WordPress site into your local DDEV project. It
-		requires connecting to your webspace via SSH and it needs WP-CLI or mysqldump available on your
-		webspace.(If your webspace doesn't meet these requirements, check out <a
-			href="https://github.com/mandrasch/ddev-pull-backwpupfile"
-			target="_blank">ddev pull backwpupfile</a
-		>).
+		requires connecting to your webspace via SSH (password-less via SSH keys) and it needs WP-CLI or
+		mysqldump available on your webspace.<i
+			>(If your webspace doesn't meet these requirements, check out <a
+				href="https://github.com/mandrasch/ddev-pull-backwpupfile"
+				target="_blank">ddev pull backwpupfile</a
+			>).</i
+		>
 	</p>
 
 	<div class="row">
