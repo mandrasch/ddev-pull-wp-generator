@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-4e723f17.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-63e26aac.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-a4db69c5.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-f07efb5d.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-11a33a56.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-01790a6f.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-9df0ccb9.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-a4db69c5.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-f07efb5d.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -32,7 +32,7 @@
 					error: null,
 					nodes: [
 						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-01790a6f.js")
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-9df0ccb9.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -124,9 +124,9 @@
 					</div></div></div></fieldset>
 
 	<div class="mb-3"><fieldset class="svelte-12n678h"><legend class="svelte-12n678h">Web Server</legend>
-			<div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="nginx" type="radio" name="webServerType" value="nginx" checked>
-				<label class="form-check-label svelte-12n678h" for="nginx">nginx</label></div>
-			<div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="apache2" type="radio" value="apache2" name="webServerType">
+			<div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="nginx" type="radio" name="webServerType" value="nginx-fpm">
+				<label class="form-check-label svelte-12n678h" for="nginx">nginx (default)</label></div>
+			<div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="apache2" type="radio" value="apache-fpm" name="webServerType">
 				<label class="form-check-label svelte-12n678h" for="apache2">apache2</label></div></fieldset></div>
 	<div class="mb-3"><label class="form-label svelte-12n678h" for="childThemeFolderName">Child theme folder (in wp-content/themes/)</label>
 		<input class="form-control" id="childThemeFolderName" type="text" placeholder="twentytwentyone-child" value="twentytwentyone-child">
