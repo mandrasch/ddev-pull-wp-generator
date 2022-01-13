@@ -27,16 +27,9 @@ type: wordpress
 docroot: ""
 php_version: "${$selectedPhpVersion}"
 webserver_type: ${$webServerType}
-router_http_port: "80"
-router_https_port: "443"
-xdebug_enabled: false
-additional_hostnames: []
-additional_fqdns: []
 ${$selectedDbVersionType}: "${$selectedDbVersionNumber}"
 nfs_mount_enabled: false
 mutagen_enabled: false
-use_dns_when_possible: true
-composer_version: "2"
 web_environment:
 - PRODUCTION_SSH_HOST=${$sshHost}
 - PRODUCTION_SSH_USER=${$sshUser}
