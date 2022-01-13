@@ -25,7 +25,7 @@ State: _Work in progress_
 ## License
 
 - my own code is public domain, have fun forking!
-- check out package.json for third party (open source) packages
+- check out package.json for third party (open source) packages and their respective licenses
 
 <hr>
 
