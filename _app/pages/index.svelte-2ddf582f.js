@@ -112,7 +112,7 @@ web_environment:
 - PRODUCTION_SSH_USER=${L}
 - PRODUCTION_SSH_WP_DIR=${p}`),r.$$.dirty&16&&l(1,I=`
 # Ignore all ...
-*
+/*
 
 # ... but track specific files / folders: 
 
