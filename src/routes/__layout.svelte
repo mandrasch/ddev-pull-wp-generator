@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>DDEV WP Boilerplate Generator</title>
+	<title>DDEV Pull WP Generator</title>
 </svelte:head>
 
 <main>
