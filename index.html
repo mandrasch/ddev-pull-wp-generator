@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-4e723f17.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-63e26aac.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-1262f795.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-27f96261.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-11a33a56.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-570310ab.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-77cc4d98.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-1262f795.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-27f96261.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -32,7 +32,7 @@
 					error: null,
 					nodes: [
 						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-570310ab.js")
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-77cc4d98.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -51,16 +51,14 @@
 	</div>
 
 	<h1><i>ddev pull wp</i>-Generator</h1>
-	<p>This generators enables you to pull a live WordPress site into your local DDEV project. It
-		requires connecting to your webspace via SSH (password-less via SSH keys) and it needs WP-CLI or
-		mysqldump available on your webspace.</p>
-		<p><small>(If your webspace doesn&#39;t meet these requirements, check out <a href="https://github.com/mandrasch/ddev-pull-wp-scripts#-ddev-pull-backup" target="_blank">ddev pull backup</a>).</small></p>
+	<p>This generator helps you create a config to pull a live WordPress site into a local DDEV project - with just one command. This enables peaceful local testing and development.
+		</p><p><small>Requirements: Connection to your webspace via SSH keys (passwordless) from your computer and WP-CLI or
+			mysqldump available on your webspace. If your webspace doesn&#39;t meet these requirements, check out <a href="https://github.com/mandrasch/ddev-pull-wp-scripts#-ddev-pull-backup" target="_blank">ddev pull backup</a>.</small></p>
 
 	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">1. Create a new project folder</h2>
-			<p>Create a new local folder, for example &quot;my-wp-site&quot; and create a new git repository (&quot;git init&quot;) - or setup a fresh git repository on GitHub and clone it to your local computer.</p></div>
+			<p>Create a new local folder and setup a new git repository via &quot;git init&quot; - or create a new git repository on GitHub and clone it to your local computer. In this example we called our repository &quot;my-wp-site&quot;.</p></div>
 		<div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">2. Select your configuration</h2>
-			<p>If you are unsure about these values, just leave the defaults, they should be good to go.</p>
-			<p><small>For serious testing you should choose the values accordingly to your live website. You can use the WordPress feature <a href="https://yoast.com/wordpress-site-health/" target="_blank">&quot;Site Health Screen&quot;</a> to figure out your live sites environment, I&#39;m also testing a small WordPress plugin <a href="https://github.com/mandrasch/ddev-pull-wp-helper-plugin" target="_blank">ddev-pull-wp-helper</a>.</small></p></div>
+			<p>If you are unsure about these values, just leave the defaults, they are good to go. Just insert your SSH host, user and WordPress path on server:</p></div>
 		<div class="col-lg-6 px-4"><form><div class="mb-3"><label class="form-label svelte-12n678h" for="projectName">Project name</label>
 		<input class="form-control" id="projectName" type="text" placeholder="Project name" value="my-wp-site"></div>
 	<div class="mb-3"><fieldset class="svelte-12n678h"><legend class="svelte-12n678h">PHP version</legend>
@@ -110,10 +108,9 @@
 				<label class="form-check-label svelte-12n678h" for="nginx">nginx (default)</label></div>
 			<div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="apache2" type="radio" value="apache-fpm" name="webServerType">
 				<label class="form-check-label svelte-12n678h" for="apache2">apache2</label></div></fieldset></div>
-	<div class="mb-3"><label class="form-label svelte-12n678h" for="childThemeFolderName">Child theme folder (in wp-content/themes/)</label>
+	<div class="mb-3"><label class="form-label svelte-12n678h" for="childThemeFolderName">Child theme folder name (in wp-content/themes/)</label>
 		<input class="form-control" id="childThemeFolderName" type="text" placeholder="twentytwentyone-child" value="twentytwentyone-child">
-		<div class="form-text">If you don&#39;t use a child theme currently, just leave this setting. It can be changed later as
-			well.
+		<div class="form-text">If you don&#39;t use a child theme currently, just keep &quot;twentytwentyone-child&quot;. It can be changed later as well. This setting is used for pull and in .gitignore.
 		</div></div>
 	<div class="mb-3"><label class="form-label svelte-12n678h" for="sshHost">SSH host</label>
 		<input class="form-control" id="sshHost" type="text" placeholder="example.org" value=""></div>
@@ -121,8 +118,7 @@
 		<input class="form-control" id="sshUsername" type="text" placeholder="user123" value=""></div>
 	<div class="mb-3"><label class="form-label svelte-12n678h" for="pathToWordPressOnServer">Path to WordPress on server</label>
 		<input class="form-control" id="pathToWordPressOnServer" type="text" placeholder="/sites/my-website.eu/" value="">
-		<div class="form-text">Get it from <a href="https://yoast.com/wordpress-site-health/" target="_blank">Site Health</a>
-			» Info » Directories &amp; sizes » WordPress directory location
+		<div class="form-text">Copy this value from Site Health » Info » Directories &amp; sizes » WordPress directory location (<a href="https://yoast.com/wordpress-site-health/" target="_blank">?</a>)
 		</div></div>
 	
 </form></div>
@@ -143,43 +139,17 @@
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_USER=</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">CHILD_THEME_FOLDER_NAME=twentytwentyone-child</span><!-- HTML_TAG_END --></code></pre>
-</div></div>
+</div>
+		<div class="col-12 px-4 mb-3"><p><small>Optional: For more serious testing you could choose the values accordingly to your live website. You can use the WordPress feature <a href="https://yoast.com/wordpress-site-health/" target="_blank">&quot;Site Health Screen&quot;</a> to figure out your live sites environment, I&#39;m also testing a small WordPress plugin <a href="https://github.com/mandrasch/ddev-pull-wp-helper-plugin" target="_blank">ddev-pull-wp-helper</a> which helps getting the information with one click.</small></p></div></div>
 	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">3. Copy generated files to your project folder</h2>
 			<p>Great, that&#39;s all we need for configuration. Copy these files into your local project:
 		</p></div>
 		<div class="col-12 px-4">
 
-<div class="card card-small svelte-2rtgml"><div class="card-body"><h5 class="card-title">.ddev/config.yaml</h5>
-			<h6 class="card-subtitle mb-2 text-muted">DDEV project configuration</h6>
-			<p class="card-text">
-  <pre data-language="yaml" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-attr">name:</span> <span class="hljs-string">my-wp-site</span>
-<span class="hljs-attr">type:</span> <span class="hljs-string">wordpress</span>
-<span class="hljs-attr">docroot:</span> <span class="hljs-string">&quot;&quot;</span>
-<span class="hljs-attr">php_version:</span> <span class="hljs-string">&quot;7.4&quot;</span>
-<span class="hljs-attr">mariadb_version:</span> <span class="hljs-string">&quot;10.3&quot;</span>
-<span class="hljs-attr">webserver_type:</span> <span class="hljs-string">nginx-fpm</span>
-<span class="hljs-comment"># Variables for the pull (provider) script</span>
-<span class="hljs-comment"># - if you change these, run &#x27;ddev restart&#x27;</span>
-<span class="hljs-attr">web_environment:</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_HOST=</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_USER=</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">CHILD_THEME_FOLDER_NAME=twentytwentyone-child</span><!-- HTML_TAG_END --></code></pre>
-
-				<details class="svelte-2rtgml"><summary>Why is this file needed?</summary>
-					<p class="svelte-2rtgml">This is the DDEV configuration of your project folder. The <i>web_environment</i>-values
-						are our custom variables. These will then be used in the provider pull script, see
-						below. The awesome thing is that this config can be shared via git: This means it can be
-						used in team projects as well and everyone uses the same webserver configuration. Check
-						out the DDEV documentation for more information:
-						<a href="https://ddev.readthedocs.io/en/stable/users/extend/config_yaml/" target="_blank">config.yaml-docs</a>.
-					</p></details></p>
-			</div></div>
-
-	<div class="card card-small svelte-2rtgml"><div class="card-body"><h5 class="card-title">.gitignore</h5>
-			<h6 class="card-subtitle mb-2 text-muted">Ignore pattern for tracking only the child theme
-			</h6>
-			<p class="card-text">
+<div class="card card-small svelte-2rtgml"><div class="card-body"><h5 class="card-title">.gitignore</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Ignore pattern for tracking only the child theme
+    </h6>
+    <p class="card-text">
   <pre data-language="plaintext" class=" svelte-19wij0g"><code class="hljs">
 # Ignore all ...
 /*
@@ -206,15 +176,44 @@
 !/wp-content/themes/twentytwentyone-child
 </code></pre>
 
-				<details class="svelte-2rtgml"><summary>Why is this needed?</summary>
-					<p class="svelte-2rtgml">This is needed to track the child theme via git. On synchronization (<i>ddev pull ssh</i>) the whole website is downloaded to the local project folder - but we don&#39;t want to
-						override the child theme, because maybe we changed some styles already and just want to
-						test them with the newest site content. 
-						The sync uses &quot;--exclude=wp-content/themes/twentytwentyone-child&quot; to avoid overriding
-						local changes.
+      <details class="svelte-2rtgml"><summary>Why is this needed?</summary>
+        <p class="svelte-2rtgml">This is needed to track the child theme via git. On synchronization (<i>ddev pull ssh</i>) the whole website is downloaded to the local project folder - but we don&#39;t want to
+          override the child theme, because maybe we changed some styles already and just want to
+          test them with the newest site content. 
+          The sync uses &quot;--exclude=wp-content/themes/twentytwentyone-child&quot; to avoid overriding
+          local changes.
+        </p></details></p>
+    </div></div>
+
+
+	<div class="card card-small svelte-2rtgml"><div class="card-body"><h5 class="card-title">.ddev/config.yaml</h5>
+			<h6 class="card-subtitle mb-2 text-muted">DDEV project configuration</h6>
+			<p class="card-text">
+  <pre data-language="yaml" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-attr">name:</span> <span class="hljs-string">my-wp-site</span>
+<span class="hljs-attr">type:</span> <span class="hljs-string">wordpress</span>
+<span class="hljs-attr">docroot:</span> <span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-attr">php_version:</span> <span class="hljs-string">&quot;7.4&quot;</span>
+<span class="hljs-attr">mariadb_version:</span> <span class="hljs-string">&quot;10.3&quot;</span>
+<span class="hljs-attr">webserver_type:</span> <span class="hljs-string">nginx-fpm</span>
+<span class="hljs-comment"># Variables for the pull (provider) script</span>
+<span class="hljs-comment"># - if you change these, run &#x27;ddev restart&#x27;</span>
+<span class="hljs-attr">web_environment:</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_HOST=</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_USER=</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">CHILD_THEME_FOLDER_NAME=twentytwentyone-child</span><!-- HTML_TAG_END --></code></pre>
+
+				<details class="svelte-2rtgml"><summary>Why is this file needed?</summary>
+					<p class="svelte-2rtgml">This is the DDEV configuration of your project folder. The <i>web_environment</i>-values
+						are our custom variables. These will then be used in the provider pull script, see
+						below. The awesome thing is that this config can be shared via git: This means it can be
+						used in team projects as well and everyone uses the same webserver configuration. Check
+						out the DDEV documentation for more information:
+						<a href="https://ddev.readthedocs.io/en/stable/users/extend/config_yaml/" target="_blank">config.yaml-docs</a>.
 					</p></details></p>
 			</div></div>
 
+	
 	<div class="card svelte-2rtgml"><div class="card-body"><h5 class="card-title">.ddev/providers/ssh.yaml</h5>
 			<h6 class="card-subtitle mb-2 text-muted">The actual pull script, runs via &#39;ddev pull ssh&#39;
 			</h6>
