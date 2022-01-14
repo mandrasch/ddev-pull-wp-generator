@@ -8,7 +8,7 @@ import{L as Vl,C as bt,S as zt,i as Qt,s as Jt,M as Nl,k as $t,j as u,F as Al,N 
 						used in team projects as well and everyone uses the same webserver configuration. Check
 						out the DDEV documentation for more information:
 						`),M=s("a"),me=c("config.yaml-docs"),Ce=c("."),Ie=u(),Pe=s("div"),A=s("div"),$=s("h5"),lt=c(".ddev/providers/ssh.yaml"),st=u(),G=s("h6"),Te=c("The actual pull script, runs via 'ddev pull ssh'"),K=u(),U=s("p"),We=s("small"),rt=c("Requirement: "),q=s("a"),at=c("DDEV >= 1.18.2"),de=u(),he=s("br"),Se=u(),ot=s("br"),Y=c(`
-				This file is work in progress. Please copy the latest version from Github:`),ue=u(),X=s("ul"),Be=s("li"),_e=s("b"),ae=s("a"),nt=c(".ddev/providers/wp-ssh.yaml"),Le=u(),Fe=s("p"),Ne=c(`(It will be added later here for copy & paste).
+				This file is work in progress. Please copy the latest version from Github:`),ue=u(),X=s("ul"),Be=s("li"),_e=s("b"),ae=s("a"),nt=c(".ddev/providers/ssh.yaml"),Le=u(),Fe=s("p"),Ne=c(`(It will be added later here for copy & paste).
 				
 
 				`),j=s("details"),ve=s("summary"),B=c("Why is this file needed?"),Ae=u(),O=s("p"),h=c(`This is our pull script which takes care of pulling the live web site to your local DDEV
@@ -22,7 +22,7 @@ import{L as Vl,C as bt,S as zt,i as Qt,s as Jt,M as Nl,k as $t,j as u,F as Al,N 
 						used in team projects as well and everyone uses the same webserver configuration. Check
 						out the DDEV documentation for more information:
 						`),M=r(ge,"A",{href:!0,target:!0});var pt=n(M);me=d(pt,"config.yaml-docs"),pt.forEach(l),Ce=d(ge,"."),ge.forEach(l),oe.forEach(l),dt.forEach(l),le.forEach(l),Ke.forEach(l),Ie=v(V),Pe=r(V,"DIV",{class:!0});var Ze=n(Pe);A=r(Ze,"DIV",{class:!0});var R=n(A);$=r(R,"H5",{class:!0});var C=n($);lt=d(C,".ddev/providers/ssh.yaml"),C.forEach(l),st=v(R),G=r(R,"H6",{class:!0});var _t=n(G);Te=d(_t,"The actual pull script, runs via 'ddev pull ssh'"),_t.forEach(l),K=v(R),U=r(R,"P",{class:!0});var Ve=n(U);We=r(Ve,"SMALL",{});var mt=n(We);rt=d(mt,"Requirement: "),q=r(mt,"A",{href:!0,target:!0});var ye=n(q);at=d(ye,"DDEV >= 1.18.2"),ye.forEach(l),mt.forEach(l),de=v(Ve),he=r(Ve,"BR",{}),Se=v(Ve),ot=r(Ve,"BR",{}),Y=d(Ve,`
-				This file is work in progress. Please copy the latest version from Github:`),Ve.forEach(l),ue=v(R),X=r(R,"UL",{});var Ot=n(X);Be=r(Ot,"LI",{});var Dt=n(Be);_e=r(Dt,"B",{});var jt=n(_e);ae=r(jt,"A",{href:!0,target:!0});var ze=n(ae);nt=d(ze,".ddev/providers/wp-ssh.yaml"),ze.forEach(l),jt.forEach(l),Dt.forEach(l),Ot.forEach(l),Le=v(R),Fe=r(R,"P",{});var gt=n(Fe);Ne=d(gt,`(It will be added later here for copy & paste).
+				This file is work in progress. Please copy the latest version from Github:`),Ve.forEach(l),ue=v(R),X=r(R,"UL",{});var Ot=n(X);Be=r(Ot,"LI",{});var Dt=n(Be);_e=r(Dt,"B",{});var jt=n(_e);ae=r(jt,"A",{href:!0,target:!0});var ze=n(ae);nt=d(ze,".ddev/providers/ssh.yaml"),ze.forEach(l),jt.forEach(l),Dt.forEach(l),Ot.forEach(l),Le=v(R),Fe=r(R,"P",{});var gt=n(Fe);Ne=d(gt,`(It will be added later here for copy & paste).
 				
 
 				`),j=r(gt,"DETAILS",{class:!0});var It=n(j);ve=r(It,"SUMMARY",{});var Ct=n(ve);B=d(Ct,"Why is this file needed?"),Ct.forEach(l),Ae=v(It),O=r(It,"P",{class:!0});var yt=n(O);h=d(yt,`This is our pull script which takes care of pulling the live web site to your local DDEV
