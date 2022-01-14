@@ -15,30 +15,36 @@
 	<p>
 		This generators enables you to pull a live WordPress site into your local DDEV project. It
 		requires connecting to your webspace via SSH (password-less via SSH keys) and it needs WP-CLI or
-		mysqldump available on your webspace.<i
-			>(If your webspace doesn't meet these requirements, check out <a
-				href="https://github.com/mandrasch/ddev-pull-backwpupfile"
-				target="_blank">ddev pull backwpupfile</a
-			>).</i
-		>
+		mysqldump available on your webspace.</p>
+		<p>
+		<small>(If your webspace doesn't meet these requirements, check out <a
+				href="https://github.com/mandrasch/ddev-pull-wp-scripts#-ddev-pull-backup"
+				target="_blank">ddev pull backup</a
+			>).</small>
 	</p>
 
 	<div class="row">
 		<div class="col-12 px-4 mb-3">
-			<h2>1. Create your configuration</h2>
+			<h2>1. Create a new project folder</h2>
+			<p>Create a new local folder, for example "my-wp-site" and create a new git repository ("git init") - or setup a fresh git repository on GitHub and clone it to your local computer.</p>
 		</div>
-		<div class="col-lg-6 px-4">
-			<div class="mb-2">.ddev/config.yaml</div>
-			<CodeGenerator showOnlyConfigYaml={true} />
+		<div class="col-12 px-4 mb-3">
+			<h2>2. Select your configuration</h2>
+			<p>If you are unsure about these values, just leave the defaults, they should be good to go.</p>
+			<p><small>For serious testing you should choose the values accordingly to your live website. You can use the WordPress feature <a href="https://yoast.com/wordpress-site-health/" target="_blank">"Site Health Screen"</a> to figure out your live sites environment, I'm also testing a small WordPress plugin <a href="https://github.com/mandrasch/ddev-pull-wp-helper-plugin" target="_blank">ddev-pull-wp-helper</a>.</small></p>
 		</div>
 		<div class="col-lg-6 px-4">
 			<FormWizard />
 		</div>
+		<div class="col-lg-6 px-4">
+			<div class="mb-2">Live preview of .ddev/config.yaml:</div>
+			<CodeGenerator showOnlyConfigYaml={true} />
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-12 px-4 mb-3">
-			<h2>2. Create your project folder</h2>
-			<p>Create a new project folder and insert these files:</p>
+			<h2>3. Copy generated files to your project folder</h2>
+			<p>Great, that's all we need for configuration. Copy these files into your local project:
 		</div>
 		<div class="col-12 px-4">
 			<CodeGenerator showOnlyConfigYaml={false} />
@@ -47,39 +53,37 @@
 
 	<div class="row">
 		<div class="col-12">
-			<h2 class="mb-3">3. Start DDEV project & pull all the files</h2>
-			<p>Screencast: coming soon</p>
+			<h2 class="mb-3">4. Optional: Import your child theme</h2>
+			<p>Now would be a good time to import your child theme from your live site to your local project folder. If you want to download it from WP dashboard, you can use the
+				<a href="https://wordpress.org/plugins/download-plugins-dashboard/" target="_blank"
+					>Download Plugins and Themes from Dashboard plugin</a
+				>. This step is only needed once.</p>
+			<p>TODO: provide ssh command to just pull it in :-)</p>
 
-			<ol class="list-group list-group-numbered">
-				<!-- <li class="list-group-item">
-					Create a new project folder (or create empty GitHub project)
-				</li>
-				<li class="list-group-item">Copy the generated files contents to the new project folder</li> -->
-
-				<li class="list-group-item">
-					Download the current state of your child theme into <i
-						>wp-content/themes/{$childThemeFolderName}</i
-					>. If you want to download it from WP dashboard, you can use the
-					<a href="https://wordpress.org/plugins/download-plugins-dashboard/" target="_blank"
-						>Download Plugins and Themes from Dashboard plugin</a
-					>.<br /><small
-						>(If you already manage your child theme via git or you don't have a child theme
-						currently, you can skip this step.)</small
-					>
-				</li>
-				<li class="list-group-item">Run "ddev start"</li>
-				<li class="list-group-item">Run "ddev auth ssh"</li>
-				<li class="list-group-item">
-					Run "ddev pull wp-production" to pull your live site to the local project
-				</li>
-				<li class="list-group-item">Run "ddev launch" to open your local site in the browser</li>
-			</ol>
-			<p class="mt-3">
-				Optional: Setup your child theme via WPPusher (or other methods) on your live site, see
-				"Step 7" <a href="https://github.com/mandrasch/ddev-wp-groundstation">here</a>.
-			</p>
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="col-12">
+			<h2 class="mb-3">5. Start DDEV & pull all the files 🙌</h2>
+			<ol class="list-group list-group-numbered">
+				<li class="list-group-item">Run "ddev start"</li>
+				<li class="list-group-item">
+					Run "ddev pull ssh" to pull your live sites content (file / database)</li>
+				<li class="list-group-item">Run "ddev launch" to open your local site in the browser</li>
+			</ol>
+		</div>
+	</div>
+
+	<div class="row mt-2">
+		<div class="col-12">
+			<h2 class="mb-3">6. Develop, commit, have fun!</h2>
+			<p>TODO: provide documentation for integration of <a href="https://wppusher.com/" target="_blank">WPPusher</a> or similiar tools for deploying the git-managed child theme.</p>	
+		</div>
+	</div>
+
+
+
 </div>
 
 <style lang="scss">
