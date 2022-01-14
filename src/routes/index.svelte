@@ -13,25 +13,23 @@
 
 	<h1><i>ddev pull wp</i>-Generator</h1>
 	<p>
-		This generators enables you to pull a live WordPress site into your local DDEV project. It
-		requires connecting to your webspace via SSH (password-less via SSH keys) and it needs WP-CLI or
-		mysqldump available on your webspace.</p>
-		<p>
-		<small>(If your webspace doesn't meet these requirements, check out <a
+		This generator helps you create a config to pull a live WordPress site into a local DDEV project - with just one command. This enables peaceful local testing and development.<!--(and without overriding a git-tracked child theme).-->
+		</p><p>
+		<small>Requirements: Connection to your webspace via SSH keys (passwordless) from your computer and WP-CLI or
+			mysqldump available on your webspace. If your webspace doesn't meet these requirements, check out <a
 				href="https://github.com/mandrasch/ddev-pull-wp-scripts#-ddev-pull-backup"
 				target="_blank">ddev pull backup</a
-			>).</small>
+			>.</small>
 	</p>
 
 	<div class="row">
 		<div class="col-12 px-4 mb-3">
 			<h2>1. Create a new project folder</h2>
-			<p>Create a new local folder, for example "my-wp-site" and create a new git repository ("git init") - or setup a fresh git repository on GitHub and clone it to your local computer.</p>
+			<p>Create a new local folder and setup a new git repository via "git init" - or create a new git repository on GitHub and clone it to your local computer. In this example we called our repository "my-wp-site".</p>
 		</div>
 		<div class="col-12 px-4 mb-3">
 			<h2>2. Select your configuration</h2>
-			<p>If you are unsure about these values, just leave the defaults, they should be good to go.</p>
-			<p><small>For serious testing you should choose the values accordingly to your live website. You can use the WordPress feature <a href="https://yoast.com/wordpress-site-health/" target="_blank">"Site Health Screen"</a> to figure out your live sites environment, I'm also testing a small WordPress plugin <a href="https://github.com/mandrasch/ddev-pull-wp-helper-plugin" target="_blank">ddev-pull-wp-helper</a>.</small></p>
+			<p>If you are unsure about these values, just leave the defaults, they are good to go. Just insert your SSH host, user and WordPress path on server:</p>
 		</div>
 		<div class="col-lg-6 px-4">
 			<FormWizard />
@@ -39,6 +37,9 @@
 		<div class="col-lg-6 px-4">
 			<div class="mb-2">Live preview of .ddev/config.yaml:</div>
 			<CodeGenerator showOnlyConfigYaml={true} />
+		</div>
+		<div class="col-12 px-4 mb-3">
+			<p><small>Optional: For more serious testing you could choose the values accordingly to your live website. You can use the WordPress feature <a href="https://yoast.com/wordpress-site-health/" target="_blank">"Site Health Screen"</a> to figure out your live sites environment, I'm also testing a small WordPress plugin <a href="https://github.com/mandrasch/ddev-pull-wp-helper-plugin" target="_blank">ddev-pull-wp-helper</a> which helps getting the information with one click.</small></p>
 		</div>
 	</div>
 	<div class="row">

@@ -72,6 +72,36 @@ web_environment:
 {#if showOnlyConfigYaml}
 	<Highlight language={yaml} code={configYaml} />
 {:else}
+
+<div class="card card-small">
+  <div class="card-body">
+    <h5 class="card-title">.gitignore</h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      Ignore pattern for tracking only the child theme
+    </h6>
+    <p class="card-text">
+      <Highlight code={gitIgnoreContent} />
+      <details>
+        <summary>Why is this needed?</summary>
+        <p>
+          This is needed to track the child theme via git. On synchronization (<i
+            >ddev pull ssh</i
+          >) the whole website is downloaded to the local project folder - but we don't want to
+          override the child theme, because maybe we changed some styles already and just want to
+          test them with the newest site content. <!-- The sync uses rsync with the option
+          <i>--include-from='.gitignore' --exclude='*'</i>, therefore it syncs everything except
+          the child theme folder.)-->
+          The sync uses "--exclude=wp-content/themes/{$childThemeFolderName}" to avoid overriding
+          local changes.
+        </p>
+      </details>
+    </p>
+    <!-- <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a> -->
+  </div>
+</div>
+
+
 	<div class="card card-small">
 		<div class="card-body">
 			<h5 class="card-title">.ddev/config.yaml</h5>
@@ -98,34 +128,7 @@ web_environment:
 		</div>
 	</div>
 
-	<div class="card card-small">
-		<div class="card-body">
-			<h5 class="card-title">.gitignore</h5>
-			<h6 class="card-subtitle mb-2 text-muted">
-				Ignore pattern for tracking only the child theme
-			</h6>
-			<p class="card-text">
-				<Highlight code={gitIgnoreContent} />
-				<details>
-					<summary>Why is this needed?</summary>
-					<p>
-						This is needed to track the child theme via git. On synchronization (<i
-							>ddev pull ssh</i
-						>) the whole website is downloaded to the local project folder - but we don't want to
-						override the child theme, because maybe we changed some styles already and just want to
-						test them with the newest site content. <!-- The sync uses rsync with the option
-						<i>--include-from='.gitignore' --exclude='*'</i>, therefore it syncs everything except
-						the child theme folder.)-->
-						The sync uses "--exclude=wp-content/themes/{$childThemeFolderName}" to avoid overriding
-						local changes.
-					</p>
-				</details>
-			</p>
-			<!-- <a href="#" class="card-link">Card link</a>
-			<a href="#" class="card-link">Another link</a> -->
-		</div>
-	</div>
-
+	
 	<div class="card">
 		<div class="card-body">
 			<h5 class="card-title">.ddev/providers/ssh.yaml</h5>

@@ -159,7 +159,7 @@
 	</div>
 	<div class="mb-3">
 		<label class="form-label" for="childThemeFolderName"
-			>Child theme folder (in wp-content/themes/)</label
+			>Child theme folder name (in wp-content/themes/)</label
 		>
 		<input
 			class="form-control"
@@ -169,8 +169,7 @@
 			bind:value={$childThemeFolderName}
 		/>
 		<div class="form-text">
-			If you don't use a child theme currently, just leave this setting. It can be changed later as
-			well.
+			If you don't use a child theme currently, just keep "twentytwentyone-child". It can be changed later as well. This setting is used for pull and in .gitignore.
 		</div>
 	</div>
 	<div class="mb-3">
@@ -203,8 +202,7 @@
 			bind:value={$pathToWordPressOnServer}
 		/>
 		<div class="form-text">
-			Get it from <a href="https://yoast.com/wordpress-site-health/" target="_blank">Site Health</a>
-			&raquo; Info &raquo; Directories & sizes &raquo; WordPress directory location
+			Copy this value from Site Health &raquo; Info &raquo; Directories & sizes &raquo; WordPress directory location (<a href="https://yoast.com/wordpress-site-health/" target="_blank">?</a>)
 		</div>
 	</div>
 	<!-- 
