@@ -148,7 +148,7 @@ web_environment:
         <ul>
           <li><b><a
             href="https://github.com/mandrasch/ddev-pull-wp-scripts/blob/main/.ddev/providers/ssh.yaml"
-            target="_blank">.ddev/providers/wp-ssh.yaml</a
+            target="_blank">.ddev/providers/ssh.yaml</a
           ></b></li>
         </ul>
         <p>
