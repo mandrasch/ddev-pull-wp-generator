@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-4e723f17.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-63e26aac.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-bd00f43d.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-1790c7b3.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-11a33a56.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-6e31df61.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-b3e4e0cc.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-bd00f43d.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-1790c7b3.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -32,7 +32,7 @@
 					error: null,
 					nodes: [
 						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-6e31df61.js")
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-b3e4e0cc.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -190,7 +190,7 @@
 !/.ddev/config.yaml
 !/.ddev/providers
 /.ddev/providers/*
-!/.ddev/providers/wp-production.yaml
+!/.ddev/providers/ssh.yaml
 
 # Child theme:
 !/wp-content
@@ -201,7 +201,7 @@
 </code></pre>
 
 				<details class="svelte-2rtgml"><summary>Why is this needed?</summary>
-					<p class="svelte-2rtgml">This is needed to track the child theme via git. On synchronization (<i>ddev pull wp-production</i>) the whole website is downloaded to the local project folder - but we don&#39;t want to
+					<p class="svelte-2rtgml">This is needed to track the child theme via git. On synchronization (<i>ddev pull ssh</i>) the whole website is downloaded to the local project folder - but we don&#39;t want to
 						override the child theme, because maybe we changed some styles already and just want to
 						test them with the newest site content. 
 						The sync uses &quot;--exclude=wp-content/themes/twentytwentyone-child&quot; to avoid overriding
@@ -209,15 +209,16 @@
 					</p></details></p>
 			</div></div>
 
-	<div class="card svelte-2rtgml"><div class="card-body"><h5 class="card-title">.ddev/providers/wp-production.yaml</h5>
-			<h6 class="card-subtitle mb-2 text-muted">The actual pull script, runs via &#39;ddev pull wp-production&#39;
+	<div class="card svelte-2rtgml"><div class="card-body"><h5 class="card-title">.ddev/providers/ssh.yaml</h5>
+			<h6 class="card-subtitle mb-2 text-muted">The actual pull script, runs via &#39;ddev pull ssh&#39;
 			</h6>
 			<p class="card-text"><small>Requirement: <a href="https://github.com/drud/ddev/releases/tag/v1.18.2" target="_blank">DDEV &gt;= 1.18.2</a></small>
 				<br>
 				<br>
-				This file is work in progress. Please copy the latest version from <br><br>
-				<a href="https://github.com/mandrasch/ddev-wp-groundstation/blob/main/.ddev/providers/wp-production.yaml" target="_blank">GitHub: .ddev/providers/wp-production.yaml</a><br><br>
-				(It will be added later here for copy &amp; paste).
+				This file is work in progress. Please copy the latest version from Github:
+        </p>
+        <ul><li><b><a href="https://github.com/mandrasch/ddev-pull-wp-scripts/blob/main/.ddev/providers/ssh.yaml" target="_blank">.ddev/providers/wp-ssh.yaml</a></b></li></ul>
+        <p>(It will be added later here for copy &amp; paste).
 				
 
 				<details class="svelte-2rtgml"><summary>Why is this file needed?</summary>
