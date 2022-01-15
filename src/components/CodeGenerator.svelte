@@ -26,11 +26,16 @@
 	$: configYaml = `name: ${$projectName}
 type: wordpress
 docroot: ""
+nfs_mount_enabled: false
+mutagen_enabled: false
+
+# WebServer settings
 php_version: "${$selectedPhpVersion}"
 ${$selectedDbVersionType}: "${$selectedDbVersionNumber}"
 webserver_type: ${$webServerType}
+
 # Variables for the pull (provider) script
-# - if you change these, run 'ddev restart'
+# - if you change these, run 'ddev restart' !
 web_environment:
 - CHILD_THEME_FOLDER_NAME=${$childThemeFolderName}`;
 
@@ -112,6 +117,7 @@ web_environment:
 			<h6 class="card-subtitle mb-2 text-muted">DDEV project configuration</h6>
 			<p class="card-text">
 				<Highlight language={yaml} code={configYaml + configYamlSsh} />
+
 				<details>
 					<summary>Why is this file needed?</summary>
 					<p>
