@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-e6abeeb3.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-60e460fe.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-8956eb4e.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-aa4efd64.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-2e20c6d7.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-ea69646f.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-b6f99d93.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-cb0e2285.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-8956eb4e.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-aa4efd64.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -32,7 +32,7 @@
 					error: null,
 					nodes: [
 						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-ea69646f.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-b6f99d93.js")
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-cb0e2285.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -51,18 +51,11 @@
 	</div>
 
 	<h1><i>ddev pull wp</i>-Generator</h1>
-	<p>This generator helps you create a config to pull a live WordPress site into a local DDEV project
-		- with just one command. This enables peaceful local testing and development.</p>
-	<p><small>Requirements: Connection to your webspace via SSH keys (passwordless) from your computer and
-			WP-CLI or mysqldump available on your webspace. If your webspace doesn&#39;t meet these
-			requirements, check out <a href="https://github.com/mandrasch/ddev-pull-wp-scripts#-ddev-pull-backup" target="_blank">ddev pull backup</a>.</small></p>
+	<p>This generator helps you create a config to pull an existing WordPress site into a local DDEV
+		project. See <a href="https://github.com/mandrasch/ddev-pull-wp-scripts" target="_blank">ddev-pull-wp-scripts</a> for technical information.
+	</p>
 
-	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">1. Create a new project folder</h2>
-			<p>Create a new local folder and setup a new git repository via &quot;git init&quot; - or create a new
-				git repository on GitHub and clone it to your local computer. In this example we called our
-				repository &quot;my-wp-site&quot;.
-			</p></div>
-		<div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">2. Select your configuration</h2>
+	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">1. Select your configuration</h2>
 
 			<form><div class="mb-4 mt-3"><fieldset class="svelte-1h4wzmb"><legend class=" svelte-1h4wzmb">How do you want to pull your site?</legend>
 			<div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="pullTypeSsh" type="radio" name="pullType" value="ssh" checked>
@@ -141,11 +134,16 @@
   <pre data-language="yaml" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-attr">name:</span> <span class="hljs-string">my-wp-site</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">wordpress</span>
 <span class="hljs-attr">docroot:</span> <span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-attr">nfs_mount_enabled:</span> <span class="hljs-literal">false</span>
+<span class="hljs-attr">mutagen_enabled:</span> <span class="hljs-literal">false</span>
+
+<span class="hljs-comment"># WebServer settings</span>
 <span class="hljs-attr">php_version:</span> <span class="hljs-string">&quot;7.4&quot;</span>
 <span class="hljs-attr">mariadb_version:</span> <span class="hljs-string">&quot;10.3&quot;</span>
 <span class="hljs-attr">webserver_type:</span> <span class="hljs-string">nginx-fpm</span>
+
 <span class="hljs-comment"># Variables for the pull (provider) script</span>
-<span class="hljs-comment"># - if you change these, run &#x27;ddev restart&#x27;</span>
+<span class="hljs-comment"># - if you change these, run &#x27;ddev restart&#x27; !</span>
 <span class="hljs-attr">web_environment:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">CHILD_THEME_FOLDER_NAME=twentytwentyone-child</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_HOST=</span>
@@ -161,9 +159,12 @@
 					website. You can use the WordPress feature <a href="https://yoast.com/wordpress-site-health/" target="_blank">&quot;Site Health Screen&quot;</a>
 					to figure out your live sites environment, I&#39;m also testing a small WordPress plugin
 					<a href="https://github.com/mandrasch/ddev-pull-wp-helper-plugin" target="_blank">ddev-pull-wp-helper</a> which helps getting the information with one click.</small></p></div></div>
-	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">3. Copy generated files to your project folder</h2>
-			<p>Great, that&#39;s all we need for configuration. Copy these files into your local project, they
-				are generated based on your selected configuration:
+	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">2. Setup project folder</h2>
+			<p>Great, that&#39;s all we need for configuration!</p>
+			<p>Create a new local folder and setup a new git repository via &quot;git init&quot; - or create a new
+				git repository on GitHub and clone it to your local computer. In this example we called our
+				repository &quot;my-wp-site&quot;. Copy these files into your local project, they are generated based
+				on your selected configuration:
 			</p></div>
 		<div class="col-12">
 
@@ -212,16 +213,22 @@
   <pre data-language="yaml" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-attr">name:</span> <span class="hljs-string">my-wp-site</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">wordpress</span>
 <span class="hljs-attr">docroot:</span> <span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-attr">nfs_mount_enabled:</span> <span class="hljs-literal">false</span>
+<span class="hljs-attr">mutagen_enabled:</span> <span class="hljs-literal">false</span>
+
+<span class="hljs-comment"># WebServer settings</span>
 <span class="hljs-attr">php_version:</span> <span class="hljs-string">&quot;7.4&quot;</span>
 <span class="hljs-attr">mariadb_version:</span> <span class="hljs-string">&quot;10.3&quot;</span>
 <span class="hljs-attr">webserver_type:</span> <span class="hljs-string">nginx-fpm</span>
+
 <span class="hljs-comment"># Variables for the pull (provider) script</span>
-<span class="hljs-comment"># - if you change these, run &#x27;ddev restart&#x27;</span>
+<span class="hljs-comment"># - if you change these, run &#x27;ddev restart&#x27; !</span>
 <span class="hljs-attr">web_environment:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">CHILD_THEME_FOLDER_NAME=twentytwentyone-child</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_HOST=</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_USER=</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span><!-- HTML_TAG_END --></code></pre>
+
 
 				<details class="svelte-1k3tgwc"><summary>Why is this file needed?</summary>
 					<p class="svelte-1k3tgwc">This is the DDEV configuration of your project folder. The <i>web_environment</i>-values
@@ -251,14 +258,14 @@
 
 	</div></div>
 
-	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">4. Optional: Import your child theme</h2>
+	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">3. Optional: Import your child theme</h2>
 			<p>Now would be a good time to import your child theme from your live site to your local
 				project folder. If you want to download it from WP dashboard, you can use the
 				<a href="https://wordpress.org/plugins/download-plugins-dashboard/" target="_blank">Download Plugins and Themes from Dashboard plugin</a>. This step is only needed once.
 			</p>
 			<p>TODO: provide ssh command to just pull it in :-)</p></div></div>
 
-	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">5. Start DDEV &amp; pull all the files 🙌</h2>
+	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">4. Start DDEV &amp; pull all the files 🙌</h2>
 
 			<ol class="list-group list-group-numbered"><li class="list-group-item">Run &quot;ddev start&quot;</li>
 					<li class="list-group-item">Run &quot;ddev pull ssh&quot; to pull your live sites content (file / database)
@@ -267,8 +274,12 @@
 
 			</div></div>
 
-	<div class="row mt-2"><div class="col-12"><h2 class="mb-3 svelte-e708f3">6. Develop, commit, have fun!</h2>
-			<p>TODO: provide documentation for integration of <a href="https://wppusher.com/" target="_blank">WPPusher</a> or similiar tools for deploying the git-managed child theme.
+	<div class="row mt-2"><div class="col-12"><h2 class="mb-3 svelte-e708f3">5. Develop, commit, have fun!</h2>
+			<p>You can now pull the latest content in anytime you want. Your database and files will be
+				overriden (expect for the child theme which you can manage via git). <br> <br>TODO:
+				provide documentation for integration of
+				<a href="https://wppusher.com/" target="_blank">WPPusher</a> or similiar tools for deploying
+				the git-managed child theme.
 			</p></div></div>
 </div></main>
 
