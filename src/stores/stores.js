@@ -1,5 +1,6 @@
 import { writable, derived } from 'svelte/store';
 
+export const pullType = writable('ssh');
 export const projectName = writable('my-wp-site');
 export const childThemeFolderName = writable('twentytwentyone-child');
 export const webServerType = writable('nginx-fpm');
