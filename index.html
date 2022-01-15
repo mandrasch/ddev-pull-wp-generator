@@ -11,15 +11,15 @@
 
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/start-c446e5f0.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
-		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-4e723f17.css">
-		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-63e26aac.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-f15bc78d.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-11a33a56.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-2f4d7f0b.js">
+		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-e6abeeb3.css">
+		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-60e460fe.css">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-8956eb4e.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-2e20c6d7.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-ea69646f.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-b6f99d93.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-f15bc78d.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-8956eb4e.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -31,8 +31,8 @@
 					status: 200,
 					error: null,
 					nodes: [
-						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-55ab9fe6.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-2f4d7f0b.js")
+						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-ea69646f.js"),
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-b6f99d93.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -51,78 +51,90 @@
 	</div>
 
 	<h1><i>ddev pull wp</i>-Generator</h1>
-	<p>This generator helps you create a config to pull a live WordPress site into a local DDEV project - with just one command. This enables peaceful local testing and development.
-		</p><p><small>Requirements: Connection to your webspace via SSH keys (passwordless) from your computer and WP-CLI or
-			mysqldump available on your webspace. If your webspace doesn&#39;t meet these requirements, check out <a href="https://github.com/mandrasch/ddev-pull-wp-scripts#-ddev-pull-backup" target="_blank">ddev pull backup</a>.</small></p>
+	<p>This generator helps you create a config to pull a live WordPress site into a local DDEV project
+		- with just one command. This enables peaceful local testing and development.</p>
+	<p><small>Requirements: Connection to your webspace via SSH keys (passwordless) from your computer and
+			WP-CLI or mysqldump available on your webspace. If your webspace doesn&#39;t meet these
+			requirements, check out <a href="https://github.com/mandrasch/ddev-pull-wp-scripts#-ddev-pull-backup" target="_blank">ddev pull backup</a>.</small></p>
 
 	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">1. Create a new project folder</h2>
-			<p>Create a new local folder and setup a new git repository via &quot;git init&quot; - or create a new git repository on GitHub and clone it to your local computer. In this example we called our repository &quot;my-wp-site&quot;.</p></div>
+			<p>Create a new local folder and setup a new git repository via &quot;git init&quot; - or create a new
+				git repository on GitHub and clone it to your local computer. In this example we called our
+				repository &quot;my-wp-site&quot;.
+			</p></div>
 		<div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">2. Select your configuration</h2>
-			<p>If you are unsure about these values, just leave the defaults, they are good to go. Just insert your SSH host, user and WordPress path on server:</p></div>
-		<div class="col-lg-6 px-4"><form><div class="mb-3"><label class="form-label svelte-12n678h" for="projectName">Project name</label>
-		<input class="form-control" id="projectName" type="text" placeholder="Project name" value="my-wp-site"></div>
-	<div class="mb-3"><fieldset class="svelte-12n678h"><legend class="svelte-12n678h">PHP version</legend>
-			<div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="8.0" type="radio" name="phpVersion" value="8.0">
-					<label class="form-check-label svelte-12n678h" for="8.0">8.0</label>
-				</div><div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="7.4" type="radio" name="phpVersion" value="7.4" checked>
-					<label class="form-check-label svelte-12n678h" for="7.4">7.4</label>
-				</div><div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="7.3" type="radio" name="phpVersion" value="7.3">
-					<label class="form-check-label svelte-12n678h" for="7.3">7.3</label>
-				</div><div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="7.2" type="radio" name="phpVersion" value="7.2">
-					<label class="form-check-label svelte-12n678h" for="7.2">7.2</label>
-				</div><div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="7.1" type="radio" name="phpVersion" value="7.1">
-					<label class="form-check-label svelte-12n678h" for="7.1">7.1</label>
-				</div><div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="7.0" type="radio" name="phpVersion" value="7.0">
-					<label class="form-check-label svelte-12n678h" for="7.0">7.0</label>
-				</div><div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="5.6" type="radio" name="phpVersion" value="5.6">
-					<label class="form-check-label svelte-12n678h" for="5.6">5.6</label>
-				</div></fieldset></div>
 
-	<fieldset class="svelte-12n678h"><legend class="svelte-12n678h">Database version</legend>
-		
-		<div class="row"><div class="col"><div class="form-check"><input class="form-check-input svelte-12n678h" id="radioDbVersion-maria-10.3" type="radio" name="dbVersion" value="maria-10.3" checked>
-						<label class="form-check-label svelte-12n678h" for="radioDbVersion-maria-10.3">MariaDB 10.3 (default)</label>
-					</div><div class="form-check"><input class="form-check-input svelte-12n678h" id="radioDbVersion-maria-10.4" type="radio" name="dbVersion" value="maria-10.4">
-						<label class="form-check-label svelte-12n678h" for="radioDbVersion-maria-10.4">MariaDB 10.4</label>
-					</div><div class="form-check"><input class="form-check-input svelte-12n678h" id="radioDbVersion-maria-10.5" type="radio" name="dbVersion" value="maria-10.5">
-						<label class="form-check-label svelte-12n678h" for="radioDbVersion-maria-10.5">MariaDB 10.5</label>
-					</div><div class="form-check"><input class="form-check-input svelte-12n678h" id="radioDbVersion-maria-10.6" type="radio" name="dbVersion" value="maria-10.6">
-						<label class="form-check-label svelte-12n678h" for="radioDbVersion-maria-10.6">MariaDB 10.6</label>
-					</div></div>
-			<div class="col">
-					<div class="form-check"><input class="form-check-input svelte-12n678h" id="radioDbVersion-mysql-5.5" type="radio" name="dbVersion" value="mysql-5.5">
-						<label class="form-check-label svelte-12n678h" for="radioDbVersion-mysql-5.5">MySQL 5.5</label>
-					</div>
-					<div class="form-check"><input class="form-check-input svelte-12n678h" id="radioDbVersion-mysql-5.6" type="radio" name="dbVersion" value="mysql-5.6">
-						<label class="form-check-label svelte-12n678h" for="radioDbVersion-mysql-5.6">MySQL 5.6</label>
-					</div>
-					<div class="form-check"><input class="form-check-input svelte-12n678h" id="radioDbVersion-mysql-5.7" type="radio" name="dbVersion" value="mysql-5.7">
-						<label class="form-check-label svelte-12n678h" for="radioDbVersion-mysql-5.7">MySQL 5.7</label>
-					</div>
-					<div class="form-check"><input class="form-check-input svelte-12n678h" id="radioDbVersion-mysql-8.0" type="radio" name="dbVersion" value="mysql-8.0">
-						<label class="form-check-label svelte-12n678h" for="radioDbVersion-mysql-8.0">MySQL 8.0</label>
-					</div></div></div></fieldset>
+			<form><div class="mb-4 mt-3"><fieldset class="svelte-1h4wzmb"><legend class=" svelte-1h4wzmb">How do you want to pull your site?</legend>
+			<div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="pullTypeSsh" type="radio" name="pullType" value="ssh" checked>
+				<label class="form-check-label svelte-1h4wzmb" for="pullTypeSsh">SSH connection<span class="form-text">(WP-CLI or mysqldump must available on server)</span></label></div>
+			<div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="pullTypeBackup" type="radio" name="pullType" value="backup">
+				<label class="form-check-label svelte-1h4wzmb" for="pullTypeBackup">Backup file <span class="form-text">(Manual download, BackWpUp plugin)</span></label></div></fieldset></div>
 
-	<div class="mb-3"><fieldset class="svelte-12n678h"><legend class="svelte-12n678h">Web Server</legend>
-			<div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="nginx" type="radio" name="webServerType" value="nginx-fpm" checked>
-				<label class="form-check-label svelte-12n678h" for="nginx">nginx (default)</label></div>
-			<div class="form-check form-check-inline"><input class="form-check-input svelte-12n678h" id="apache2" type="radio" value="apache-fpm" name="webServerType">
-				<label class="form-check-label svelte-12n678h" for="apache2">apache2</label></div></fieldset></div>
-	<div class="mb-3"><label class="form-label svelte-12n678h" for="childThemeFolderName">Child theme folder name (in wp-content/themes/)</label>
-		<input class="form-control" id="childThemeFolderName" type="text" placeholder="twentytwentyone-child" value="twentytwentyone-child">
-		<div class="form-text">If you don&#39;t use a child theme currently, just keep &quot;twentytwentyone-child&quot;. It can be changed later as well. This setting is used for pull and in .gitignore.
-		</div></div>
-	<div class="mb-3"><label class="form-label svelte-12n678h" for="sshHost">SSH host</label>
-		<input class="form-control" id="sshHost" type="text" placeholder="example.org" value=""></div>
-	<div class="mb-3"><label class="form-label svelte-12n678h" for="sshUsername">SSH username</label>
-		<input class="form-control" id="sshUsername" type="text" placeholder="user123" value=""></div>
-	<div class="mb-3"><label class="form-label svelte-12n678h" for="pathToWordPressOnServer">Path to WordPress on server</label>
-		<input class="form-control" id="pathToWordPressOnServer" type="text" placeholder="/sites/my-website.eu/" value="">
-		<div class="form-text">Copy this value from Site Health » Info » Directories &amp; sizes » WordPress directory location (<a href="https://yoast.com/wordpress-site-health/" target="_blank">?</a>)
-		</div></div>
-	
-</form></div>
-		<div class="col-lg-6 px-4"><div class="mb-2">Live preview of .ddev/config.yaml:</div>
+	<div class="row"><div class="col-lg-6"><div class="mb-3"><label class="form-label svelte-1h4wzmb" for="projectName">Project name</label>
+				<input class="form-control" id="projectName" type="text" placeholder="Project name" value="my-wp-site"></div>
+			<div class="mb-3"><fieldset class="svelte-1h4wzmb"><legend class="svelte-1h4wzmb">PHP version</legend>
+
+					<div class="phpVersionRadios svelte-1h4wzmb"><div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="8.0" type="radio" name="phpVersion" value="8.0">
+								<label class="form-check-label svelte-1h4wzmb" for="8.0">8.0</label>
+							</div><div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="7.4" type="radio" name="phpVersion" value="7.4" checked>
+								<label class="form-check-label svelte-1h4wzmb" for="7.4">7.4</label>
+							</div><div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="7.3" type="radio" name="phpVersion" value="7.3">
+								<label class="form-check-label svelte-1h4wzmb" for="7.3">7.3</label>
+							</div><div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="7.2" type="radio" name="phpVersion" value="7.2">
+								<label class="form-check-label svelte-1h4wzmb" for="7.2">7.2</label>
+							</div><div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="7.1" type="radio" name="phpVersion" value="7.1">
+								<label class="form-check-label svelte-1h4wzmb" for="7.1">7.1</label>
+							</div><div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="7.0" type="radio" name="phpVersion" value="7.0">
+								<label class="form-check-label svelte-1h4wzmb" for="7.0">7.0</label>
+							</div><div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="5.6" type="radio" name="phpVersion" value="5.6">
+								<label class="form-check-label svelte-1h4wzmb" for="5.6">5.6</label>
+							</div></div></fieldset></div>
+
+			<fieldset class="svelte-1h4wzmb"><legend class="svelte-1h4wzmb">Database version</legend>
+				
+				<div class="row"><div class="col"><div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="radioDbVersion-maria-10.3" type="radio" name="dbVersion" value="maria-10.3" checked>
+								<label class="form-check-label svelte-1h4wzmb" for="radioDbVersion-maria-10.3">MariaDB 10.3 (default)</label>
+							</div><div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="radioDbVersion-maria-10.4" type="radio" name="dbVersion" value="maria-10.4">
+								<label class="form-check-label svelte-1h4wzmb" for="radioDbVersion-maria-10.4">MariaDB 10.4</label>
+							</div><div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="radioDbVersion-maria-10.5" type="radio" name="dbVersion" value="maria-10.5">
+								<label class="form-check-label svelte-1h4wzmb" for="radioDbVersion-maria-10.5">MariaDB 10.5</label>
+							</div><div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="radioDbVersion-maria-10.6" type="radio" name="dbVersion" value="maria-10.6">
+								<label class="form-check-label svelte-1h4wzmb" for="radioDbVersion-maria-10.6">MariaDB 10.6</label>
+							</div></div>
+					<div class="col">
+							<div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="radioDbVersion-mysql-5.5" type="radio" name="dbVersion" value="mysql-5.5">
+								<label class="form-check-label svelte-1h4wzmb" for="radioDbVersion-mysql-5.5">MySQL 5.5</label>
+							</div>
+							<div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="radioDbVersion-mysql-5.6" type="radio" name="dbVersion" value="mysql-5.6">
+								<label class="form-check-label svelte-1h4wzmb" for="radioDbVersion-mysql-5.6">MySQL 5.6</label>
+							</div>
+							<div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="radioDbVersion-mysql-5.7" type="radio" name="dbVersion" value="mysql-5.7">
+								<label class="form-check-label svelte-1h4wzmb" for="radioDbVersion-mysql-5.7">MySQL 5.7</label>
+							</div>
+							<div class="form-check"><input class="form-check-input svelte-1h4wzmb" id="radioDbVersion-mysql-8.0" type="radio" name="dbVersion" value="mysql-8.0">
+								<label class="form-check-label svelte-1h4wzmb" for="radioDbVersion-mysql-8.0">MySQL 8.0</label>
+							</div></div></div></fieldset>
+
+			<div class="mb-3"><fieldset class="svelte-1h4wzmb"><legend class="svelte-1h4wzmb">Web Server</legend>
+					<div class="form-check form-check-inline"><input class="form-check-input svelte-1h4wzmb" id="nginx" type="radio" name="webServerType" value="nginx-fpm" checked>
+						<label class="form-check-label svelte-1h4wzmb" for="nginx">nginx (default)</label></div>
+					<div class="form-check form-check-inline"><input class="form-check-input svelte-1h4wzmb" id="apache2" type="radio" value="apache-fpm" name="webServerType">
+						<label class="form-check-label svelte-1h4wzmb" for="apache2">apache2</label></div></fieldset></div>
+			<div class="mb-3"><label class="form-label svelte-1h4wzmb" for="childThemeFolderName">Child theme folder name (in wp-content/themes/)</label>
+				<input class="form-control" id="childThemeFolderName" type="text" placeholder="twentytwentyone-child" value="twentytwentyone-child">
+				<div class="form-text">If you don&#39;t use a child theme currently, just keep &quot;twentytwentyone-child&quot;. It can be
+					changed later as well.
+				</div></div>
+			<div class="mb-3"><label class="form-label svelte-1h4wzmb" for="sshHost">SSH host</label>
+					<input class="form-control" id="sshHost" type="text" placeholder="example.org" value=""></div>
+				<div class="mb-3"><label class="form-label svelte-1h4wzmb" for="sshUsername">SSH username</label>
+					<input class="form-control" id="sshUsername" type="text" placeholder="user123" value=""></div>
+				<div class="mb-3"><label class="form-label svelte-1h4wzmb" for="pathToWordPressOnServer">Path to WordPress on server</label>
+					<input class="form-control" id="pathToWordPressOnServer" type="text" placeholder="/sites/my-website.eu/" value="">
+					<div class="form-text">Copy this value from Site Health » Info » Directories &amp; sizes »
+						WordPress directory location (<a href="https://yoast.com/wordpress-site-health/" target="_blank">?</a>)
+					</div></div></div>
+		<div class="col-lg-6"><div class="mb-2">Live preview of .ddev/config.yaml:</div>
 			
 
 
@@ -135,21 +147,30 @@
 <span class="hljs-comment"># Variables for the pull (provider) script</span>
 <span class="hljs-comment"># - if you change these, run &#x27;ddev restart&#x27;</span>
 <span class="hljs-attr">web_environment:</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">CHILD_THEME_FOLDER_NAME=twentytwentyone-child</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_HOST=</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_USER=</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">CHILD_THEME_FOLDER_NAME=twentytwentyone-child</span><!-- HTML_TAG_END --></code></pre>
-</div>
-		<div class="col-12 px-4 mb-3"><p><small>Optional: For more serious testing you could choose the values accordingly to your live website. You can use the WordPress feature <a href="https://yoast.com/wordpress-site-health/" target="_blank">&quot;Site Health Screen&quot;</a> to figure out your live sites environment, I&#39;m also testing a small WordPress plugin <a href="https://github.com/mandrasch/ddev-pull-wp-helper-plugin" target="_blank">ddev-pull-wp-helper</a> which helps getting the information with one click.</small></p></div></div>
-	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">3. Copy generated files to your project folder</h2>
-			<p>Great, that&#39;s all we need for configuration. Copy these files into your local project:
-		</p></div>
-		<div class="col-12 px-4">
+<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span><!-- HTML_TAG_END --></code></pre>
+</div></div>
 
-<div class="card card-small svelte-2rtgml"><div class="card-body"><h5 class="card-title">.gitignore</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Ignore pattern for tracking only the child theme
-    </h6>
-    <p class="card-text">
+	
+</form></div>
+
+		<div class="col-12 px-4 mb-3"><p style="font-style:italic;"><small>If you are unsure about the server settings, just leave the defaults. They are good to go.
+					Optional: For more serious testing you could choose the values accordingly to your live
+					website. You can use the WordPress feature <a href="https://yoast.com/wordpress-site-health/" target="_blank">&quot;Site Health Screen&quot;</a>
+					to figure out your live sites environment, I&#39;m also testing a small WordPress plugin
+					<a href="https://github.com/mandrasch/ddev-pull-wp-helper-plugin" target="_blank">ddev-pull-wp-helper</a> which helps getting the information with one click.</small></p></div></div>
+	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">3. Copy generated files to your project folder</h2>
+			<p>Great, that&#39;s all we need for configuration. Copy these files into your local project, they
+				are generated based on your selected configuration:
+			</p></div>
+		<div class="col-12">
+
+<div class="card card-small svelte-1k3tgwc"><div class="card-body"><h5 class="card-title">.gitignore</h5>
+			<h6 class="card-subtitle mb-2 text-muted">Ignore pattern for tracking only the child theme
+			</h6>
+			<p class="card-text">
   <pre data-language="plaintext" class=" svelte-19wij0g"><code class="hljs">
 # Ignore all ...
 /*
@@ -176,17 +197,16 @@
 !/wp-content/themes/twentytwentyone-child
 </code></pre>
 
-      <details class="svelte-2rtgml"><summary>Why is this needed?</summary>
-        <p class="svelte-2rtgml">This is needed to track the child theme via git. On synchronization (<i>ddev pull ssh</i>) the whole website is downloaded to the local project folder - but we don&#39;t want to
-          override the child theme, because maybe we changed some styles already and just want to
-          test them with the newest site content. 
-          The sync uses &quot;--exclude=wp-content/themes/twentytwentyone-child&quot; to avoid overriding
-          local changes.
-        </p></details></p>
-    </div></div>
+				<details class="svelte-1k3tgwc"><summary>Why is this needed?</summary>
+					<p class="svelte-1k3tgwc">This is needed to track the child theme via git. On synchronization (<i>ddev pull ssh</i>) the whole website is downloaded to the local project folder - but we don&#39;t want to
+						override the child theme, because maybe we changed some styles already and just want to
+						test them with the newest site content. 
+						The sync uses &quot;--exclude=wp-content/themes/twentytwentyone-child&quot; to avoid overriding
+						local changes.
+					</p></details></p>
+			</div></div>
 
-
-	<div class="card card-small svelte-2rtgml"><div class="card-body"><h5 class="card-title">.ddev/config.yaml</h5>
+	<div class="card card-small svelte-1k3tgwc"><div class="card-body"><h5 class="card-title">.ddev/config.yaml</h5>
 			<h6 class="card-subtitle mb-2 text-muted">DDEV project configuration</h6>
 			<p class="card-text">
   <pre data-language="yaml" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-attr">name:</span> <span class="hljs-string">my-wp-site</span>
@@ -198,13 +218,13 @@
 <span class="hljs-comment"># Variables for the pull (provider) script</span>
 <span class="hljs-comment"># - if you change these, run &#x27;ddev restart&#x27;</span>
 <span class="hljs-attr">web_environment:</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">CHILD_THEME_FOLDER_NAME=twentytwentyone-child</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_HOST=</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_USER=</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">CHILD_THEME_FOLDER_NAME=twentytwentyone-child</span><!-- HTML_TAG_END --></code></pre>
+<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_DIR=</span><!-- HTML_TAG_END --></code></pre>
 
-				<details class="svelte-2rtgml"><summary>Why is this file needed?</summary>
-					<p class="svelte-2rtgml">This is the DDEV configuration of your project folder. The <i>web_environment</i>-values
+				<details class="svelte-1k3tgwc"><summary>Why is this file needed?</summary>
+					<p class="svelte-1k3tgwc">This is the DDEV configuration of your project folder. The <i>web_environment</i>-values
 						are our custom variables. These will then be used in the provider pull script, see
 						below. The awesome thing is that this config can be shared via git: This means it can be
 						used in team projects as well and everyone uses the same webserver configuration. Check
@@ -212,40 +232,44 @@
 						<a href="https://ddev.readthedocs.io/en/stable/users/extend/config_yaml/" target="_blank">config.yaml-docs</a>.
 					</p></details></p>
 			</div></div>
+	<div class="card svelte-1k3tgwc"><div class="card-body"><h5 class="card-title">.ddev/providers/ssh.yaml</h5>
+				<h6 class="card-subtitle mb-2 text-muted">The actual pull script, runs via &#39;ddev pull ssh&#39;
+				</h6>
+				<p class="card-text"><small>Requirement: <a href="https://github.com/drud/ddev/releases/tag/v1.18.2" target="_blank">DDEV &gt;= 1.18.2</a></small>
+					<br>
+					<br>
+					This file is work in progress. Please copy the latest version from Github:
+				</p>
+				<ul><li><b><a href="https://github.com/mandrasch/ddev-pull-wp-scripts/blob/main/.ddev/providers/ssh.yaml" target="_blank">.ddev/providers/ssh.yaml</a></b></li></ul>
+				<p>(It will be added later here for copy &amp; paste).
+					
 
-	
-	<div class="card svelte-2rtgml"><div class="card-body"><h5 class="card-title">.ddev/providers/ssh.yaml</h5>
-			<h6 class="card-subtitle mb-2 text-muted">The actual pull script, runs via &#39;ddev pull ssh&#39;
-			</h6>
-			<p class="card-text"><small>Requirement: <a href="https://github.com/drud/ddev/releases/tag/v1.18.2" target="_blank">DDEV &gt;= 1.18.2</a></small>
-				<br>
-				<br>
-				This file is work in progress. Please copy the latest version from Github:
-        </p>
-        <ul><li><b><a href="https://github.com/mandrasch/ddev-pull-wp-scripts/blob/main/.ddev/providers/ssh.yaml" target="_blank">.ddev/providers/ssh.yaml</a></b></li></ul>
-        <p>(It will be added later here for copy &amp; paste).
-				
+					<details class="svelte-1k3tgwc"><summary>Why is this file needed?</summary>
+						<p class="svelte-1k3tgwc">This is our pull script which takes care of pulling the live web site to your local
+							DDEV project. See DDEV docs for more information:<a href="https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/" target="_blank">Hosting Provider Integration</a></p></details></p>
+				</div></div>
 
-				<details class="svelte-2rtgml"><summary>Why is this file needed?</summary>
-					<p class="svelte-2rtgml">This is our pull script which takes care of pulling the live web site to your local DDEV
-						project. See DDEV docs for more information:<a href="https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/" target="_blank">Hosting Provider Integration</a></p></details></p>
-			</div></div></div></div>
+	</div></div>
 
 	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">4. Optional: Import your child theme</h2>
-			<p>Now would be a good time to import your child theme from your live site to your local project folder. If you want to download it from WP dashboard, you can use the
-				<a href="https://wordpress.org/plugins/download-plugins-dashboard/" target="_blank">Download Plugins and Themes from Dashboard plugin</a>. This step is only needed once.</p>
+			<p>Now would be a good time to import your child theme from your live site to your local
+				project folder. If you want to download it from WP dashboard, you can use the
+				<a href="https://wordpress.org/plugins/download-plugins-dashboard/" target="_blank">Download Plugins and Themes from Dashboard plugin</a>. This step is only needed once.
+			</p>
 			<p>TODO: provide ssh command to just pull it in :-)</p></div></div>
 
 	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">5. Start DDEV &amp; pull all the files 🙌</h2>
+
 			<ol class="list-group list-group-numbered"><li class="list-group-item">Run &quot;ddev start&quot;</li>
-				<li class="list-group-item">Run &quot;ddev pull ssh&quot; to pull your live sites content (file / database)</li>
-				<li class="list-group-item">Run &quot;ddev launch&quot; to open your local site in the browser</li></ol></div></div>
+					<li class="list-group-item">Run &quot;ddev pull ssh&quot; to pull your live sites content (file / database)
+					</li>
+					<li class="list-group-item">Run &quot;ddev launch&quot; to open your local site in the browser</li></ol>
+
+			</div></div>
 
 	<div class="row mt-2"><div class="col-12"><h2 class="mb-3 svelte-e708f3">6. Develop, commit, have fun!</h2>
-			<p>TODO: provide documentation for integration of <a href="https://wppusher.com/" target="_blank">WPPusher</a> or similiar tools for deploying the git-managed child theme.</p></div></div>
-
-
-
+			<p>TODO: provide documentation for integration of <a href="https://wppusher.com/" target="_blank">WPPusher</a> or similiar tools for deploying the git-managed child theme.
+			</p></div></div>
 </div></main>
 
 <footer class="text-center text-secondary"><hr>

@@ -1,4 +1,4 @@
-import{S as q,i as D,s as F,E as K,j as T,e as d,t as p,F as O,d as s,l as j,c as v,a as $,g as b,b as E,f as g,G as o,H as P,I as R,J as x,p as z,n as C}from"../chunks/vendor-11a33a56.js";function J(f){let l,r,m,e,_,y,i,S,k,c,G,H,h;const I=f[1].default,a=K(I,f,f[0],null);return{c(){l=T(),r=d("main"),a&&a.c(),m=T(),e=d("footer"),_=d("hr"),y=p(`
+import{S as q,i as D,s as F,E as K,j as T,e as d,t as p,F as O,d as s,l as j,c as v,a as $,g as b,b as E,f as g,G as o,H as P,I as R,J as x,p as z,n as C}from"../chunks/vendor-2e20c6d7.js";function J(f){let l,r,m,e,_,y,i,S,k,c,G,H,h;const I=f[1].default,a=K(I,f,f[0],null);return{c(){l=T(),r=d("main"),a&&a.c(),m=T(),e=d("footer"),_=d("hr"),y=p(`
 	Made with SvelteKit, check out at \xA0`),i=d("a"),S=p("GitHub"),k=p(`
 	//
 	`),c=d("a"),G=p("Imprint & Terms"),H=p(" // Stop the climate emergency!"),this.h()},l(t){O('[data-svelte="svelte-1mvbenc"]',document.head).forEach(s),l=j(t),r=v(t,"MAIN",{});var w=$(r);a&&a.l(w),w.forEach(s),m=j(t),e=v(t,"FOOTER",{class:!0});var u=$(e);_=v(u,"HR",{}),y=b(u,`
