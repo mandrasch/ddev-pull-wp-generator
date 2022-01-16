@@ -69,7 +69,9 @@
 					>Download Plugins and Themes from Dashboard plugin</a
 				>. This step is only needed once.
 			</p>
-			<p>TODO: provide ssh command to just pull it in :-)</p>
+			{#if $pullType == 'ssh'}
+				<p>TODO: provide ssh command to just pull it in :-)</p>
+			{/if}
 		</div>
 	</div>
 
@@ -110,11 +112,11 @@
 		<div class="col-12">
 			<h2 class="mb-3">5. Develop, commit, have fun!</h2>
 			<p>
-				You can now pull the latest content in anytime you want. Your database and files will be
+				You can now pull the latest content anytime you want. Your database and files will be
 				overriden (expect for the child theme which you can manage via git). <br /> <br />TODO:
 				provide documentation for integration of
 				<a href="https://wppusher.com/" target="_blank">WPPusher</a> or similiar tools for deploying
-				the git-managed child theme.
+				the git-managed child theme from the repository in an easy way.
 			</p>
 		</div>
 	</div>
