@@ -7,11 +7,12 @@ State: _Work in progress_
 ## TODOs
 
 - [ ] add screencast
+- [ ] add copy to clipboard function
 - [x] easier config.yaml, see https://twitter.com/randyfay/status/1481745262640914433
 - [x] add all form fields to store
 - [ ] ask fellow devs if we just can't use reverse rsync which includes from .gitignore with path instead of pattern and exludes everything else
-- [ ] add .exclude-rsync to let users add other git-tracked files?
 - [ ] optional: is it possible to generate a folder, zip it & download it?
+- [ ] exclude README.md from build pipeline to save energy
 
 ## How was this created?
 
