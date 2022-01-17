@@ -45,7 +45,7 @@ web_environment:
 			? `
 - PRODUCTION_SSH_HOST=${$sshHost}
 - PRODUCTION_SSH_USER=${$sshUser}
-- PRODUCTION_SSH_WP_DIR=${$pathToWordPressOnServer}`
+- PRODUCTION_SSH_WP_PATH=${$pathToWordPressOnServer}`
 			: '';
 
 	$: gitIgnoreContent = `
