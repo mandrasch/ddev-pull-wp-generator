@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-82de3b66.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-3ab06180.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-d9769132.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-b104f4c9.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-dd64dc46.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-a9d16e1b.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-205f88ac.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-c5a14e34.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-d9769132.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-b104f4c9.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -32,7 +32,7 @@
 					error: null,
 					nodes: [
 						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-a9d16e1b.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-205f88ac.js")
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-c5a14e34.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -46,14 +46,15 @@
 
 
 
-<main><div class="container px-5 my-5 svelte-e708f3"><div class="alert alert-warning" role="alert">This generator is work in progress, please use it with caution. There are still some bugs to
+<main><div class="container px-5 my-5 svelte-e708f3"><h1><i>ddev pull WordPress</i>-Generator</h1>
+	<p>This generator helps you to pull an existing WordPress site into a local <a href="https://ddev.readthedocs.io/en/stable/" target="_blank">DDEV</a>
+		project. It enables stress-free local testing and development. For nerdy details see
+		<a href="https://github.com/mandrasch/ddev-pull-wp-scripts" target="_blank">ddev-pull-wp-scripts</a>.
+	</p>
+
+	<div class="alert alert-warning" role="alert">This generator is work in progress, please use it with caution. There are still some bugs to
 		fix. Stay tuned! :-)
 	</div>
-
-	<h1><i>ddev pull wp</i>-Generator</h1>
-	<p>TODO: This generator helps you create a config to pull an existing WordPress site into a local
-		DDEV project. See <a href="https://github.com/mandrasch/ddev-pull-wp-scripts" target="_blank">ddev-pull-wp-scripts</a> for technical information.
-	</p>
 
 	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">1. Select your configuration</h2>
 
@@ -273,31 +274,28 @@
 
 	</div></div>
 
-	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">4. Start DDEV</h2>
+	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">3. Start DDEV</h2>
 
 			<p>Your configuration is all setup, run this command in your project folder:
 				
   <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev start<!-- HTML_TAG_END --></code></pre>
 </p>
-			<p>Add your SSH keys to DDEV to connect with the live site server later:
+			<p>Add your SSH keys to DDEV to connect with the live site:
 					
   <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev auth ssh<!-- HTML_TAG_END --></code></pre>
 </p></div></div>
 
-	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">5. Pull all the files 🙌</h2>
+	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">4. Pull all the files 🙌</h2>
 				<p>Alright, let&#39;s pull the live site (files and database):
 					
   <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev pull ssh<!-- HTML_TAG_END --></code></pre>
 </p>
 
-				<p>Open the locally cloned site in your browser:
-					
-  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev launch<!-- HTML_TAG_END --></code></pre>
-</p>
+				<p>Open the locally cloned site in your browser: <i>ddev launch</i></p>
 
 			</div></div>
 
-	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">6. Optional: Import your existing child theme</h2>
+	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">5. Optional: Import your existing child theme</h2>
 			<p><i>Skip this step if you don&#39;t want to use a child theme.</i></p>
 			<p>Now would be a good time to import your child theme from your live site to your local
 				project folder. If you want to download it from WP dashboard, you can use the
@@ -315,7 +313,7 @@
 				because we would overwrite local changes.
 			</p></div></div>
 
-	<div class="row mt-2"><div class="col-12"><h2 class="mb-3 svelte-e708f3">7. Develop, commit, have fun!</h2>
+	<div class="row mt-2"><div class="col-12"><h2 class="mb-3 svelte-e708f3">6. Develop, commit, have fun!</h2>
 
 			<p>You can now work with your site locally.</p>
 
@@ -331,7 +329,7 @@
 				<a href="https://github.com/mandrasch/ddev-pull-wp-scripts/issues" target="_blank">create an issue</a>.
 			</p></div></div>
 
-	<div class="row mt-2"><div class="col-12 text-secondary"><h2 class="mb-3 svelte-e708f3">8. Add / update your child theme via git</h2>
+	<div class="row mt-2"><div class="col-12 text-secondary"><h2 class="mb-3 svelte-e708f3">7. Add / update your child theme via git</h2>
 			<p>TODO: provide documentation for integration of
 				<a href="https://docs.wppusher.com/article/17-setting-up-a-plugin-or-theme-on-github" target="_blank">WPPusher</a> or similiar tools for deploying the git-managed child theme from the repository in an easy
 				way.
