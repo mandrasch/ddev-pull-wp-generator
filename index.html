@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-82de3b66.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-3ab06180.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-de4d836f.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-d9769132.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-dd64dc46.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-a9d16e1b.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-8796c11d.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-205f88ac.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-de4d836f.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-d9769132.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -32,7 +32,7 @@
 					error: null,
 					nodes: [
 						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-a9d16e1b.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-8796c11d.js")
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-205f88ac.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -51,8 +51,8 @@
 	</div>
 
 	<h1><i>ddev pull wp</i>-Generator</h1>
-	<p>This generator helps you create a config to pull an existing WordPress site into a local DDEV
-		project. See <a href="https://github.com/mandrasch/ddev-pull-wp-scripts" target="_blank">ddev-pull-wp-scripts</a> for technical information.
+	<p>TODO: This generator helps you create a config to pull an existing WordPress site into a local
+		DDEV project. See <a href="https://github.com/mandrasch/ddev-pull-wp-scripts" target="_blank">ddev-pull-wp-scripts</a> for technical information.
 	</p>
 
 	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">1. Select your configuration</h2>
@@ -178,10 +178,9 @@
 
 	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">2. Setup project folder</h2>
 
-			<p>Create a new local folder and setup a new git repository via &quot;git init&quot; - or create a new
-				git repository on GitHub and clone it to your local computer. In this example we called our
-				repository &quot;my-wp-site&quot;. Copy these files into your local project, they are generated based
-				on your selected configuration:
+			<p>Create a new empty project repository and clone it to your local laptop.</p>
+			<p>Copy the following files into your newly created project folder. The files were generated
+				based on your selected configuration above:
 			</p></div>
 		<div class="col-12">
 
@@ -265,8 +264,7 @@
 					This file is work in progress. Please copy the latest version from Github:
 				</p>
 				<ul><li><b><a href="https://github.com/mandrasch/ddev-pull-wp-scripts/blob/main/.ddev/providers/ssh.yaml" target="_blank">.ddev/providers/ssh.yaml</a></b></li></ul>
-				<p>(It will be added later here for copy &amp; paste).
-					
+				<p>
 
 					<details class="svelte-1k3tgwc"><summary>Why is this file needed?</summary>
 						<p class="svelte-1k3tgwc">This is our pull script which takes care of pulling the live web site to your local
@@ -277,29 +275,17 @@
 
 	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">4. Start DDEV</h2>
 
-			<p>Your configuration is all setup, start the project for the first time:
+			<p>Your configuration is all setup, run this command in your project folder:
 				
   <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev start<!-- HTML_TAG_END --></code></pre>
+</p>
+			<p>Add your SSH keys to DDEV to connect with the live site server later:
+					
+  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev auth ssh<!-- HTML_TAG_END --></code></pre>
 </p></div></div>
 
-	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">5. Optional: Import your child theme</h2>
-			<p><i>Skip this step if you don&#39;t want to use a child theme.</i></p>
-			<p>Now would be a good time to import your child theme from your live site to your local
-				project folder. If you want to download it from WP dashboard, you can use the
-				<a href="https://wordpress.org/plugins/download-plugins-dashboard/" target="_blank">Download Plugins and Themes from Dashboard plugin</a>. This step is only needed once.
-			</p>
-			<p>You can as well use a command to download your child theme, run this your project folder:
-					
-  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev exec &#x27;rsync -azh --stats $PRODUCTION_SSH_USER@$PRODUCTION_SSH_HOST:$PRODUCTION_SSH_WP_PATH/wp-content/themes/$CHILD_THEME_FOLDER_NAME/ /var/www/html/${DDEV_DOCROOT}/wp-content/themes/$CHILD_THEME_FOLDER_NAME/&#x27;<!-- HTML_TAG_END --></code></pre>
-</p>
-			<p class="form-text">Why isn&#39;t the child theme pulled as well in the next step with &quot;ddev pull&quot;? We want to
-				manage our child theme via git, therefore it can&#39;t be pulled from the live site everytime,
-				because we would overwrite local changes.
-			</p></div></div>
-
-	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">6. Start DDEV &amp; pull all the files 🙌</h2>
-
-			<p>Alright, let&#39;s pull the live site (files and database)!
+	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">5. Pull all the files 🙌</h2>
+				<p>Alright, let&#39;s pull the live site (files and database):
 					
   <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev pull ssh<!-- HTML_TAG_END --></code></pre>
 </p>
@@ -311,26 +297,48 @@
 
 			</div></div>
 
-	<div class="row mt-2"><div class="col-12"><h2 class="mb-3 svelte-e708f3">7. Develop, commit, have fun!</h2>
-			<p>You can now pull the latest content anytime you want. Your database and files will be
-					overriden (expect for the child theme which you can manage via git):
+	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">6. Optional: Import your existing child theme</h2>
+			<p><i>Skip this step if you don&#39;t want to use a child theme.</i></p>
+			<p>Now would be a good time to import your child theme from your live site to your local
+				project folder. If you want to download it from WP dashboard, you can use the
+				<a href="https://wordpress.org/plugins/download-plugins-dashboard/" target="_blank">Download Plugins and Themes from Dashboard plugin</a>. This step is only needed once.
+			</p>
+			<p>You can as well use a command to download your child theme, run this your project folder:
 					
-  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev pull ssh<!-- HTML_TAG_END --></code></pre>
+  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev exec &#x27;rsync -azh --stats $PRODUCTION_SSH_USER@$PRODUCTION_SSH_HOST:$PRODUCTION_SSH_WP_PATH/wp-content/themes/$CHILD_THEME_FOLDER_NAME/ /var/www/html/${DDEV_DOCROOT}/wp-content/themes/$CHILD_THEME_FOLDER_NAME/&#x27;<!-- HTML_TAG_END --></code></pre>
 </p>
+			<p class="form-text">Don&#39;t forget to run &quot;ddev restart&quot; if you changed values in <i>.ddev/config.yaml</i>.
+				Otherwise the above command will use old values.
+			</p>
+			<p class="form-text">Why isn&#39;t the child theme pulled as well in the next step with &quot;ddev pull&quot;? We want to
+				manage our child theme via git, therefore it can&#39;t be pulled from the live site everytime,
+				because we would overwrite local changes.
+			</p></div></div>
+
+	<div class="row mt-2"><div class="col-12"><h2 class="mb-3 svelte-e708f3">7. Develop, commit, have fun!</h2>
+
+			<p>You can now work with your site locally.</p>
+
+			<p>Your live site changed? New images were added? You can pull the latest site content
+					anytime you want. Just run <i>ddev pull ssh</i> again to pull the latest content. Your database
+					and files will be overriden (expect for the child theme defined in &quot;.ddev/config.yaml&quot;).
+				</p>
 			<p>Pro tip: When you add or update your settings in the <i>config.yaml</i>-file afterwards, a
 				<i>ddev restart</i> is necessary.
-				
-  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev restart<!-- HTML_TAG_END --></code></pre>
-</p>
+			</p>
 			<p>If you run into issues, please see <a href="https://github.com/mandrasch/ddev-pull-wp-scripts#troubleshooting" target="_blank">Troubleshooting</a>
 				or
 				<a href="https://github.com/mandrasch/ddev-pull-wp-scripts/issues" target="_blank">create an issue</a>.
 			</p></div></div>
 
-	<div class="row mt-2"><div class="col-12"><h2 class="mb-3 svelte-e708f3">8. Update your child theme via git</h2>
-			TODO: provide documentation for integration of
-			<a href="https://docs.wppusher.com/article/17-setting-up-a-plugin-or-theme-on-github" target="_blank">WPPusher</a> or similiar tools for deploying the git-managed child theme from the repository in an easy way.
-		</div></div>
+	<div class="row mt-2"><div class="col-12 text-secondary"><h2 class="mb-3 svelte-e708f3">8. Add / update your child theme via git</h2>
+			<p>TODO: provide documentation for integration of
+				<a href="https://docs.wppusher.com/article/17-setting-up-a-plugin-or-theme-on-github" target="_blank">WPPusher</a> or similiar tools for deploying the git-managed child theme from the repository in an easy
+				way.
+			</p>
+			<p>TODO: Provide documenation for creating a new child theme (Add folder, update config.yaml,
+				ddev restart, update gitnore, add to live site via WPPusher)
+			</p></div></div>
 </div></main>
 
 <footer class="text-center text-secondary container "><hr>
