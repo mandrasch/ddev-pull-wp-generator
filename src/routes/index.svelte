@@ -15,18 +15,22 @@
 </script>
 
 <div class="container px-5 my-5">
+	<h1><i>ddev pull WordPress</i>-Generator</h1>
+	<p>
+		This generator helps you to pull an existing WordPress site into a local <a
+			href="https://ddev.readthedocs.io/en/stable/"
+			target="_blank">DDEV</a
+		>
+		project. It enables stress-free local testing and development. For nerdy details see
+		<a href="https://github.com/mandrasch/ddev-pull-wp-scripts" target="_blank"
+			>ddev-pull-wp-scripts</a
+		>.
+	</p>
+
 	<div class="alert alert-warning" role="alert">
 		This generator is work in progress, please use it with caution. There are still some bugs to
 		fix. Stay tuned! :-)
 	</div>
-
-	<h1><i>ddev pull wp</i>-Generator</h1>
-	<p>
-		TODO: This generator helps you create a config to pull an existing WordPress site into a local
-		DDEV project. See <a href="https://github.com/mandrasch/ddev-pull-wp-scripts" target="_blank"
-			>ddev-pull-wp-scripts</a
-		> for technical information.
-	</p>
 
 	<div class="row">
 		<div class="col-12 px-4 mb-3">
@@ -81,7 +85,7 @@
 
 	<div class="row">
 		<div class="col-12">
-			<h2 class="mb-3">4. Start DDEV</h2>
+			<h2 class="mb-3">3. Start DDEV</h2>
 
 			<p>
 				Your configuration is all setup, run this command in your project folder:
@@ -89,7 +93,7 @@
 			</p>
 			{#if $pullType == 'ssh'}
 				<p>
-					Add your SSH keys to DDEV to connect with the live site server later:
+					Add your SSH keys to DDEV to connect with the live site:
 					<Highlight language={shell} code="ddev auth ssh" />
 				</p>
 			{/if}
@@ -99,20 +103,19 @@
 	<div class="row">
 		<div class="col-12">
 			{#if $pullType == 'ssh'}
-				<h2 class="mb-3">5. Pull all the files 🙌</h2>
+				<h2 class="mb-3">4. Pull all the files 🙌</h2>
 				<p>
 					Alright, let's pull the live site (files and database):
 					<Highlight language={shell} code="ddev pull ssh" />
 				</p>
 
 				<p>
-					Open the locally cloned site in your browser:
-					<Highlight language={shell} code="ddev launch" />
+					Open the locally cloned site in your browser: <i>ddev launch</i>
 				</p>
 			{/if}
 
 			{#if $pullType == 'backup'}
-				<h2 class="mb-3">5. Import your backup 🙌</h2>
+				<h2 class="mb-3">4. Import your backup 🙌</h2>
 				<ol class="list-group list-group-numbered">
 					<li class="list-group-item">
 						Download a backup file created with <a
@@ -133,7 +136,7 @@
 
 	<div class="row">
 		<div class="col-12">
-			<h2 class="mb-3">6. Optional: Import your existing child theme</h2>
+			<h2 class="mb-3">5. Optional: Import your existing child theme</h2>
 			<p><i>Skip this step if you don't want to use a child theme.</i></p>
 			<p>
 				Now would be a good time to import your child theme from your live site to your local
@@ -162,7 +165,7 @@
 
 	<div class="row mt-2">
 		<div class="col-12">
-			<h2 class="mb-3">7. Develop, commit, have fun!</h2>
+			<h2 class="mb-3">6. Develop, commit, have fun!</h2>
 
 			<p>You can now work with your site locally.</p>
 
@@ -192,7 +195,7 @@
 
 	<div class="row mt-2">
 		<div class="col-12 text-secondary">
-			<h2 class="mb-3">8. Add / update your child theme via git</h2>
+			<h2 class="mb-3">7. Add / update your child theme via git</h2>
 			<p>
 				TODO: provide documentation for integration of
 				<a
