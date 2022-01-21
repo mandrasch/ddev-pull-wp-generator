@@ -31,6 +31,11 @@
 		This generator is work in progress, please use it with caution. There are still some bugs to
 		fix. Stay tuned! :-)
 	</div>
+	<p>
+		🎥 Screencast: <a href="https://www.youtube.com/watch?v=lEGL65H-hts" target="_blank"
+			>SSH pull example</a
+		>
+	</p>
 
 	<div class="row">
 		<div class="col-12 px-4 mb-3">
