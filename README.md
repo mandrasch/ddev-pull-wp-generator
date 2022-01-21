@@ -4,6 +4,8 @@ Generate DDEV config files to pull a site via SSH and git-manage your child them
 
 State: _Work in progress_
 
+Live: **https://ddev-pull-wp.mandrasch.eu/**
+
 ## TODOs
 
 - [ ] add screencast
