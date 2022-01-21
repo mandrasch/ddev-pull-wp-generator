@@ -22,8 +22,8 @@
 
 	<h1><i>ddev pull wp</i>-Generator</h1>
 	<p>
-		This generator helps you create a config to pull an existing WordPress site into a local DDEV
-		project. See <a href="https://github.com/mandrasch/ddev-pull-wp-scripts" target="_blank"
+		TODO: This generator helps you create a config to pull an existing WordPress site into a local
+		DDEV project. See <a href="https://github.com/mandrasch/ddev-pull-wp-scripts" target="_blank"
 			>ddev-pull-wp-scripts</a
 		> for technical information.
 	</p>
@@ -68,11 +68,10 @@
 		<div class="col-12 px-4 mb-3">
 			<h2>2. Setup project folder</h2>
 
+			<p>Create a new empty project repository and clone it to your local laptop.</p>
 			<p>
-				Create a new local folder and setup a new git repository via "git init" - or create a new
-				git repository on GitHub and clone it to your local computer. In this example we called our
-				repository "my-wp-site". Copy these files into your local project, they are generated based
-				on your selected configuration:
+				Copy the following files into your newly created project folder. The files were generated
+				based on your selected configuration above:
 			</p>
 		</div>
 		<div class="col-12">
@@ -85,44 +84,24 @@
 			<h2 class="mb-3">4. Start DDEV</h2>
 
 			<p>
-				Your configuration is all setup, start the project for the first time:
+				Your configuration is all setup, run this command in your project folder:
 				<Highlight language={shell} code="ddev start" />
 			</p>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-12">
-			<h2 class="mb-3">5. Optional: Import your child theme</h2>
-			<p><i>Skip this step if you don't want to use a child theme.</i></p>
-			<p>
-				Now would be a good time to import your child theme from your live site to your local
-				project folder. If you want to download it from WP dashboard, you can use the
-				<a href="https://wordpress.org/plugins/download-plugins-dashboard/" target="_blank"
-					>Download Plugins and Themes from Dashboard plugin</a
-				>. This step is only needed once.
-			</p>
 			{#if $pullType == 'ssh'}
 				<p>
-					You can as well use a command to download your child theme, run this your project folder:
-					<Highlight language={shell} code={ddevRsyncChildThemeCmd} />
+					Add your SSH keys to DDEV to connect with the live site server later:
+					<Highlight language={shell} code="ddev auth ssh" />
 				</p>
 			{/if}
-			<p class="form-text">
-				Why isn't the child theme pulled as well in the next step with "ddev pull"? We want to
-				manage our child theme via git, therefore it can't be pulled from the live site everytime,
-				because we would overwrite local changes.
-			</p>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-12">
-			<h2 class="mb-3">6. Start DDEV & pull all the files 🙌</h2>
-
 			{#if $pullType == 'ssh'}
+				<h2 class="mb-3">5. Pull all the files 🙌</h2>
 				<p>
-					Alright, let's pull the live site (files and database)!
+					Alright, let's pull the live site (files and database):
 					<Highlight language={shell} code="ddev pull ssh" />
 				</p>
 
@@ -133,6 +112,7 @@
 			{/if}
 
 			{#if $pullType == 'backup'}
+				<h2 class="mb-3">5. Import your backup 🙌</h2>
 				<ol class="list-group list-group-numbered">
 					<li class="list-group-item">
 						Download a backup file created with <a
@@ -151,22 +131,51 @@
 		</div>
 	</div>
 
+	<div class="row">
+		<div class="col-12">
+			<h2 class="mb-3">6. Optional: Import your existing child theme</h2>
+			<p><i>Skip this step if you don't want to use a child theme.</i></p>
+			<p>
+				Now would be a good time to import your child theme from your live site to your local
+				project folder. If you want to download it from WP dashboard, you can use the
+				<a href="https://wordpress.org/plugins/download-plugins-dashboard/" target="_blank"
+					>Download Plugins and Themes from Dashboard plugin</a
+				>. This step is only needed once.
+			</p>
+			{#if $pullType == 'ssh'}
+				<p>
+					You can as well use a command to download your child theme, run this your project folder:
+					<Highlight language={shell} code={ddevRsyncChildThemeCmd} />
+				</p>
+			{/if}
+			<p class="form-text">
+				Don't forget to run "ddev restart" if you changed values in <i>.ddev/config.yaml</i>.
+				Otherwise the above command will use old values.
+			</p>
+			<p class="form-text">
+				Why isn't the child theme pulled as well in the next step with "ddev pull"? We want to
+				manage our child theme via git, therefore it can't be pulled from the live site everytime,
+				because we would overwrite local changes.
+			</p>
+		</div>
+	</div>
+
 	<div class="row mt-2">
 		<div class="col-12">
 			<h2 class="mb-3">7. Develop, commit, have fun!</h2>
+
+			<p>You can now work with your site locally.</p>
+
 			{#if $pullType == 'ssh'}
 				<p>
-					You can now pull the latest content anytime you want. Your database and files will be
-					overriden (expect for the child theme which you can manage via git):
-					<Highlight language={shell} code="ddev pull ssh" />
+					Your live site changed? New images were added? You can pull the latest site content
+					anytime you want. Just run <i>ddev pull ssh</i> again to pull the latest content. Your database
+					and files will be overriden (expect for the child theme defined in ".ddev/config.yaml").
 				</p>
-			{:else}
-				You can now work with your site locally.
 			{/if}
 			<p>
 				Pro tip: When you add or update your settings in the <i>config.yaml</i>-file afterwards, a
 				<i>ddev restart</i> is necessary.
-				<Highlight language={shell} code="ddev restart" />
 			</p>
 			<p>
 				If you run into issues, please see <a
@@ -182,13 +191,20 @@
 	</div>
 
 	<div class="row mt-2">
-		<div class="col-12">
-			<h2 class="mb-3">8. Update your child theme via git</h2>
-			TODO: provide documentation for integration of
-			<a
-				href="https://docs.wppusher.com/article/17-setting-up-a-plugin-or-theme-on-github"
-				target="_blank">WPPusher</a
-			> or similiar tools for deploying the git-managed child theme from the repository in an easy way.
+		<div class="col-12 text-secondary">
+			<h2 class="mb-3">8. Add / update your child theme via git</h2>
+			<p>
+				TODO: provide documentation for integration of
+				<a
+					href="https://docs.wppusher.com/article/17-setting-up-a-plugin-or-theme-on-github"
+					target="_blank">WPPusher</a
+				> or similiar tools for deploying the git-managed child theme from the repository in an easy
+				way.
+			</p>
+			<p>
+				TODO: Provide documenation for creating a new child theme (Add folder, update config.yaml,
+				ddev restart, update gitnore, add to live site via WPPusher)
+			</p>
 		</div>
 	</div>
 </div>

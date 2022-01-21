@@ -166,7 +166,6 @@ web_environment:
 					</li>
 				</ul>
 				<p>
-					(It will be added later here for copy & paste).
 					<!-- 
 				<Highlight language={yaml} code={providersYaml} />-->
 
