@@ -6,6 +6,8 @@ State: _Work in progress_
 
 Live: **https://ddev-pull-wp.mandrasch.eu/**
 
+Based on https://github.com/mandrasch/ddev-pull-wp-scripts
+
 ## TODOs
 
 - [ ] add screencast
