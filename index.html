@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-82de3b66.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-3ab06180.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-76699e6c.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-de4d836f.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-dd64dc46.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-a9d16e1b.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-512d43db.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-8796c11d.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-76699e6c.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-de4d836f.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -32,7 +32,7 @@
 					error: null,
 					nodes: [
 						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-a9d16e1b.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-512d43db.js")
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-8796c11d.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -119,9 +119,9 @@
 					changed later as well.
 				</div></div>
 			<div class="mb-3"><label class="form-label svelte-12eq4fv" for="sshUsername">SSH username</label>
-					<input class="form-control" id="sshUsername" type="text" placeholder="user123" value="ssh.example.org"></div>
+					<input class="form-control" id="sshUsername" type="text" placeholder="user123" value="user123"></div>
 				<div class="mb-3"><label class="form-label svelte-12eq4fv" for="sshHost">SSH host</label>
-					<input class="form-control" id="sshHost" type="text" placeholder="example.org" value="user123"></div>
+					<input class="form-control" id="sshHost" type="text" placeholder="example.org" value="ssh.example.org"></div>
 				<div class="mb-3"><label class="form-label svelte-12eq4fv" for="sshWpPath">Path to WordPress on server</label>
 					<input class="form-control" id="sshWpPath" type="text" placeholder="/sites/my-website/wordpress" value="/sites/my-website/wordpress">
 					<div class="form-text">Example: &quot;/sites/my-website/wordpress&quot;. Copy this value from Site Health » Info
@@ -146,8 +146,8 @@
 <span class="hljs-comment"># - if you change these, run &#x27;ddev restart&#x27; !</span>
 <span class="hljs-attr">web_environment:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">CHILD_THEME_FOLDER_NAME=twentytwentyone-child</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_USER=ssh.example.org</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_HOST=user123</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_USER=user123</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_HOST=ssh.example.org</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_PATH=/sites/my-website/wordpress</span><!-- HTML_TAG_END --></code></pre>
 </div>
 			<details class="svelte-12eq4fv"><summary>FAQ: What settings should I choose?</summary>
@@ -166,12 +166,12 @@
 				
 				<p>Verify that SSH connection works in general:
 					
-  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ssh ssh.example.org@user123<!-- HTML_TAG_END --></code></pre>
+  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ssh user123@ssh.example.org<!-- HTML_TAG_END --></code></pre>
 
 					<span class="form-text">Use &quot;exit&quot; to end SSH connection for next test.</span></p>
 				<p>Verify that the &quot;Path to WordPress&quot; setting is correct:
 					
-  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ssh -t ssh.example.org@user123 &quot;cd /sites/my-website/wordpress; exec $SHELL --login&quot;<!-- HTML_TAG_END --></code></pre>
+  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ssh -t user123@ssh.example.org &quot;cd /sites/my-website/wordpress; exec $SHELL --login&quot;<!-- HTML_TAG_END --></code></pre>
 
 					<span class="form-text">Use &quot;exit&quot; to end SSH connection.</span></p>
 				<p>Great, that&#39;s all we need for configuration!</p></div></div>
@@ -242,8 +242,8 @@
 <span class="hljs-comment"># - if you change these, run &#x27;ddev restart&#x27; !</span>
 <span class="hljs-attr">web_environment:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">CHILD_THEME_FOLDER_NAME=twentytwentyone-child</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_USER=ssh.example.org</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_HOST=user123</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_USER=user123</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_HOST=ssh.example.org</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">PRODUCTION_SSH_WP_PATH=/sites/my-website/wordpress</span><!-- HTML_TAG_END --></code></pre>
 
 
