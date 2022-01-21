@@ -136,6 +136,11 @@
 					<li class="list-group-item">Run "ddev launch" to open your local site in the browser</li>
 				</ol>
 			{/if}
+
+			<p>
+				Please always check in <i>wp-config.php</i> that the database connection replacement was successfull
+				and that you are connected to the DDEV project database (and not the production database).
+			</p>
 		</div>
 	</div>
 
