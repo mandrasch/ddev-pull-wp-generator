@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-82de3b66.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-3ab06180.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-68c62ba9.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-76699e6c.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-dd64dc46.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-a9d16e1b.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-c90606df.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-512d43db.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-68c62ba9.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-76699e6c.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -32,7 +32,7 @@
 					error: null,
 					nodes: [
 						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-a9d16e1b.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-c90606df.js")
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-512d43db.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -275,29 +275,62 @@
 
 	</div></div>
 
-	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">3. Optional: Import your child theme</h2>
+	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">4. Start DDEV</h2>
+
+			<p>Your configuration is all setup, start the project for the first time:
+				
+  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev start<!-- HTML_TAG_END --></code></pre>
+</p></div></div>
+
+	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">5. Optional: Import your child theme</h2>
+			<p><i>Skip this step if you don&#39;t want to use a child theme.</i></p>
 			<p>Now would be a good time to import your child theme from your live site to your local
 				project folder. If you want to download it from WP dashboard, you can use the
 				<a href="https://wordpress.org/plugins/download-plugins-dashboard/" target="_blank">Download Plugins and Themes from Dashboard plugin</a>. This step is only needed once.
 			</p>
-			<p>TODO: provide ssh command to just pull it in :-)</p></div></div>
+			<p>You can as well use a command to download your child theme, run this your project folder:
+					
+  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev exec &#x27;rsync -azh --stats $PRODUCTION_SSH_USER@$PRODUCTION_SSH_HOST:$PRODUCTION_SSH_WP_PATH/wp-content/themes/$CHILD_THEME_FOLDER_NAME/ /var/www/html/${DDEV_DOCROOT}/wp-content/themes/$CHILD_THEME_FOLDER_NAME/&#x27;<!-- HTML_TAG_END --></code></pre>
+</p>
+			<p class="form-text">Why isn&#39;t the child theme pulled as well in the next step with &quot;ddev pull&quot;? We want to
+				manage our child theme via git, therefore it can&#39;t be pulled from the live site everytime,
+				because we would overwrite local changes.
+			</p></div></div>
 
-	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">4. Start DDEV &amp; pull all the files 🙌</h2>
+	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">6. Start DDEV &amp; pull all the files 🙌</h2>
 
-			<ol class="list-group list-group-numbered"><li class="list-group-item">Run &quot;ddev start&quot;</li>
-					<li class="list-group-item">Run &quot;ddev pull ssh&quot; to pull your live sites content (file / database)
-					</li>
-					<li class="list-group-item">Run &quot;ddev launch&quot; to open your local site in the browser</li></ol>
+			<p>Alright, let&#39;s pull the live site (files and database)!
+					
+  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev pull ssh<!-- HTML_TAG_END --></code></pre>
+</p>
+
+				<p>Open the locally cloned site in your browser:
+					
+  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev launch<!-- HTML_TAG_END --></code></pre>
+</p>
 
 			</div></div>
 
-	<div class="row mt-2"><div class="col-12"><h2 class="mb-3 svelte-e708f3">5. Develop, commit, have fun!</h2>
+	<div class="row mt-2"><div class="col-12"><h2 class="mb-3 svelte-e708f3">7. Develop, commit, have fun!</h2>
 			<p>You can now pull the latest content anytime you want. Your database and files will be
-				overriden (expect for the child theme which you can manage via git). <br> <br>TODO:
-				provide documentation for integration of
-				<a href="https://wppusher.com/" target="_blank">WPPusher</a> or similiar tools for deploying
-				the git-managed child theme from the repository in an easy way.
+					overriden (expect for the child theme which you can manage via git):
+					
+  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev pull ssh<!-- HTML_TAG_END --></code></pre>
+</p>
+			<p>Pro tip: When you add or update your settings in the <i>config.yaml</i>-file afterwards, a
+				<i>ddev restart</i> is necessary.
+				
+  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ddev restart<!-- HTML_TAG_END --></code></pre>
+</p>
+			<p>If you run into issues, please see <a href="https://github.com/mandrasch/ddev-pull-wp-scripts#troubleshooting" target="_blank">Troubleshooting</a>
+				or
+				<a href="https://github.com/mandrasch/ddev-pull-wp-scripts/issues" target="_blank">create an issue</a>.
 			</p></div></div>
+
+	<div class="row mt-2"><div class="col-12"><h2 class="mb-3 svelte-e708f3">8. Update your child theme via git</h2>
+			TODO: provide documentation for integration of
+			<a href="https://docs.wppusher.com/article/17-setting-up-a-plugin-or-theme-on-github" target="_blank">WPPusher</a> or similiar tools for deploying the git-managed child theme from the repository in an easy way.
+		</div></div>
 </div></main>
 
 <footer class="text-center text-secondary container "><hr>
