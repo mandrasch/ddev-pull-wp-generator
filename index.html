@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-82de3b66.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-3ab06180.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-b16f47cd.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-9c89ab80.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-dd64dc46.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-a9d16e1b.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-07200980.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-2e69fc61.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-b16f47cd.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-9c89ab80.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -32,7 +32,7 @@
 					error: null,
 					nodes: [
 						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-a9d16e1b.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-07200980.js")
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-2e69fc61.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -294,7 +294,11 @@
 
 				<p>Open the locally cloned site in your browser: <i>ddev launch</i></p>
 
-			</div></div>
+			
+
+			<p>Please always check in <i>wp-config.php</i> that the database connection replacement was successfull
+				and that you are connected to the DDEV project database (and not the production database).
+			</p></div></div>
 
 	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">5. Optional: Import your existing child theme</h2>
 			<p><i>Skip this step if you don&#39;t want to use a child theme.</i></p>
