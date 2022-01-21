@@ -10,7 +10,7 @@
 		selectedDbVersionType,
 		sshHost,
 		sshUser,
-		pathToWordPressOnServer
+		sshWpPath
 	} from '../stores/stores.js';
 
 	import Highlight from 'svelte-highlight';
@@ -43,9 +43,9 @@ web_environment:
 	$: configYamlSsh =
 		$pullType == 'ssh'
 			? `
-- PRODUCTION_SSH_HOST=${$sshHost}
 - PRODUCTION_SSH_USER=${$sshUser}
-- PRODUCTION_SSH_WP_PATH=${$pathToWordPressOnServer}`
+- PRODUCTION_SSH_HOST=${$sshHost}
+- PRODUCTION_SSH_WP_PATH=${$sshWpPath}`
 			: '';
 
 	$: gitIgnoreContent = `

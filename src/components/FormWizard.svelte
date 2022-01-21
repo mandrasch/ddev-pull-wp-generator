@@ -8,7 +8,7 @@
 		selectedDbVersionString,
 		sshHost,
 		sshUser,
-		pathToWordPressOnServer
+		sshWpPath
 	} from '../stores/stores.js';
 
 	import DatabaseRadioButton from './DatabaseRadioButton.svelte';
@@ -218,16 +218,6 @@
 			</div>
 			{#if $pullType == 'ssh'}
 				<div class="mb-3">
-					<label class="form-label" for="sshHost">SSH host</label>
-					<input
-						class="form-control"
-						id="sshHost"
-						type="text"
-						placeholder="example.org"
-						bind:value={$sshHost}
-					/>
-				</div>
-				<div class="mb-3">
 					<label class="form-label" for="sshUsername">SSH username</label>
 					<input
 						class="form-control"
@@ -238,28 +228,54 @@
 					/>
 				</div>
 				<div class="mb-3">
-					<label class="form-label" for="pathToWordPressOnServer">Path to WordPress on server</label
-					>
+					<label class="form-label" for="sshHost">SSH host</label>
 					<input
 						class="form-control"
-						id="pathToWordPressOnServer"
+						id="sshHost"
 						type="text"
-						placeholder="/sites/my-website.eu/"
-						bind:value={$pathToWordPressOnServer}
+						placeholder="example.org"
+						bind:value={$sshHost}
+					/>
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="sshWpPath">Path to WordPress on server</label>
+					<input
+						class="form-control"
+						id="sshWpPath"
+						type="text"
+						placeholder="/sites/my-website/wordpress"
+						bind:value={$sshWpPath}
 					/>
 					<div class="form-text">
-						Copy this value from Site Health &raquo; Info &raquo; Directories & sizes &raquo;
-						WordPress directory location (<a
+						Example: "/sites/my-website/wordpress". Copy this value from Site Health &raquo; Info
+						&raquo; Directories & sizes &raquo; WordPress directory location (<a
 							href="https://yoast.com/wordpress-site-health/"
 							target="_blank">?</a
-						>)
+						>).
 					</div>
 				</div>
 			{/if}
 		</div>
 		<div class="col-lg-6">
-			<div class="mb-2">Live preview of .ddev/config.yaml:</div>
-			<CodeGenerator showOnlyConfigYaml={true} />
+			<div class="d-none d-lg-block">
+				<div class="mb-2">Live preview of .ddev/config.yaml:</div>
+				<CodeGenerator showOnlyConfigYaml={true} />
+			</div>
+			<details>
+				<summary>FAQ: What settings should I choose?</summary>
+				<p>
+					If you are unsure about the server settings, just leave the defaults. They are good to go.
+					Optional: For more serious testing you could choose the values accordingly to your live
+					website. You can use the WordPress feature <a
+						href="https://yoast.com/wordpress-site-health/"
+						target="_blank">"Site Health Screen"</a
+					>
+					to figure out your live sites environment, I'm also testing a small WordPress plugin
+					<a href="https://github.com/mandrasch/ddev-pull-wp-helper-plugin" target="_blank"
+						>ddev-pull-wp-helper</a
+					> which helps getting the information with one click.
+				</p>
+			</details>
 		</div>
 	</div>
 
@@ -290,5 +306,16 @@
 	div.phpVersionRadios {
 		column-count: 2;
 		column-gap: 2rem;
+	}
+	details {
+		margin: 10px auto;
+		p {
+			margin-top: 5px;
+			padding: 5px;
+			font-size: 0.85rem;
+			// TODO: how can we use bootstrap variables in here?
+			// color: $secondary;
+			color: #6c757d;
+		}
 	}
 </style>

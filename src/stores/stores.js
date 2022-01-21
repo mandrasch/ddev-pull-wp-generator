@@ -8,7 +8,7 @@ export const selectedPhpVersion = writable('7.4');
 export const selectedDbVersionString = writable('maria-10.3');
 export const sshHost = writable('');
 export const sshUser = writable('');
-export const pathToWordPressOnServer = writable('');
+export const sshWpPath = writable('');
 
 export const selectedDbVersionType = derived(selectedDbVersionString, $selectedDbVersionString => $selectedDbVersionString.includes("maria") ? "mariadb_version" : "mysql_version");
 export const selectedDbVersionNumber = derived(selectedDbVersionString, $selectedDbVersionString => $selectedDbVersionString.substring($selectedDbVersionString.indexOf('-') + 1));

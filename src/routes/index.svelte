@@ -1,8 +1,14 @@
 <script>
-	import { childThemeFolderName, pullType } from '../stores/stores';
+	import { childThemeFolderName, pullType, sshHost, sshUser, sshWpPath } from '../stores/stores';
 
 	import CodeGenerator from '../components/CodeGenerator.svelte';
 	import FormWizard from '../components/FormWizard.svelte';
+
+	import Highlight from 'svelte-highlight';
+	import shell from 'svelte-highlight/src/languages/shell';
+	import atomOneDark from 'svelte-highlight/src/styles/atom-one-dark';
+
+	$: sshConnectionTestCmd = `ssh -t ${$sshUser}@${$sshHost} "cd ${$sshWpPath}; exec \$SHELL --login"`;
 </script>
 
 <div class="container px-5 my-5">
@@ -25,24 +31,28 @@
 
 			<FormWizard />
 		</div>
-
-		<div class="col-12 px-4 mb-3">
-			<p style="font-style:italic;">
-				<small>
-					If you are unsure about the server settings, just leave the defaults. They are good to go.
-					Optional: For more serious testing you could choose the values accordingly to your live
-					website. You can use the WordPress feature <a
-						href="https://yoast.com/wordpress-site-health/"
-						target="_blank">"Site Health Screen"</a
-					>
-					to figure out your live sites environment, I'm also testing a small WordPress plugin
-					<a href="https://github.com/mandrasch/ddev-pull-wp-helper-plugin" target="_blank"
-						>ddev-pull-wp-helper</a
-					> which helps getting the information with one click.</small
-				>
-			</p>
-		</div>
 	</div>
+	<div class="row" />
+	{#if $pullType == 'ssh'}
+		<div class="row">
+			<div class="col-12 px-4 mb-3">
+				<h2>Verify SSH connection in terminal</h2>
+				{#if $sshUser != '' && $sshHost != '' && $sshWpPath != ''}
+					<small
+						><span class="badge bg-success">Success</span> All three values added, please verify that
+						your connection works before the next step:</small
+					>
+				{:else}
+					<small
+						><span class="badge bg-danger">Error</span> Please add all three configuration values for
+						SSH in the form above!</small
+					>
+				{/if}
+				<Highlight language={shell} code={sshConnectionTestCmd} />
+			</div>
+		</div>
+	{/if}
+
 	<div class="row">
 		<div class="col-12 px-4 mb-3">
 			<h2>2. Setup project folder</h2>
