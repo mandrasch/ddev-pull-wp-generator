@@ -7,8 +7,8 @@
 	import Highlight from 'svelte-highlight';
 	import shell from 'svelte-highlight/src/languages/shell';
 	import atomOneDark from 'svelte-highlight/src/styles/atom-one-dark';
-
-	$: sshConnectionTestCmd = `ssh -t ${$sshUser}@${$sshHost} "cd ${$sshWpPath}; exec \$SHELL --login"`;
+	$: sshConnectionTestCmd = `ssh ${$sshUser}@${$sshHost}`;
+	$: sshConnectionTestWithPathCmd = `ssh -t ${$sshUser}@${$sshHost} "cd ${$sshWpPath}; exec \$SHELL --login"`;
 </script>
 
 <div class="container px-5 my-5">
@@ -37,18 +37,26 @@
 		<div class="row">
 			<div class="col-12 px-4 mb-3">
 				<h2>Verify SSH connection in terminal</h2>
-				{#if $sshUser != '' && $sshHost != '' && $sshWpPath != ''}
-					<small
-						><span class="badge bg-success">Success</span> All three values added, please verify that
-						your connection works before the next step:</small
-					>
-				{:else}
-					<small
-						><span class="badge bg-danger">Error</span> Please add all three configuration values for
-						SSH in the form above!</small
-					>
+
+				{#if $sshUser == '' || $sshHost == '' || $sshWpPath == ''}
+					<p>
+						<small
+							><span class="badge bg-danger">Error</span> Please add all three configuration values for
+							SSH in the form above!</small
+						>
+					</p>
 				{/if}
-				<Highlight language={shell} code={sshConnectionTestCmd} />
+				<p>
+					Verify that SSH connection works in general:
+					<Highlight language={shell} code={sshConnectionTestCmd} />
+					<span class="form-text">Use "exit" to end SSH connection for next test.</span>
+				</p>
+				<p>
+					Verify that the "Path to WordPress" setting is correct:
+					<Highlight language={shell} code={sshConnectionTestWithPathCmd} />
+					<span class="form-text">Use "exit" to end SSH connection.</span>
+				</p>
+				<p>Great, that's all we need for configuration!</p>
 			</div>
 		</div>
 	{/if}
@@ -56,7 +64,7 @@
 	<div class="row">
 		<div class="col-12 px-4 mb-3">
 			<h2>2. Setup project folder</h2>
-			<p>Great, that's all we need for configuration!</p>
+
 			<p>
 				Create a new local folder and setup a new git repository via "git init" - or create a new
 				git repository on GitHub and clone it to your local computer. In this example we called our
