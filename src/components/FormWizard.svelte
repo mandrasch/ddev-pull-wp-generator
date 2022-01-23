@@ -78,7 +78,7 @@
 				/>
 				<label class="form-check-label" for="pullTypeSsh"
 					>SSH connection <span class="form-text">
-						(WP-CLI or mysqldump must available on server)</span
+						(<i>mysqldump</i> or <i>WP-CLI</i> must available on server)</span
 					></label
 				>
 			</div>

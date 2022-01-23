@@ -15,31 +15,42 @@
 </script>
 
 <div class="container px-5 my-5">
-	<h1><i>ddev pull WordPress</i>-Generator</h1>
-	<p>
-		This generator helps you to pull an existing WordPress site into a local <a
+	<h1 class="mb-4"><i>ddev pull WordPress</i>-Generator</h1>
+	<p style="font-weight:bold;">
+		This interactive tutorial enables you to pull an existing WordPress site into a local <a
 			href="https://ddev.readthedocs.io/en/stable/"
 			target="_blank">DDEV</a
 		>
-		project. It enables stress-free local testing and development. For nerdy details see
-		<a href="https://github.com/mandrasch/ddev-pull-wp-scripts" target="_blank"
-			>ddev-pull-wp-scripts</a
+		project.
+	</p>
+	<p>
+		Pulling your live site to a local DDEV project allows stress-free local testing and development.
+		For nerdy details see
+		<a
+			href="https://github.com/mandrasch/ddev-pull-wp-scripts"
+			style="font-style:italic"
+			target="_blank">ddev-pull-wp-scripts</a
 		>.
 	</p>
 
 	<div class="alert alert-warning" role="alert">
-		This generator is work in progress, please use it with caution. There are still some bugs to
-		fix. Stay tuned! :-)
+		⚠️ This project is work in progress, please use it with caution. Still some bugs to fix. :)
 	</div>
-	<p>
-		🎥 Screencast: <a href="https://www.youtube.com/watch?v=lEGL65H-hts" target="_blank"
-			>SSH pull example</a
-		>
-	</p>
+
+	<p />
 
 	<div class="row">
 		<div class="col-12 px-4 mb-3">
 			<h2>1. Select your configuration</h2>
+			<p>Demo videos of the different pull types can be found here:</p>
+			<ul>
+				<li>
+					▶️ <a href="https://www.youtube.com/watch?v=lEGL65H-hts" target="_blank"
+						>SSH connection demo video</a
+					>
+				</li>
+				<li>▶️ Backup file demo - coming soon</li>
+			</ul>
 
 			<FormWizard />
 		</div>
@@ -204,9 +215,39 @@
 	</div>
 
 	<div class="row mt-2">
-		<div class="col-12 text-secondary">
+		<div class="col-12">
 			<h2 class="mb-3">7. Add / update your child theme via git</h2>
+
 			<p>
+				Use your child theme via <a href="//wppusher.com" target="_blank">WPPusher plugin</a> on your
+				live site. WPPusher offers the option of pulling the child theme from a repository subfolder.
+				The best thing: Git is not required on your webspace, because WPPusher uses the HTTPS-API to
+				get the repository contents. See example for adding a child theme from GitHub here:
+			</p>
+			<p>
+				🎥 Screencast: <a href="https://youtu.be/lEGL65H-hts?t=145" target="_blank"
+					>Pull a WordPress site into a local DDEV project (2022 edition - ddev pull ssh)
+				</a>
+			</p>
+			<p>
+				See WPPusher documentation for more information: <a
+					href="https://docs.wppusher.com/article/17-setting-up-a-plugin-or-theme-on-github"
+					target="_blank">WPPusher - Setting up a theme</a
+				>
+			</p>
+
+			<p>
+				<img
+					src="images/README_ddev_pull_ssh.png"
+					class="img-fluid"
+					alt="Technical concept between live site, ddev pull, local ddev site and wppusher which connects live site and GitHub"
+					style="border: 1px solid #999"
+				/>
+			</p>
+
+			<p>You could as well use a GitHub Action pipeline or other methods.</p>
+
+			<!-- <p>
 				TODO: provide documentation for integration of
 				<a
 					href="https://docs.wppusher.com/article/17-setting-up-a-plugin-or-theme-on-github"
@@ -217,7 +258,7 @@
 			<p>
 				TODO: Provide documenation for creating a new child theme (Add folder, update config.yaml,
 				ddev restart, update gitnore, add to live site via WPPusher)
-			</p>
+			</p>-->
 		</div>
 	</div>
 </div>
