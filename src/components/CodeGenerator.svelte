@@ -45,7 +45,8 @@ web_environment:
 			? `
 - PRODUCTION_SSH_USER=${$sshUser}
 - PRODUCTION_SSH_HOST=${$sshHost}
-- PRODUCTION_SSH_WP_PATH=${$sshWpPath}`
+- PRODUCTION_SSH_WP_PATH=${$sshWpPath}
+- REMOTE_DB_CHARSET=utf8`
 			: '';
 
 	$: gitIgnoreContent = `
