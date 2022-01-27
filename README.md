@@ -2,13 +2,12 @@
 
 This is a frontend generator for https://github.com/mandrasch/ddev-pull-wp-scripts, which generate DDEV config files to pull a WordPress site.
 
-- State: _Work in progress_
-- Live: **https://ddev-pull-wp.mandrasch.eu/**
-- Made with SvelteKit
-
 This repository only contains information about the frontend generator, please see https://github.com/mandrasch/ddev-pull-wp-scripts for the main project information.
 
-## Development
+- State: _Work in progress_
+- Live: **https://ddev-pull-wp.mandrasch.eu/**
+
+## Development (SvelteKit)
 
 ```bash
 npm install
