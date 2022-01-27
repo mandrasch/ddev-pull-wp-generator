@@ -1,14 +1,21 @@
-# DDEV pull wp generator
+# DDEV pull wp generator (frontend)
 
-Generate DDEV config files to pull a site via SSH and git-manage your child theme.
+This is a frontend generator for https://github.com/mandrasch/ddev-pull-wp-scripts, which generate DDEV config files to pull a WordPress site.
 
-State: _Work in progress_
+- State: _Work in progress_
+- Live: **https://ddev-pull-wp.mandrasch.eu/**
+- Made with SvelteKit
 
-Live: **https://ddev-pull-wp.mandrasch.eu/**
+This repository only contains information about the frontend generator, please see https://github.com/mandrasch/ddev-pull-wp-scripts for the main project information.
 
-Based on https://github.com/mandrasch/ddev-pull-wp-scripts
+## Development
 
-## TODOs
+```bash
+npm install
+npm run dev
+```
+
+## TODOs (frontend)
 
 - [ ] add screencast
 - [ ] add copy to clipboard function
