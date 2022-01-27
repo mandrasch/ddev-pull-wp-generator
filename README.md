@@ -2,7 +2,7 @@
 
 This is a frontend generator for https://github.com/mandrasch/ddev-pull-wp-scripts, which generate DDEV config files to pull a WordPress site.
 
-This repository only contains information about the frontend generator, please see https://github.com/mandrasch/ddev-pull-wp-scripts for the main project information.
+This repository only contains information about the frontend generator, please see ddev-pull-wp-script for the main project information: https://github.com/mandrasch/ddev-pull-wp-scripts
 
 - State: _Work in progress_
 - Live: **https://ddev-pull-wp.mandrasch.eu/**
