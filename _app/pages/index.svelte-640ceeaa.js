@@ -47,7 +47,8 @@ web_environment:
 - CHILD_THEME_FOLDER_NAME=${h}`),n.$$.dirty&452&&s(4,m=P=="ssh"?`
 - PRODUCTION_SSH_USER=${b}
 - PRODUCTION_SSH_HOST=${y}
-- PRODUCTION_SSH_WP_PATH=${_}`:""),n.$$.dirty&2&&s(3,f=`
+- PRODUCTION_SSH_WP_PATH=${_}
+- REMOTE_DB_CHARSET=utf8`:""),n.$$.dirty&2&&s(3,f=`
 # Ignore all ...
 /*
 
