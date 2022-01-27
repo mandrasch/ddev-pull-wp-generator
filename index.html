@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-82de3b66.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-3ab06180.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-2c657e6e.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-805cd33d.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-917f186f.js">
 		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-7b1ba548.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-89209660.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-cee9555e.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-2c657e6e.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-805cd33d.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -32,7 +32,7 @@
 					error: null,
 					nodes: [
 						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-7b1ba548.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-89209660.js")
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-cee9555e.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -68,7 +68,7 @@
 
 			<form><div class="mb-4 mt-3"><fieldset class="svelte-12eq4fv"><legend class=" svelte-12eq4fv">How do you want to pull your site?</legend>
 			<div class="form-check"><input class="form-check-input svelte-12eq4fv" id="pullTypeSsh" type="radio" name="pullType" value="ssh" checked>
-				<label class="form-check-label svelte-12eq4fv" for="pullTypeSsh">SSH connection <span class="form-text">(<i>mysqldump</i> or <i>WP-CLI</i> must available on server)</span></label></div>
+				<label class="form-check-label svelte-12eq4fv" for="pullTypeSsh">SSH connection <span class="form-text">(<i>mysqldump</i> must available on server)</span></label></div>
 			<div class="form-check"><input class="form-check-input svelte-12eq4fv" id="pullTypeBackup" type="radio" name="pullType" value="backup">
 				<label class="form-check-label svelte-12eq4fv" for="pullTypeBackup">Backup file <span class="form-text">(Manual download, BackWpUp plugin)</span></label></div></fieldset></div>
 
