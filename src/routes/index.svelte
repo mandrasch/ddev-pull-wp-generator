@@ -251,8 +251,7 @@
 
 			{#if $pullType == 'ssh'}
 				<p>
-					Your live sites content changed, new images were added for example? You can pull the
-					latest site content anytime you want.
+					Your live sites content changed, new images were added for example? You can pull again:
 				</p>
 
 				<Highlight language={shell} code="ddev pull ssh" />
