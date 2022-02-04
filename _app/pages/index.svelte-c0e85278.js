@@ -68,7 +68,7 @@ webserver_type: ${_}`),n.$$.dirty&64&&t(2,h=`
 # Requires DDEV version >= 1.18.2 !
 # https://github.com/drud/ddev/releases/tag/v1.18.2
 # https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/
-	
+
 # ------------------------------   configuration  ---------------------------------------------
 environment_variables:
   sshUser: ${y}
