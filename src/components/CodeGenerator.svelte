@@ -89,7 +89,7 @@ web_environment:
 # Requires DDEV version >= 1.18.2 !
 # https://github.com/drud/ddev/releases/tag/v1.18.2
 # https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/
-	
+
 # ------------------------------   configuration  ---------------------------------------------
 environment_variables:
   sshUser: ${$sshUser}
