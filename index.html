@@ -13,13 +13,13 @@
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/vendor-4e7da6e6.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/__layout.svelte-82de3b66.css">
 		<link rel="stylesheet" href="/ddev-pull-wp-generator/_app/assets/pages/index.svelte-3ab06180.css">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-abcbfd7a.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-45d963d1.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-0ea3d61a.js">
-		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-cd8990e7.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/start-d7526ec0.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/chunks/vendor-a9ad5605.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/__layout.svelte-657824ac.js">
+		<link rel="modulepreload" href="/ddev-pull-wp-generator/_app/pages/index.svelte-1c3d533b.js">
 
 		<script type="module">
-			import { start } from "/ddev-pull-wp-generator/_app/start-abcbfd7a.js";
+			import { start } from "/ddev-pull-wp-generator/_app/start-d7526ec0.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/ddev-pull-wp-generator","assets":"/ddev-pull-wp-generator"},
@@ -31,8 +31,8 @@
 					status: 200,
 					error: null,
 					nodes: [
-						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-0ea3d61a.js"),
-						import("/ddev-pull-wp-generator/_app/pages/index.svelte-cd8990e7.js")
+						import("/ddev-pull-wp-generator/_app/pages/__layout.svelte-657824ac.js"),
+						import("/ddev-pull-wp-generator/_app/pages/index.svelte-1c3d533b.js")
 					],
 					url: new URL("http://prerender/"),
 					params: {}
@@ -72,74 +72,27 @@
 			<div class="form-check"><input class="form-check-input svelte-12eq4fv" id="pullTypeBackup" type="radio" name="pullType" value="backup">
 				<label class="form-check-label svelte-12eq4fv" for="pullTypeBackup">Backup file <span class="form-text">(Manual download, BackWpUp plugin)</span></label></div></fieldset></div>
 
-	<div class="row"><div class="col-lg-6"><div class="mb-3"><label class="form-label svelte-12eq4fv" for="projectName">Project name</label>
-				<input class="form-control" id="projectName" type="text" placeholder="Project name" value="my-wp-site"></div>
-			<div class="mb-3"><fieldset class="svelte-12eq4fv"><legend class="svelte-12eq4fv">PHP version</legend>
-
-					<div class="phpVersionRadios svelte-12eq4fv"><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="8.0" type="radio" name="phpVersion" value="8.0">
-								<label class="form-check-label svelte-12eq4fv" for="8.0">8.0</label>
-							</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="7.4" type="radio" name="phpVersion" value="7.4" checked>
-								<label class="form-check-label svelte-12eq4fv" for="7.4">7.4</label>
-							</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="7.3" type="radio" name="phpVersion" value="7.3">
-								<label class="form-check-label svelte-12eq4fv" for="7.3">7.3</label>
-							</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="7.2" type="radio" name="phpVersion" value="7.2">
-								<label class="form-check-label svelte-12eq4fv" for="7.2">7.2</label>
-							</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="7.1" type="radio" name="phpVersion" value="7.1">
-								<label class="form-check-label svelte-12eq4fv" for="7.1">7.1</label>
-							</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="7.0" type="radio" name="phpVersion" value="7.0">
-								<label class="form-check-label svelte-12eq4fv" for="7.0">7.0</label>
-							</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="5.6" type="radio" name="phpVersion" value="5.6">
-								<label class="form-check-label svelte-12eq4fv" for="5.6">5.6</label>
-							</div></div></fieldset></div>
-
-			<fieldset class="svelte-12eq4fv"><legend class="svelte-12eq4fv">Database version</legend>
-				
-				<div class="row"><div class="col"><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-maria-10.3" type="radio" name="dbVersion" value="maria-10.3" checked>
-								<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-maria-10.3">MariaDB 10.3 (default)</label>
-							</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-maria-10.4" type="radio" name="dbVersion" value="maria-10.4">
-								<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-maria-10.4">MariaDB 10.4</label>
-							</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-maria-10.5" type="radio" name="dbVersion" value="maria-10.5">
-								<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-maria-10.5">MariaDB 10.5</label>
-							</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-maria-10.6" type="radio" name="dbVersion" value="maria-10.6">
-								<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-maria-10.6">MariaDB 10.6</label>
-							</div></div>
-					<div class="col">
-							<div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-mysql-5.5" type="radio" name="dbVersion" value="mysql-5.5">
-								<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-mysql-5.5">MySQL 5.5</label>
-							</div>
-							<div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-mysql-5.6" type="radio" name="dbVersion" value="mysql-5.6">
-								<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-mysql-5.6">MySQL 5.6</label>
-							</div>
-							<div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-mysql-5.7" type="radio" name="dbVersion" value="mysql-5.7">
-								<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-mysql-5.7">MySQL 5.7</label>
-							</div>
-							<div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-mysql-8.0" type="radio" name="dbVersion" value="mysql-8.0">
-								<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-mysql-8.0">MySQL 8.0</label>
-							</div></div></div></fieldset>
-
-			<div class="mb-3"><fieldset class="svelte-12eq4fv"><legend class="svelte-12eq4fv">Web Server</legend>
-					<div class="form-check form-check-inline"><input class="form-check-input svelte-12eq4fv" id="nginx" type="radio" name="webServerType" value="nginx-fpm" checked>
-						<label class="form-check-label svelte-12eq4fv" for="nginx">nginx (default)</label></div>
-					<div class="form-check form-check-inline"><input class="form-check-input svelte-12eq4fv" id="apache2" type="radio" value="apache-fpm" name="webServerType">
-						<label class="form-check-label svelte-12eq4fv" for="apache2">apache2</label></div></fieldset></div>
+	<div class="row"><div class="col-lg-6"><div class="mb-3"><label class="form-label svelte-12eq4fv" for="projectName">DDEV project name</label>
+				<input class="form-control" id="projectName" type="text" placeholder="Project name" value="my-wp-site">
+				<div class="form-text">You local project name, the local site will be available via the local URL
+					https://PROJECT-NAME.ddev.site.
+				</div></div>
 
 			<div class="mb-3"><label class="form-label svelte-12eq4fv" for="sshUsername">SSH username</label>
 					<input class="form-control" id="sshUsername" type="text" placeholder="user123" value="user123"></div>
 				<div class="mb-3"><label class="form-label svelte-12eq4fv" for="sshHost">SSH host</label>
 					<input class="form-control" id="sshHost" type="text" placeholder="example.org" value="ssh.example.org"></div>
-				<div class="mb-3"><label class="form-label svelte-12eq4fv" for="sshWpPath">Path to WordPress on server</label>
+				<div class="mb-3"><label class="form-label svelte-12eq4fv" for="sshWpPath">SSH - path to WordPress on server</label>
 					<input class="form-control" id="sshWpPath" type="text" placeholder="/sites/my-website/wordpress" value="/sites/my-website/wordpress">
-					<div class="form-text">Example: &quot;/sites/my-website/wordpress&quot;. Copy this value from Site Health » Info
-						» Directories &amp; sizes » WordPress directory location (<a href="https://yoast.com/wordpress-site-health/" target="_blank">?</a>).
+					<div class="form-text">Copy this value from Site Health » Info » Directories &amp; sizes »
+						WordPress directory location (<a href="https://yoast.com/wordpress-site-health/" target="_blank">?</a>). <br>Example: &quot;/sites/my-website/wordpress&quot; (no trailing slash)
 					</div></div>
-			<div class="mb-3"><label class="form-label svelte-12eq4fv" for="childThemeFolderName">Optional: Child theme folder name</label>
+			<div class="mb-3"><label class="form-label svelte-12eq4fv" for="childThemeFolderName">Child theme folder name (optional)</label>
 				<input class="form-control" id="childThemeFolderName" type="text" placeholder="twentytwentyone-child" value="twentytwentyone-child">
 				<div class="form-text">If you don&#39;t use a child theme currently, just keep &quot;twentytwentyone-child&quot;. It can be
-					changed later as well. If you use a child theme which you manage in git: Just enter the
-					folder name without slashes from /wp-content/themes/.
-				</div></div></div>
-		<div class="col-lg-6"><div class="d-none d-lg-block"><div class="mb-2">Live preview of .ddev/config.yaml:</div>
-				
+					changed later as well. </div></div></div>
+		<div class="col-lg-6"><div class="mb-2"><b>DDEV local project settings</b></div>
+			
 
 
   <pre data-language="yaml" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-attr">name:</span> <span class="hljs-string">my-wp-site</span>
@@ -152,7 +105,58 @@
 <span class="hljs-attr">php_version:</span> <span class="hljs-string">&quot;7.4&quot;</span>
 <span class="hljs-attr">mariadb_version:</span> <span class="hljs-string">&quot;10.3&quot;</span>
 <span class="hljs-attr">webserver_type:</span> <span class="hljs-string">nginx-fpm</span><!-- HTML_TAG_END --></code></pre>
-</div>
+
+
+			<details class="svelte-12eq4fv"><summary style="font-weight:bold;">✏️ Edit web server settings</summary>
+				<div class="mb-3"><fieldset class="svelte-12eq4fv"><legend class="svelte-12eq4fv">PHP version</legend>
+
+						<div class="phpVersionRadios svelte-12eq4fv"><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="8.0" type="radio" name="phpVersion" value="8.0">
+									<label class="form-check-label svelte-12eq4fv" for="8.0">8.0</label>
+								</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="7.4" type="radio" name="phpVersion" value="7.4" checked>
+									<label class="form-check-label svelte-12eq4fv" for="7.4">7.4</label>
+								</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="7.3" type="radio" name="phpVersion" value="7.3">
+									<label class="form-check-label svelte-12eq4fv" for="7.3">7.3</label>
+								</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="7.2" type="radio" name="phpVersion" value="7.2">
+									<label class="form-check-label svelte-12eq4fv" for="7.2">7.2</label>
+								</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="7.1" type="radio" name="phpVersion" value="7.1">
+									<label class="form-check-label svelte-12eq4fv" for="7.1">7.1</label>
+								</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="7.0" type="radio" name="phpVersion" value="7.0">
+									<label class="form-check-label svelte-12eq4fv" for="7.0">7.0</label>
+								</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="5.6" type="radio" name="phpVersion" value="5.6">
+									<label class="form-check-label svelte-12eq4fv" for="5.6">5.6</label>
+								</div></div></fieldset></div>
+
+				<fieldset class="svelte-12eq4fv"><legend class="svelte-12eq4fv">Database version</legend>
+					
+					<div class="row"><div class="col"><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-maria-10.3" type="radio" name="dbVersion" value="maria-10.3" checked>
+									<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-maria-10.3">MariaDB 10.3 (default)</label>
+								</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-maria-10.4" type="radio" name="dbVersion" value="maria-10.4">
+									<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-maria-10.4">MariaDB 10.4</label>
+								</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-maria-10.5" type="radio" name="dbVersion" value="maria-10.5">
+									<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-maria-10.5">MariaDB 10.5</label>
+								</div><div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-maria-10.6" type="radio" name="dbVersion" value="maria-10.6">
+									<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-maria-10.6">MariaDB 10.6</label>
+								</div></div>
+						<div class="col">
+								<div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-mysql-5.5" type="radio" name="dbVersion" value="mysql-5.5">
+									<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-mysql-5.5">MySQL 5.5</label>
+								</div>
+								<div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-mysql-5.6" type="radio" name="dbVersion" value="mysql-5.6">
+									<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-mysql-5.6">MySQL 5.6</label>
+								</div>
+								<div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-mysql-5.7" type="radio" name="dbVersion" value="mysql-5.7">
+									<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-mysql-5.7">MySQL 5.7</label>
+								</div>
+								<div class="form-check"><input class="form-check-input svelte-12eq4fv" id="radioDbVersion-mysql-8.0" type="radio" name="dbVersion" value="mysql-8.0">
+									<label class="form-check-label svelte-12eq4fv" for="radioDbVersion-mysql-8.0">MySQL 8.0</label>
+								</div></div></div></fieldset>
+
+				<div class="mb-3"><fieldset class="svelte-12eq4fv"><legend class="svelte-12eq4fv">Web Server</legend>
+						<div class="form-check form-check-inline"><input class="form-check-input svelte-12eq4fv" id="nginx" type="radio" name="webServerType" value="nginx-fpm" checked>
+							<label class="form-check-label svelte-12eq4fv" for="nginx">nginx (default)</label></div>
+						<div class="form-check form-check-inline"><input class="form-check-input svelte-12eq4fv" id="apache2" type="radio" value="apache-fpm" name="webServerType">
+							<label class="form-check-label svelte-12eq4fv" for="apache2">apache2</label></div></fieldset></div></details>
+
 			<details class="svelte-12eq4fv"><summary>FAQ: What settings should I choose?</summary>
 				<p class="svelte-12eq4fv">If you are unsure about the server settings, just leave the defaults. They are good to go.
 					Optional: For more serious testing you could choose the values accordingly to your live
@@ -163,21 +167,6 @@
 
 	
 </form></div></div>
-	<div class="row"></div>
-	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">Verify SSH connection in terminal</h2>
-
-				
-				<p>Verify that SSH connection works in general:
-					
-  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ssh user123@ssh.example.org<!-- HTML_TAG_END --></code></pre>
-
-					<span class="form-text">Use &quot;exit&quot; to end SSH connection for next test.</span></p>
-				<p>Verify that the &quot;Path to WordPress&quot; setting is correct:
-					
-  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ssh -t user123@ssh.example.org &quot;cd /sites/my-website/wordpress; exec $SHELL --login&quot;<!-- HTML_TAG_END --></code></pre>
-
-					<span class="form-text">Use &quot;exit&quot; to end SSH connection.</span></p>
-				<p>Great, that&#39;s all we need for configuration!</p></div></div>
 
 	<div class="row"><div class="col-12 px-4 mb-3"><h2 class="svelte-e708f3">2. Setup project folder and copy these files</h2>
 
@@ -187,42 +176,7 @@
 			<p>Copy and paste these three files into your newly created project folder:</p>
 			
 
-<div class="card card-small svelte-1k3tgwc"><div class="card-body"><h5 class="card-title">2.1 Ignore pattern for tracking only the child theme</h5>
-			<h6 class="card-subtitle mb-2 text-muted">.gitignore</h6>
-			<p class="card-text">
-  <pre data-language="plaintext" class=" svelte-19wij0g"><code class="hljs">
-# Ignore all ...
-/*
-
-# ... but track specific files / folders: 
-
-# General files
-!.gitignore
-!/README.md
-!/LICENSE
-
-# DDEV config and provider script
-!/.ddev
-/.ddev/*
-!/.ddev/config.yaml
-!/.ddev/providers
-/.ddev/providers/*
-!/.ddev/providers/ssh.yaml
-
-# Child theme:
-!/wp-content
-/wp-content/*
-!/wp-content/themes
-/wp-content/themes/*
-!/wp-content/themes/twentytwentyone-child
-</code></pre>
-
-				<details class="svelte-1k3tgwc"><summary>Why is this needed?</summary>
-					<p class="svelte-1k3tgwc">This is needed to track and manage the child theme in a git repository, but ignore the
-						rest of the WordPress files which will be pulled to the local project in the next step. </p></details></p>
-			</div></div>
-
-	<div class="card card-small svelte-1k3tgwc"><div class="card-body"><h5 class="card-title">2.2 DDEV project configuration</h5>
+<div class="card card-small svelte-1k3tgwc"><div class="card-body"><h5 class="card-title">2.1 DDEV project configuration</h5>
 			<h6 class="card-subtitle mb-2 text-muted">.ddev/config.yaml</h6>
 			<p class="card-text">
   <pre data-language="yaml" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-attr">name:</span> <span class="hljs-string">my-wp-site</span>
@@ -246,11 +200,11 @@
 						<a href="https://ddev.readthedocs.io/en/stable/users/extend/config_yaml/" target="_blank">config.yaml-docs</a>.
 					</p></details></p>
 			</div></div>
-	<div class="card svelte-1k3tgwc"><div class="card-body"><h5 class="card-title">DDEV provider script</h5>
-				<h6 class="card-subtitle mb-2 text-muted">ddev/providers/ssh.yaml</h6>
+	<div class="card svelte-1k3tgwc"><div class="card-body"><h5 class="card-title">2.2 DDEV provider script</h5>
+				<h6 class="card-subtitle mb-2 text-muted">.ddev/providers/ssh.yaml</h6>
 
 				<p>
-  <pre data-language="yaml" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-comment"># Pull a live site WordPress site into DDEV</span>
+  <pre data-language="yaml" style="max-height:375px" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-comment"># Pull a live site WordPress site into DDEV</span>
 
 <span class="hljs-comment"># Commands:</span>
 <span class="hljs-comment">#   &#x27;ddev pull ssh&#x27; - pulls a live wordpress site via SSH/mysqldump and rsync into DDEV.</span>
@@ -422,14 +376,51 @@
 
 				<details class="svelte-1k3tgwc"><summary>Why is this file needed?</summary>
 					<p class="svelte-1k3tgwc">This is our pull script which takes care of pulling the live web site to your local DDEV
-						project. See DDEV docs for more information:<a href="https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/" target="_blank">Hosting Provider Integration</a></p></details>
+						project. See DDEV docs for more information: <a href="https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/" target="_blank">Hosting Provider Integration</a></p></details>
 
 				<small>Source:
 					<a href="https://github.com/mandrasch/ddev-pull-wp-scripts/blob/main/.ddev/providers/ssh.yaml" target="_blank">mandrasch/ddev-pull-wp-scripts/.ddev/providers/ssh.yaml</a></small>
 
 				</div></div>
 
-	</div></div>
+	
+
+	<div class="card card-small svelte-1k3tgwc"><div class="card-body"><h5 class="card-title">2.3 Ignore everything except child theme folder (optional)</h5>
+
+			<p class="card-text"><span class="form-text">This is for git usage. You can skip this file if you don&#39;t use a git repository.</span></p>
+			<h6 class="card-subtitle mb-2 text-muted">.gitignore</h6>
+			<p>
+  <pre data-language="plaintext" class=" svelte-19wij0g"><code class="hljs">
+# Ignore all ...
+/*
+
+# ... but track specific files / folders: 
+
+# General files
+!.gitignore
+!/README.md
+!/LICENSE
+
+# DDEV config and provider script
+!/.ddev
+/.ddev/*
+!/.ddev/config.yaml
+!/.ddev/providers
+/.ddev/providers/*
+!/.ddev/providers/ssh.yaml
+
+# Child theme:
+!/wp-content
+/wp-content/*
+!/wp-content/themes
+/wp-content/themes/*
+!/wp-content/themes/twentytwentyone-child
+</code></pre>
+
+				<details class="svelte-1k3tgwc"><summary>Why is this needed?</summary>
+					<p class="svelte-1k3tgwc">This is needed to track and manage the child theme in a git repository, but ignore the
+						rest of the WordPress files which will be pulled to the local project in the next step. </p></details></p>
+			</div></div></div></div>
 
 	<div class="row"><div class="col-12"><h2 class="mb-3 svelte-e708f3">3. Start DDEV</h2>
 
@@ -528,6 +519,20 @@
 				<p></p>
 
 				</div></div>
+
+	<div class="row"><div class="col-12 mb-3"><h2 class="svelte-e708f3">Troubleshooting: Verify SSH connection in terminal</h2>
+
+				
+				<p>Verify that SSH connection works in general:
+					
+  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ssh user123@ssh.example.org<!-- HTML_TAG_END --></code></pre>
+
+					<span class="form-text">Use &quot;exit&quot; to end SSH connection for next test.</span></p>
+				<p>Verify that the &quot;Path to WordPress&quot; setting is correct:
+					
+  <pre data-language="shell" class=" svelte-19wij0g"><code class="hljs"><!-- HTML_TAG_START -->ssh -t user123@ssh.example.org &quot;cd /sites/my-website/wordpress; exec $SHELL --login&quot;<!-- HTML_TAG_END --></code></pre>
+
+					<span class="form-text">Use &quot;exit&quot; to end SSH connection.</span></p></div></div>
 </div></main>
 
 <footer class="text-center text-secondary container "><hr>
@@ -541,6 +546,6 @@
 	<p class="svelte-1p6xixr">~~~ ! Stop the climate emergency ! ~~~</p>
 </footer>
 
-<script type="application/json" data-type="svelte-data" data-url="https://raw.githubusercontent.com/mandrasch/ddev-pull-wp-scripts/main/.ddev/providers/ssh.yaml">{"status":200,"statusText":"OK","headers":{"accept-ranges":"bytes","access-control-allow-origin":"*","cache-control":"max-age=300","connection":"close","content-encoding":"gzip","content-length":"2720","content-security-policy":"default-src 'none'; style-src 'unsafe-inline'; sandbox","content-type":"text/plain; charset=utf-8","date":"Fri, 04 Feb 2022 13:32:23 GMT","expires":"Fri, 04 Feb 2022 13:37:23 GMT","source-age":"0","strict-transport-security":"max-age=31536000","vary":"Authorization,Accept-Encoding,Origin","via":"1.1 varnish","x-cache":"MISS","x-cache-hits":"0","x-content-type-options":"nosniff","x-fastly-request-id":"0272d84dcd2457dde1505a3bd2c69697a90babaf","x-frame-options":"deny","x-github-request-id":"59EC:185E:1F6A52:27FF74:61FD2AE7","x-served-by":"cache-dfw18680-DFW","x-timer":"S1643981544.884306,VS0,VE106","x-xss-protection":"1; mode=block"},"body":"# Pull a live site WordPress site into DDEV\n\n# Commands:\n#   'ddev pull ssh' - pulls a live wordpress site via SSH\u002Fmysqldump and rsync into DDEV.\n#   'ddev push ssh' - pushes the child theme folder to the remote server\n# Project repository: https:\u002F\u002Fgithub.com\u002Fmandrasch\u002Fddev-pull-wp-scripts\n\n# Requires DDEV version \u003E= 1.18.2 !\n# https:\u002F\u002Fgithub.com\u002Fdrud\u002Fddev\u002Freleases\u002Ftag\u002Fv1.18.2\n# https:\u002F\u002Fddev.readthedocs.io\u002Fen\u002Fstable\u002Fusers\u002Fproviders\u002Fprovider-introduction\u002F\n\n\n# ------------------------------   configuration  ---------------------------------------------\n\nenvironment_variables:\n  sshUser: wp\n  sshHost: ba8v2nc.myraidbox.de\n  sshWpPath: \u002Fhome\u002Fwp\u002Fdisk\u002Fwordpress\n  # path to wordpress on ssh server without(!) trailing slash, \n  # e.g.: \u002Fvar\u002Fwww\u002Fhtml\u002Fmy-website.eu\n  \n  childThemeFolderName: twentytwentyone-child\n  # just the folder name in wp-content\u002Fthemes\u002F, no slashes\n  # if you don't use a child theme currently, just leave 'twentytwentyone-child'\n  \n  remoteDbCharset: utf8\n  # utf8 is default, but check DB_CHARSET in your live sites wp-config.php \n  # if you have trouble importing (e.g. emojis get lost)\n\n# -------------------------------------------------------------------------------------------\n# eo configuration\n\n# -----------------------------   provider script  -------------------------------------------\n# -            (Update the following code if ddev-pull-wp-scripts gets an update)            -\n# --------------------------------------------------------------------------------------------\n\n# 1. Add ssh keys to the user agent\nauth_command:\n  command: |\n    ssh-add -l \u003E\u002Fdev\u002Fnull || ( echo \"Please 'ddev auth ssh' before running this command.\" && exit 1 )\n\n# 2. Pull a fresh database dump via SSH\n# \n# Get db connection credentials from wp-config.php on live server,\n# dump database via mysqldump to local .sql.gz file in .ddev\u002Fdownloads\n# \n# (Possible alternative, not implemented because detecting availability was complicated:\n# Use 'wp db export' command if WP-CLI is installed on remote, it'll use wp-config.php DB settings )\n# \ndb_pull_command:\n  command: |\n    # set -x   # You can enable bash debugging output by uncommenting\n    set -eu -o pipefail\n    pushd \"\u002Fvar\u002Fwww\u002Fhtml\u002F${DDEV_DOCROOT}\" \u003E\u002Fdev\u002Fnull\n\n    # Database dump via mysqldump on remote\n    # db connection credentials are parsed from live sites wp-config.php via bash\n    # see https:\u002F\u002Ftomjn.com\u002F2014\u002F03\u002F01\u002Fwordpress-bash-magic\u002F\n\n    ssh ${sshUser}@${sshHost} \"cd ${sshWpPath} && mysqldump \\\n      --default-character-set=${REMOTE_DB_CHARSET} \\\n      --user=\\$(cat wp-config.php | grep DB_USER | cut -d \\' -f 4) \\\n      --password=\\$(cat wp-config.php | grep DB_PASSWORD | cut -d \\' -f 4) \\\n      --host=\\$(cat wp-config.php | grep DB_HOST | cut -d \\' -f 4) \\\n      \\$(cat wp-config.php | grep DB_NAME | cut -d \\' -f 4) | gzip -9 -c\" \u003E .ddev\u002F.downloads\u002Fdb.sql.gz\n    \n    # TODO: add warning if wp-config.php parsing fails ... (How can this be checked in a robust way?)\n\n    # TODO: add solution for use of double quotes \u002F single quotes \u002F mixed quotes in wp-config.php\n    #       (e.g. define('DB_HOST', \"mysql03.host.net\");)\n    # Currently only single quotes are supported\n\n    # (Important: backslash for mysqldump values, thx to https:\u002F\u002Fstackoverflow.com\u002Fa\u002F13826220)\n  service: web\n\n# 3. Rsync all the files (except excludes)\nfiles_pull_command:\n  command: |\n    # set -x   # You can enable bash debugging output by uncommenting\n    set -eu -o pipefail\n    ls \u002Fvar\u002Fwww\u002Fhtml\u002F.ddev \u003E\u002Fdev\u002Fnull \n    pushd \u002Fvar\u002Fwww\u002Fhtml\u002F${DDEV_DOCROOT} \u003E\u002Fdev\u002Fnull\n\n    # Add trailing slash for sshWpPath (maybe user mistakenly provided trailing slash) \n    # (thx https:\u002F\u002Fgist.github.com\u002Fluciomartinez\u002Fc322327605d40f86ee0c)\n    [[ \"${sshWpPath}\" != *\u002F ]] && sshWpPathTrailingSlash=\"${sshWpPath}\u002F\"\n\n    echo \"Downloading files from remote site to \u002Fvar\u002Fwww\u002Fhtml\u002F${DDEV_DOCROOT}\"\n    # exclude child theme + some default locations of wordpress backup plugins\n    # (exclude pattern is glob based, not path based)\n    # add -v for output of files transferred, -vv for full debug\n    rsync -azh --stats \\\n      --exclude=\".git\u002F\" \\\n      --exclude=\".gitignore\" \\\n      --exclude=\".ddev\u002F\" \\\n      --exclude=\"README.md\" \\\n      --exclude=\"LICENSE\" \\\n      --exclude=\"wp-content\u002Fthemes\u002F${childThemeFolderName}\" \\\n      --exclude=\"wp-content\u002Fupdraft\" \\\n      ${sshUser}@${sshHost}:${sshWpPathTrailingSlash} .\n\n    # TODO: Should we use -a (archive mode) or is there a better combination of flags?\n  service: web\n\n# 4. Set database connection + migrate URLs in DB\n# \n# We use this step to run some important WP-CLI commands locally\n# a) Replace db connection settings in wp-config.php\n# b) Replace live site url (determined from backup)\n# with DDEV_PRIMARY_URL (\u003Cyour-project\u003E.ddev.site) in local databse\n# TODO: c) re-generate permalinks? other steps needed?\nfiles_import_command:\n  command: |\n    # set -x  # You can enable bash debugging output by uncommenting\n    set -eu -o pipefail\n    pushd \"\u002Fvar\u002Fwww\u002Fhtml\u002F${DDEV_DOCROOT}\" \u003E\u002Fdev\u002Fnull\n\n    echo \"Adjusting wp-config db connection settings for DDEV ...\"\n    wp config set DB_NAME \"db\" && wp config set DB_USER \"db\" && wp config set DB_PASSWORD \"db\" && wp config set DB_HOST \"db\"\n\n    # Important: Use wp search-replace for URL replacement\n    echo \"Replacing the old URL ($(wp option get siteurl)) in database with DDEV local url (${DDEV_PRIMARY_URL})...\"\n    wp search-replace $(wp option get siteurl) \"${DDEV_PRIMARY_URL}\"\n\n    # Additional update the wp config values, because some devs\u002Fhoster, e.g. raidboxes\n    # put it here (only remove if existent)\n    # TODO: if [wp config has] would be better, but how to implement it here?\n    # if [ \"$(wp config has WP_HOME)\" = 0 ]; then wp config delete WP_HOME; fi\n    # if [ \"$(wp config has WP_SITEURL)\" = 1 ]; then wp config delete WP_SITEURL; fi\n    wp config set WP_HOME \"${DDEV_PRIMARY_URL}\"\n    wp config set WP_SITEURL \"${DDEV_PRIMARY_URL}\u002F\"\n\n    # Optional: more steps would be possible here after import\n    # echo \"Deleting config path for WP Super Cache (if installed) ...\"\n    # wp config delete WPCACHEHOME\n\n    echo \"All set, have fun! Run 'ddev launch' to open your site.\"\n  service: web\n\n# ! EXPERIMENTAL - USE WITH CAUTION !\n# Push child theme folder to remote server\n# (Other reliable ways are WPPusher, Github Action pipeline, etc.)\n\ndb_push_command:\n  command: |\n    # set -x   # You can enable bash debugging output by uncommenting\n    set -eu -o pipefail\n    echo \"Skipping db_push_command, we don't use it.\"\n  service: web\n\nfiles_push_command:\n  command: |\n    # set -x   # You can enable bash debugging output by uncommenting\n    set -eu -o pipefail\n    pushd \"\u002Fvar\u002Fwww\u002Fhtml\u002F${DDEV_DOCROOT}\" \u003E\u002Fdev\u002Fnull\n\n    # Add trailing slash for sshWpPath (maybe user mistakenly provided trailing slash) \n    # (thx https:\u002F\u002Fgist.github.com\u002Fluciomartinez\u002Fc322327605d40f86ee0c)\n    [[ \"${sshWpPath}\" != *\u002F ]] && sshWpPathTrailingSlash=\"${sshWpPath}\u002F\"\n\n    # Send child theme from source (DDEV) to target (SSH server \u002F webspace)\n    source=\"\u002Fvar\u002Fwww\u002Fhtml\u002F${DDEV_DOCROOT}\u002Fwp-content\u002Fthemes\u002F${childThemeFolderName}\u002F\"\n    target=\"${sshUser}@${sshHost}:${sshWpPathTrailingSlash}wp-content\u002Fthemes\u002F${childThemeFolderName}\"\n  \n    echo \"Configuration for push:\"\n    echo \"Source: ${source}\"\n    echo \"Target: ${target}\"\n    \n    echo \"Start pushing the child theme folder...\"\n    rsync -rvzh \"${source}\" \"${target}\"\n  service: web"}</script></div>
+<script type="application/json" data-type="svelte-data" data-url="https://raw.githubusercontent.com/mandrasch/ddev-pull-wp-scripts/main/.ddev/providers/ssh.yaml">{"status":200,"statusText":"OK","headers":{"accept-ranges":"bytes","access-control-allow-origin":"*","cache-control":"max-age=300","connection":"close","content-encoding":"gzip","content-length":"2720","content-security-policy":"default-src 'none'; style-src 'unsafe-inline'; sandbox","content-type":"text/plain; charset=utf-8","date":"Fri, 04 Feb 2022 17:06:44 GMT","expires":"Fri, 04 Feb 2022 17:11:44 GMT","source-age":"0","strict-transport-security":"max-age=31536000","vary":"Authorization,Accept-Encoding,Origin","via":"1.1 varnish","x-cache":"MISS","x-cache-hits":"0","x-content-type-options":"nosniff","x-fastly-request-id":"e0313b62ab57cbb833692063eb1cdd1fc71d1af4","x-frame-options":"deny","x-github-request-id":"F3A6:0B1F:212417:315878:61FD5D24","x-served-by":"cache-sea4456-SEA","x-timer":"S1643994404.965637,VS0,VE132","x-xss-protection":"1; mode=block"},"body":"# Pull a live site WordPress site into DDEV\n\n# Commands:\n#   'ddev pull ssh' - pulls a live wordpress site via SSH\u002Fmysqldump and rsync into DDEV.\n#   'ddev push ssh' - pushes the child theme folder to the remote server\n# Project repository: https:\u002F\u002Fgithub.com\u002Fmandrasch\u002Fddev-pull-wp-scripts\n\n# Requires DDEV version \u003E= 1.18.2 !\n# https:\u002F\u002Fgithub.com\u002Fdrud\u002Fddev\u002Freleases\u002Ftag\u002Fv1.18.2\n# https:\u002F\u002Fddev.readthedocs.io\u002Fen\u002Fstable\u002Fusers\u002Fproviders\u002Fprovider-introduction\u002F\n\n\n# ------------------------------   configuration  ---------------------------------------------\n\nenvironment_variables:\n  sshUser: wp\n  sshHost: ba8v2nc.myraidbox.de\n  sshWpPath: \u002Fhome\u002Fwp\u002Fdisk\u002Fwordpress\n  # path to wordpress on ssh server without(!) trailing slash, \n  # e.g.: \u002Fvar\u002Fwww\u002Fhtml\u002Fmy-website.eu\n  \n  childThemeFolderName: twentytwentyone-child\n  # just the folder name in wp-content\u002Fthemes\u002F, no slashes\n  # if you don't use a child theme currently, just leave 'twentytwentyone-child'\n  \n  remoteDbCharset: utf8\n  # utf8 is default, but check DB_CHARSET in your live sites wp-config.php \n  # if you have trouble importing (e.g. emojis get lost)\n\n# -------------------------------------------------------------------------------------------\n# eo configuration\n\n# -----------------------------   provider script  -------------------------------------------\n# -            (Update the following code if ddev-pull-wp-scripts gets an update)            -\n# --------------------------------------------------------------------------------------------\n\n# 1. Add ssh keys to the user agent\nauth_command:\n  command: |\n    ssh-add -l \u003E\u002Fdev\u002Fnull || ( echo \"Please 'ddev auth ssh' before running this command.\" && exit 1 )\n\n# 2. Pull a fresh database dump via SSH\n# \n# Get db connection credentials from wp-config.php on live server,\n# dump database via mysqldump to local .sql.gz file in .ddev\u002Fdownloads\n# \n# (Possible alternative, not implemented because detecting availability was complicated:\n# Use 'wp db export' command if WP-CLI is installed on remote, it'll use wp-config.php DB settings )\n# \ndb_pull_command:\n  command: |\n    # set -x   # You can enable bash debugging output by uncommenting\n    set -eu -o pipefail\n    pushd \"\u002Fvar\u002Fwww\u002Fhtml\u002F${DDEV_DOCROOT}\" \u003E\u002Fdev\u002Fnull\n\n    # Database dump via mysqldump on remote\n    # db connection credentials are parsed from live sites wp-config.php via bash\n    # see https:\u002F\u002Ftomjn.com\u002F2014\u002F03\u002F01\u002Fwordpress-bash-magic\u002F\n\n    ssh ${sshUser}@${sshHost} \"cd ${sshWpPath} && mysqldump \\\n      --default-character-set=${REMOTE_DB_CHARSET} \\\n      --user=\\$(cat wp-config.php | grep DB_USER | cut -d \\' -f 4) \\\n      --password=\\$(cat wp-config.php | grep DB_PASSWORD | cut -d \\' -f 4) \\\n      --host=\\$(cat wp-config.php | grep DB_HOST | cut -d \\' -f 4) \\\n      \\$(cat wp-config.php | grep DB_NAME | cut -d \\' -f 4) | gzip -9 -c\" \u003E .ddev\u002F.downloads\u002Fdb.sql.gz\n    \n    # TODO: add warning if wp-config.php parsing fails ... (How can this be checked in a robust way?)\n\n    # TODO: add solution for use of double quotes \u002F single quotes \u002F mixed quotes in wp-config.php\n    #       (e.g. define('DB_HOST', \"mysql03.host.net\");)\n    # Currently only single quotes are supported\n\n    # (Important: backslash for mysqldump values, thx to https:\u002F\u002Fstackoverflow.com\u002Fa\u002F13826220)\n  service: web\n\n# 3. Rsync all the files (except excludes)\nfiles_pull_command:\n  command: |\n    # set -x   # You can enable bash debugging output by uncommenting\n    set -eu -o pipefail\n    ls \u002Fvar\u002Fwww\u002Fhtml\u002F.ddev \u003E\u002Fdev\u002Fnull \n    pushd \u002Fvar\u002Fwww\u002Fhtml\u002F${DDEV_DOCROOT} \u003E\u002Fdev\u002Fnull\n\n    # Add trailing slash for sshWpPath (maybe user mistakenly provided trailing slash) \n    # (thx https:\u002F\u002Fgist.github.com\u002Fluciomartinez\u002Fc322327605d40f86ee0c)\n    [[ \"${sshWpPath}\" != *\u002F ]] && sshWpPathTrailingSlash=\"${sshWpPath}\u002F\"\n\n    echo \"Downloading files from remote site to \u002Fvar\u002Fwww\u002Fhtml\u002F${DDEV_DOCROOT}\"\n    # exclude child theme + some default locations of wordpress backup plugins\n    # (exclude pattern is glob based, not path based)\n    # add -v for output of files transferred, -vv for full debug\n    rsync -azh --stats \\\n      --exclude=\".git\u002F\" \\\n      --exclude=\".gitignore\" \\\n      --exclude=\".ddev\u002F\" \\\n      --exclude=\"README.md\" \\\n      --exclude=\"LICENSE\" \\\n      --exclude=\"wp-content\u002Fthemes\u002F${childThemeFolderName}\" \\\n      --exclude=\"wp-content\u002Fupdraft\" \\\n      ${sshUser}@${sshHost}:${sshWpPathTrailingSlash} .\n\n    # TODO: Should we use -a (archive mode) or is there a better combination of flags?\n  service: web\n\n# 4. Set database connection + migrate URLs in DB\n# \n# We use this step to run some important WP-CLI commands locally\n# a) Replace db connection settings in wp-config.php\n# b) Replace live site url (determined from backup)\n# with DDEV_PRIMARY_URL (\u003Cyour-project\u003E.ddev.site) in local databse\n# TODO: c) re-generate permalinks? other steps needed?\nfiles_import_command:\n  command: |\n    # set -x  # You can enable bash debugging output by uncommenting\n    set -eu -o pipefail\n    pushd \"\u002Fvar\u002Fwww\u002Fhtml\u002F${DDEV_DOCROOT}\" \u003E\u002Fdev\u002Fnull\n\n    echo \"Adjusting wp-config db connection settings for DDEV ...\"\n    wp config set DB_NAME \"db\" && wp config set DB_USER \"db\" && wp config set DB_PASSWORD \"db\" && wp config set DB_HOST \"db\"\n\n    # Important: Use wp search-replace for URL replacement\n    echo \"Replacing the old URL ($(wp option get siteurl)) in database with DDEV local url (${DDEV_PRIMARY_URL})...\"\n    wp search-replace $(wp option get siteurl) \"${DDEV_PRIMARY_URL}\"\n\n    # Additional update the wp config values, because some devs\u002Fhoster, e.g. raidboxes\n    # put it here (only remove if existent)\n    # TODO: if [wp config has] would be better, but how to implement it here?\n    # if [ \"$(wp config has WP_HOME)\" = 0 ]; then wp config delete WP_HOME; fi\n    # if [ \"$(wp config has WP_SITEURL)\" = 1 ]; then wp config delete WP_SITEURL; fi\n    wp config set WP_HOME \"${DDEV_PRIMARY_URL}\"\n    wp config set WP_SITEURL \"${DDEV_PRIMARY_URL}\u002F\"\n\n    # Optional: more steps would be possible here after import\n    # echo \"Deleting config path for WP Super Cache (if installed) ...\"\n    # wp config delete WPCACHEHOME\n\n    echo \"All set, have fun! Run 'ddev launch' to open your site.\"\n  service: web\n\n# ! EXPERIMENTAL - USE WITH CAUTION !\n# Push child theme folder to remote server\n# (Other reliable ways are WPPusher, Github Action pipeline, etc.)\n\ndb_push_command:\n  command: |\n    # set -x   # You can enable bash debugging output by uncommenting\n    set -eu -o pipefail\n    echo \"Skipping db_push_command, we don't use it.\"\n  service: web\n\nfiles_push_command:\n  command: |\n    # set -x   # You can enable bash debugging output by uncommenting\n    set -eu -o pipefail\n    pushd \"\u002Fvar\u002Fwww\u002Fhtml\u002F${DDEV_DOCROOT}\" \u003E\u002Fdev\u002Fnull\n\n    # Add trailing slash for sshWpPath (maybe user mistakenly provided trailing slash) \n    # (thx https:\u002F\u002Fgist.github.com\u002Fluciomartinez\u002Fc322327605d40f86ee0c)\n    [[ \"${sshWpPath}\" != *\u002F ]] && sshWpPathTrailingSlash=\"${sshWpPath}\u002F\"\n\n    # Send child theme from source (DDEV) to target (SSH server \u002F webspace)\n    source=\"\u002Fvar\u002Fwww\u002Fhtml\u002F${DDEV_DOCROOT}\u002Fwp-content\u002Fthemes\u002F${childThemeFolderName}\u002F\"\n    target=\"${sshUser}@${sshHost}:${sshWpPathTrailingSlash}wp-content\u002Fthemes\u002F${childThemeFolderName}\"\n  \n    echo \"Configuration for push:\"\n    echo \"Source: ${source}\"\n    echo \"Target: ${target}\"\n    \n    echo \"Start pushing the child theme folder...\"\n    rsync -rvzh \"${source}\" \"${target}\"\n  service: web"}</script></div>
 	</body>
 </html>
