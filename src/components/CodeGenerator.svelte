@@ -17,7 +17,7 @@
 	import Highlight from 'svelte-highlight';
 	import yaml from 'svelte-highlight/src/languages/yaml';
 	import atomOneDark from 'svelte-highlight/src/styles/atom-one-dark';
-	import { FileCode } from 'svelte-bootstrap-icons';
+	import { FileCode, Git } from 'svelte-bootstrap-icons';
 
 	export let showOnlyConfigYaml; // prop for this component
 
@@ -118,31 +118,7 @@ environment_variables:
 {:else}
 	<div class="card card-small">
 		<div class="card-body">
-			<h5 class="card-title">2.1 Ignore pattern for tracking only the child theme</h5>
-			<h6 class="card-subtitle mb-2 text-muted">.gitignore</h6>
-			<p class="card-text">
-				<Highlight code={gitIgnoreContent} />
-				<details>
-					<summary>Why is this needed?</summary>
-					<p>
-						This is needed to track and manage the child theme in a git repository, but ignore the
-						rest of the WordPress files which will be pulled to the local project in the next step. <!-- On synchronization (<i>ddev pull ssh</i
-						>) the whole website is downloaded to the local project folder - but we don't want to
-						override the child theme, because maybe we changed some styles already and just want to
-						test them with the newest site content. 
-						The sync uses "--exclude=wp-content/themes/{$childThemeFolderName}" to avoid overriding
-						local changes. -->
-					</p>
-				</details>
-			</p>
-			<!-- <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a> -->
-		</div>
-	</div>
-
-	<div class="card card-small">
-		<div class="card-body">
-			<h5 class="card-title">2.2 DDEV project configuration</h5>
+			<h5 class="card-title">2.1 DDEV project configuration</h5>
 			<h6 class="card-subtitle mb-2 text-muted">.ddev/config.yaml</h6>
 			<p class="card-text">
 				<Highlight language={yaml} code={configYaml} />
@@ -169,13 +145,14 @@ environment_variables:
 	{#if $pullType == 'ssh'}
 		<div class="card">
 			<div class="card-body">
-				<h5 class="card-title">DDEV provider script</h5>
-				<h6 class="card-subtitle mb-2 text-muted">ddev/providers/ssh.yaml</h6>
+				<h5 class="card-title">2.2 DDEV provider script</h5>
+				<h6 class="card-subtitle mb-2 text-muted">.ddev/providers/ssh.yaml</h6>
 
 				<p>
 					<Highlight
 						language={yaml}
 						code={providersYamlConfigurationPart + providersYamlScriptPart}
+						style="max-height:375px"
 					/>
 				</p>
 
@@ -183,7 +160,7 @@ environment_variables:
 					<summary>Why is this file needed?</summary>
 					<p>
 						This is our pull script which takes care of pulling the live web site to your local DDEV
-						project. See DDEV docs for more information:<a
+						project. See DDEV docs for more information: <a
 							href="https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/"
 							target="_blank">Hosting Provider Integration</a
 						>
@@ -207,10 +184,8 @@ environment_variables:
 	{#if $pullType == 'backup'}
 		<div class="card">
 			<div class="card-body">
-				<h5 class="card-title">.ddev/providers/backup.yaml</h5>
-				<h6 class="card-subtitle mb-2 text-muted">
-					The actual pull script, runs via 'ddev pull backup'
-				</h6>
+				<h5 class="card-title">2.2 DDEV provider script</h5>
+				<h6 class="card-subtitle mb-2 text-muted">.ddev/providers/backup.yaml</h6>
 				<p class="card-text">
 					<small
 						>Requirement: <a
@@ -253,6 +228,36 @@ environment_variables:
 			</div>
 		</div>
 	{/if}
+
+	<div class="card card-small">
+		<div class="card-body">
+			<h5 class="card-title">2.3 Ignore everything except child theme folder (optional)</h5>
+
+			<p class="card-text">
+				<span class="form-text"
+					>This is for git usage. You can skip this file if you don't use a git repository.</span
+				>
+			</p>
+			<h6 class="card-subtitle mb-2 text-muted">.gitignore</h6>
+			<p>
+				<Highlight code={gitIgnoreContent} />
+				<details>
+					<summary>Why is this needed?</summary>
+					<p>
+						This is needed to track and manage the child theme in a git repository, but ignore the
+						rest of the WordPress files which will be pulled to the local project in the next step. <!-- On synchronization (<i>ddev pull ssh</i
+						>) the whole website is downloaded to the local project folder - but we don't want to
+						override the child theme, because maybe we changed some styles already and just want to
+						test them with the newest site content. 
+						The sync uses "--exclude=wp-content/themes/{$childThemeFolderName}" to avoid overriding
+						local changes. -->
+					</p>
+				</details>
+			</p>
+			<!-- <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a> -->
+		</div>
+	</div>
 {/if}
 
 <style lang="scss">

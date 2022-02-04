@@ -106,34 +106,6 @@
 			<FormWizard />
 		</div>
 	</div>
-	<div class="row" />
-	{#if $pullType == 'ssh'}
-		<div class="row">
-			<div class="col-12 px-4 mb-3">
-				<h2>Verify SSH connection in terminal</h2>
-
-				{#if $sshUser == '' || $sshHost == '' || $sshWpPath == ''}
-					<p>
-						<small
-							><span class="badge bg-danger">Error</span> Please add all three configuration values for
-							SSH in the form above!</small
-						>
-					</p>
-				{/if}
-				<p>
-					Verify that SSH connection works in general:
-					<Highlight language={shell} code={sshConnectionTestCmd} />
-					<span class="form-text">Use "exit" to end SSH connection for next test.</span>
-				</p>
-				<p>
-					Verify that the "Path to WordPress" setting is correct:
-					<Highlight language={shell} code={sshConnectionTestWithPathCmd} />
-					<span class="form-text">Use "exit" to end SSH connection.</span>
-				</p>
-				<p>Great, that's all we need for configuration!</p>
-			</div>
-		</div>
-	{/if}
 
 	<div class="row">
 		<div class="col-12 px-4 mb-3">
@@ -321,6 +293,33 @@
 					style="border: 1px solid #999"
 				/>
 			</p> -->
+			</div>
+		</div>
+	{/if}
+
+	{#if $pullType == 'ssh'}
+		<div class="row">
+			<div class="col-12 mb-3">
+				<h2>Troubleshooting: Verify SSH connection in terminal</h2>
+
+				{#if $sshUser == '' || $sshHost == '' || $sshWpPath == ''}
+					<p>
+						<small
+							><span class="badge bg-danger">Error</span> Please add all three configuration values for
+							SSH in the form above!</small
+						>
+					</p>
+				{/if}
+				<p>
+					Verify that SSH connection works in general:
+					<Highlight language={shell} code={sshConnectionTestCmd} />
+					<span class="form-text">Use "exit" to end SSH connection for next test.</span>
+				</p>
+				<p>
+					Verify that the "Path to WordPress" setting is correct:
+					<Highlight language={shell} code={sshConnectionTestWithPathCmd} />
+					<span class="form-text">Use "exit" to end SSH connection.</span>
+				</p>
 			</div>
 		</div>
 	{/if}

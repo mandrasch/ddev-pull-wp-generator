@@ -101,7 +101,7 @@
 	<div class="row">
 		<div class="col-lg-6">
 			<div class="mb-3">
-				<label class="form-label" for="projectName">Project name</label>
+				<label class="form-label" for="projectName">DDEV project name</label>
 				<input
 					class="form-control"
 					id="projectName"
@@ -109,96 +109,10 @@
 					bind:value={$projectName}
 					placeholder="Project name"
 				/>
-			</div>
-			<div class="mb-3">
-				<fieldset>
-					<legend>PHP version</legend>
-
-					<div class="phpVersionRadios">
-						{#each phpVersions as phpVersion, i}
-							<div class="form-check">
-								<input
-									class="form-check-input"
-									id={phpVersion}
-									type="radio"
-									name="phpVersion"
-									bind:group={$selectedPhpVersion}
-									value={phpVersion}
-								/>
-								<label class="form-check-label" for={phpVersion}>{phpVersion}</label>
-							</div>
-						{/each}
-					</div>
-				</fieldset>
-			</div>
-
-			<fieldset>
-				<legend>Database version</legend>
-				<!-- TODO: this is double coded currently, need to figure out how to use bind:group in nested components, see https://github.com/sveltejs/svelte/issues/2308 and then use: 
-							<DatabaseRadioButton {displayText} {value} /> -->
-				<div class="row">
-					<div class="col">
-						{#each getDatabaseVersionsForType(databaseVersions, 'maria') as { displayText, value }, i}
-							<div class="form-check">
-								<input
-									class="form-check-input"
-									id={'radioDbVersion-' + value}
-									type="radio"
-									name="dbVersion"
-									bind:group={$selectedDbVersionString}
-									{value}
-								/>
-								<label class="form-check-label" for={'radioDbVersion-' + value}>{displayText}</label
-								>
-							</div>
-						{/each}
-					</div>
-					<div class="col">
-						{#each getDatabaseVersionsForType(databaseVersions, 'mysql') as { displayText, value }, i}
-							<!-- <DatabaseRadioButton {displayText} {value} /> -->
-							<div class="form-check">
-								<input
-									class="form-check-input"
-									id={'radioDbVersion-' + value}
-									type="radio"
-									name="dbVersion"
-									bind:group={$selectedDbVersionString}
-									{value}
-								/>
-								<label class="form-check-label" for={'radioDbVersion-' + value}>{displayText}</label
-								>
-							</div>
-						{/each}
-					</div>
+				<div class="form-text">
+					You local project name, the local site will be available via the local URL
+					https://PROJECT-NAME.ddev.site.
 				</div>
-			</fieldset>
-
-			<div class="mb-3">
-				<fieldset>
-					<legend>Web Server</legend>
-					<div class="form-check form-check-inline">
-						<input
-							class="form-check-input"
-							id="nginx"
-							type="radio"
-							name="webServerType"
-							value="nginx-fpm"
-							bind:group={$webServerType}
-						/>
-						<label class="form-check-label" for="nginx">nginx (default)</label>
-					</div>
-					<div class="form-check form-check-inline">
-						<input
-							class="form-check-input"
-							id="apache2"
-							type="radio"
-							value="apache-fpm"
-							name="webServerType"
-							bind:group={$webServerType}
-						/>
-						<label class="form-check-label" for="apache2">apache2</label>
-					</div>
-				</fieldset>
 			</div>
 
 			{#if $pullType == 'ssh'}
@@ -223,7 +137,7 @@
 					/>
 				</div>
 				<div class="mb-3">
-					<label class="form-label" for="sshWpPath">Path to WordPress on server</label>
+					<label class="form-label" for="sshWpPath">SSH - path to WordPress on server</label>
 					<input
 						class="form-control"
 						id="sshWpPath"
@@ -232,17 +146,17 @@
 						bind:value={$sshWpPath}
 					/>
 					<div class="form-text">
-						Example: "/sites/my-website/wordpress". Copy this value from Site Health &raquo; Info
-						&raquo; Directories & sizes &raquo; WordPress directory location (<a
+						Copy this value from Site Health &raquo; Info &raquo; Directories & sizes &raquo;
+						WordPress directory location (<a
 							href="https://yoast.com/wordpress-site-health/"
 							target="_blank">?</a
-						>).
+						>). <br />Example: "/sites/my-website/wordpress" (no trailing slash)
 					</div>
 				</div>
 			{/if}
 			<div class="mb-3">
 				<label class="form-label" for="childThemeFolderName"
-					>Optional: Child theme folder name</label
+					>Child theme folder name (optional)</label
 				>
 				<input
 					class="form-control"
@@ -253,16 +167,111 @@
 				/>
 				<div class="form-text">
 					If you don't use a child theme currently, just keep "twentytwentyone-child". It can be
-					changed later as well. If you use a child theme which you manage in git: Just enter the
-					folder name without slashes from /wp-content/themes/.
+					changed later as well. <!-- If you use a child theme which you manage in git: Just enter the
+					folder name without slashes from /wp-content/themes/. -->
 				</div>
 			</div>
 		</div>
 		<div class="col-lg-6">
-			<div class="d-none d-lg-block">
-				<div class="mb-2">Live preview of .ddev/config.yaml:</div>
-				<CodeGenerator showOnlyConfigYaml={true} />
-			</div>
+			<div class="mb-2"><b>DDEV local project settings</b></div>
+			<CodeGenerator showOnlyConfigYaml={true} />
+
+			<details>
+				<summary style="font-weight:bold;"> ✏️ Edit web server settings</summary>
+				<div class="mb-3">
+					<fieldset>
+						<legend>PHP version</legend>
+
+						<div class="phpVersionRadios">
+							{#each phpVersions as phpVersion, i}
+								<div class="form-check">
+									<input
+										class="form-check-input"
+										id={phpVersion}
+										type="radio"
+										name="phpVersion"
+										bind:group={$selectedPhpVersion}
+										value={phpVersion}
+									/>
+									<label class="form-check-label" for={phpVersion}>{phpVersion}</label>
+								</div>
+							{/each}
+						</div>
+					</fieldset>
+				</div>
+
+				<fieldset>
+					<legend>Database version</legend>
+					<!-- TODO: this is double coded currently, need to figure out how to use bind:group in nested components, see https://github.com/sveltejs/svelte/issues/2308 and then use: 
+								<DatabaseRadioButton {displayText} {value} /> -->
+					<div class="row">
+						<div class="col">
+							{#each getDatabaseVersionsForType(databaseVersions, 'maria') as { displayText, value }, i}
+								<div class="form-check">
+									<input
+										class="form-check-input"
+										id={'radioDbVersion-' + value}
+										type="radio"
+										name="dbVersion"
+										bind:group={$selectedDbVersionString}
+										{value}
+									/>
+									<label class="form-check-label" for={'radioDbVersion-' + value}
+										>{displayText}</label
+									>
+								</div>
+							{/each}
+						</div>
+						<div class="col">
+							{#each getDatabaseVersionsForType(databaseVersions, 'mysql') as { displayText, value }, i}
+								<!-- <DatabaseRadioButton {displayText} {value} /> -->
+								<div class="form-check">
+									<input
+										class="form-check-input"
+										id={'radioDbVersion-' + value}
+										type="radio"
+										name="dbVersion"
+										bind:group={$selectedDbVersionString}
+										{value}
+									/>
+									<label class="form-check-label" for={'radioDbVersion-' + value}
+										>{displayText}</label
+									>
+								</div>
+							{/each}
+						</div>
+					</div>
+				</fieldset>
+
+				<div class="mb-3">
+					<fieldset>
+						<legend>Web Server</legend>
+						<div class="form-check form-check-inline">
+							<input
+								class="form-check-input"
+								id="nginx"
+								type="radio"
+								name="webServerType"
+								value="nginx-fpm"
+								bind:group={$webServerType}
+							/>
+							<label class="form-check-label" for="nginx">nginx (default)</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input
+								class="form-check-input"
+								id="apache2"
+								type="radio"
+								value="apache-fpm"
+								name="webServerType"
+								bind:group={$webServerType}
+							/>
+							<label class="form-check-label" for="apache2">apache2</label>
+						</div>
+					</fieldset>
+				</div>
+			</details>
+
 			<details>
 				<summary>FAQ: What settings should I choose?</summary>
 				<p>
