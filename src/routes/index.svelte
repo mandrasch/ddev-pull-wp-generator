@@ -140,9 +140,10 @@
 	<div class="row">
 		<div class="col-12">
 			{#if $pullType == 'ssh'}
-				<h2 class="mb-3">4. Pull all the files 🙌</h2>
+				<h2 class="mb-3">4. Pull your live site 🙌</h2>
 				<p>
-					Alright, let's pull the live site (files and database):
+					Alright, let's pull the live site content (files and database, except the child theme
+					folder):
 					<Highlight language={shell} code="ddev pull ssh" />
 				</p>
 
