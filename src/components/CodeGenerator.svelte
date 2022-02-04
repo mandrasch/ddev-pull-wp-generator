@@ -10,18 +10,20 @@
 		selectedDbVersionType,
 		sshHost,
 		sshUser,
-		sshWpPath
+		sshWpPath,
+		providersYamlFromGithub
 	} from '../stores/stores.js';
 
 	import Highlight from 'svelte-highlight';
 	import yaml from 'svelte-highlight/src/languages/yaml';
 	import atomOneDark from 'svelte-highlight/src/styles/atom-one-dark';
-
 	import { FileCode } from 'svelte-bootstrap-icons';
 
 	export let showOnlyConfigYaml; // prop for this component
 
 	const code = 'const add = (a: number, b: number) => a + b;';
+
+	$: providersYamlScriptPart = $providersYamlFromGithub;
 
 	$: configYaml = `name: ${$projectName}
 type: wordpress
@@ -32,22 +34,23 @@ mutagen_enabled: false
 # WebServer settings
 php_version: "${$selectedPhpVersion}"
 ${$selectedDbVersionType}: "${$selectedDbVersionNumber}"
-webserver_type: ${$webServerType}
+webserver_type: ${$webServerType}`;
 
-# Variables for the pull (provider) script
+	// old version, where config for provider script was stored in config.yaml
+	/* # Variables for the pull (provider) script
 # - if you change these, run 'ddev restart' !
 web_environment:
-- CHILD_THEME_FOLDER_NAME=${$childThemeFolderName}`;
+- CHILD_THEME_FOLDER_NAME=${$childThemeFolderName}`;*/
 
 	// only added if pull type == ssh
-	$: configYamlSsh =
+	/*$: configYamlSsh =
 		$pullType == 'ssh'
 			? `
 - PRODUCTION_SSH_USER=${$sshUser}
 - PRODUCTION_SSH_HOST=${$sshHost}
 - PRODUCTION_SSH_WP_PATH=${$sshWpPath}
 - REMOTE_DB_CHARSET=utf8`
-			: '';
+			: '';*/
 
 	$: gitIgnoreContent = `
 # Ignore all ...
@@ -55,11 +58,12 @@ web_environment:
 
 # ... but track specific files / folders: 
 
+# General files
 !.gitignore
 !/README.md
 !/LICENSE
 
-# DDEV config
+# DDEV config and provider script
 !/.ddev
 /.ddev/*
 !/.ddev/config.yaml
@@ -74,8 +78,35 @@ web_environment:
 /wp-content/themes/*
 !/wp-content/themes/${$childThemeFolderName}
 `;
+	// TODO: move to separate file, because it's huge ;-)
+	$: providersYamlConfigurationPart = `# Pull a live site WordPress site into DDEV
 
-	const providersYaml = `\${sshWpDir} `;
+# Commands:
+#   'ddev pull ssh' - pulls a live wordpress site via SSH/mysqldump and rsync into DDEV.
+#   'ddev push ssh' - pushes the child theme folder to the remote server
+# Project repository: https://github.com/mandrasch/ddev-pull-wp-scripts
+
+# Requires DDEV version >= 1.18.2 !
+# https://github.com/drud/ddev/releases/tag/v1.18.2
+# https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/
+	
+# ------------------------------   configuration  ---------------------------------------------
+environment_variables:
+  sshUser: ${$sshUser}
+  sshHost: ${$sshHost}
+  sshWpPath: ${$sshWpPath}
+  # path to wordpress on ssh server without(!) trailing slash, 
+  # e.g.: /var/www/html/my-website.eu
+  
+  childThemeFolderName: ${$childThemeFolderName}
+  # just the folder name in wp-content/themes/, no slashes
+  # if you don't use a child theme currently, just leave 'twentytwentyone-child'
+  
+  remoteDbCharset: utf8
+  # utf8 is default, but check DB_CHARSET in your live sites wp-config.php 
+  # if you have trouble importing (e.g. emojis get lost)
+
+# -----------------------------  eo configuration  -------------------------------------------`;
 </script>
 
 <svelte:head>
@@ -83,27 +114,24 @@ web_environment:
 </svelte:head>
 
 {#if showOnlyConfigYaml}
-	<Highlight language={yaml} code={configYaml + configYamlSsh} />
+	<Highlight language={yaml} code={configYaml} />
 {:else}
 	<div class="card card-small">
 		<div class="card-body">
-			<h5 class="card-title">.gitignore</h5>
-			<h6 class="card-subtitle mb-2 text-muted">
-				Ignore pattern for tracking only the child theme
-			</h6>
+			<h5 class="card-title">2.1 Ignore pattern for tracking only the child theme</h5>
+			<h6 class="card-subtitle mb-2 text-muted">.gitignore</h6>
 			<p class="card-text">
 				<Highlight code={gitIgnoreContent} />
 				<details>
 					<summary>Why is this needed?</summary>
 					<p>
-						This is needed to track the child theme via git. On synchronization (<i>ddev pull ssh</i
+						This is needed to track and manage the child theme in a git repository, but ignore the
+						rest of the WordPress files which will be pulled to the local project in the next step. <!-- On synchronization (<i>ddev pull ssh</i
 						>) the whole website is downloaded to the local project folder - but we don't want to
 						override the child theme, because maybe we changed some styles already and just want to
-						test them with the newest site content. <!-- The sync uses rsync with the option
-          <i>--include-from='.gitignore' --exclude='*'</i>, therefore it syncs everything except
-          the child theme folder.)-->
+						test them with the newest site content. 
 						The sync uses "--exclude=wp-content/themes/{$childThemeFolderName}" to avoid overriding
-						local changes.
+						local changes. -->
 					</p>
 				</details>
 			</p>
@@ -114,10 +142,10 @@ web_environment:
 
 	<div class="card card-small">
 		<div class="card-body">
-			<h5 class="card-title">.ddev/config.yaml</h5>
-			<h6 class="card-subtitle mb-2 text-muted">DDEV project configuration</h6>
+			<h5 class="card-title">2.2 DDEV project configuration</h5>
+			<h6 class="card-subtitle mb-2 text-muted">.ddev/config.yaml</h6>
 			<p class="card-text">
-				<Highlight language={yaml} code={configYaml + configYamlSsh} />
+				<Highlight language={yaml} code={configYaml} />
 
 				<details>
 					<summary>Why is this file needed?</summary>
@@ -141,46 +169,35 @@ web_environment:
 	{#if $pullType == 'ssh'}
 		<div class="card">
 			<div class="card-body">
-				<h5 class="card-title">.ddev/providers/ssh.yaml</h5>
-				<h6 class="card-subtitle mb-2 text-muted">
-					The actual pull script, runs via 'ddev pull ssh'
-				</h6>
-				<p class="card-text">
-					<small
-						>Requirement: <a
-							href="https://github.com/drud/ddev/releases/tag/v1.18.2"
-							target="_blank">DDEV >= 1.18.2</a
-						></small
-					>
-					<br />
-					<br />
-					This file is work in progress. Please copy the latest version from Github:
-				</p>
-				<ul>
-					<li>
-						<b
-							><a
-								href="https://github.com/mandrasch/ddev-pull-wp-scripts/blob/main/.ddev/providers/ssh.yaml"
-								target="_blank">.ddev/providers/ssh.yaml</a
-							></b
-						>
-					</li>
-				</ul>
-				<p>
-					<!-- 
-				<Highlight language={yaml} code={providersYaml} />-->
+				<h5 class="card-title">DDEV provider script</h5>
+				<h6 class="card-subtitle mb-2 text-muted">ddev/providers/ssh.yaml</h6>
 
-					<details>
-						<summary>Why is this file needed?</summary>
-						<p>
-							This is our pull script which takes care of pulling the live web site to your local
-							DDEV project. See DDEV docs for more information:<a
-								href="https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/"
-								target="_blank">Hosting Provider Integration</a
-							>
-						</p>
-					</details>
+				<p>
+					<Highlight
+						language={yaml}
+						code={providersYamlConfigurationPart + providersYamlScriptPart}
+					/>
 				</p>
+
+				<details>
+					<summary>Why is this file needed?</summary>
+					<p>
+						This is our pull script which takes care of pulling the live web site to your local DDEV
+						project. See DDEV docs for more information:<a
+							href="https://ddev.readthedocs.io/en/stable/users/providers/provider-introduction/"
+							target="_blank">Hosting Provider Integration</a
+						>
+					</p>
+				</details>
+
+				<small>
+					Source:
+					<a
+						href="https://github.com/mandrasch/ddev-pull-wp-scripts/blob/main/.ddev/providers/ssh.yaml"
+						target="_blank">mandrasch/ddev-pull-wp-scripts/.ddev/providers/ssh.yaml</a
+					></small
+				>
+
 				<!-- <a href="#" class="card-link">Card link</a>
 			<a href="#" class="card-link">Another link</a> -->
 			</div>

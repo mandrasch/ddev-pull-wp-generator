@@ -1,5 +1,52 @@
+<script context="module">
+	// Load current version of Github code (only server-side)
+	// https://kit.svelte.dev/docs#loading, only works in routes
+	// TODO: convert to endpoint? See https://github.com/sveltejs/kit/discussions/3270 as well (endpoint / hydration?))
+	// current version from script is pulled from github while static site generation [server-side]
+	// TODO: github raw seems to be updated not immediately, is there a workaround?
+	export async function load({ params, fetch, session, stuff }) {
+		console.log('Loading providers.yaml from raw github');
+		const response = await fetch(
+			//'https://raw.githubusercontent.com/mandrasch/ddev-pull-wp-scripts/dev/.ddev/providers/ssh.yaml',
+			'https://raw.githubusercontent.com/mandrasch/ddev-pull-wp-scripts/main/.ddev/providers/ssh.yaml',
+			{
+				headers: {
+					'Cache-Control': 'no-cache'
+				}
+			}
+		);
+		console.log('Status returned:', response.status);
+
+		let sourceCode;
+		if (response.ok) {
+			// strip out upper part (-- configuration -- part is prepared in generator)
+			let customStringForSplitting = '# eo configuration';
+			sourceCode = await response.text();
+			sourceCode = sourceCode.substring(
+				sourceCode.indexOf(customStringForSplitting) + customStringForSplitting.length
+			);
+		} else {
+			sourceCode = false;
+		}
+
+		return {
+			status: response.status,
+			props: {
+				providersYamlFromGithubFetchResult: sourceCode // consumed in CodeGenerator.svelte
+			}
+		};
+	}
+</script>
+
 <script>
-	import { childThemeFolderName, pullType, sshHost, sshUser, sshWpPath } from '../stores/stores';
+	import {
+		childThemeFolderName,
+		providersYamlFromGithub,
+		pullType,
+		sshHost,
+		sshUser,
+		sshWpPath
+	} from '../stores/stores';
 
 	import CodeGenerator from '../components/CodeGenerator.svelte';
 	import FormWizard from '../components/FormWizard.svelte';
@@ -12,6 +59,10 @@
 	// this command will use ddev env vars, no need to replace them here
 	const ddevRsyncChildThemeCmd =
 		"ddev exec 'rsync -azh --stats $PRODUCTION_SSH_USER@$PRODUCTION_SSH_HOST:$PRODUCTION_SSH_WP_PATH/wp-content/themes/$CHILD_THEME_FOLDER_NAME/ /var/www/html/${DDEV_DOCROOT}/wp-content/themes/$CHILD_THEME_FOLDER_NAME/'";
+
+	// receive providersYamlFromGithub fetch & save to store
+	export let providersYamlFromGithubFetchResult;
+	providersYamlFromGithub.set(providersYamlFromGithubFetchResult);
 </script>
 
 <div class="container px-5 my-5">
@@ -86,15 +137,13 @@
 
 	<div class="row">
 		<div class="col-12 px-4 mb-3">
-			<h2>2. Setup project folder</h2>
+			<h2>2. Setup project folder and copy these files</h2>
 
-			<p>Create a new empty project repository and clone it to your local laptop.</p>
 			<p>
-				Copy the following files into your newly created project folder. The files were generated
-				based on your selected configuration above:
+				Create a new empty directory for your project. The followings files were generated based on
+				your selected configuration.
 			</p>
-		</div>
-		<div class="col-12">
+			<p>Copy and paste these three files into your newly created project folder:</p>
 			<CodeGenerator showOnlyConfigYaml={false} />
 		</div>
 	</div>
@@ -150,12 +199,13 @@
 
 			<p>
 				Please always check in <i>wp-config.php</i> that the database connection replacement was successfull
-				and that you are connected to the DDEV project database (and not the production database).
+				and that you are connected to the local DDEV project database (and not the remote database of
+				your live site).
 			</p>
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row" style="display:none;">
 		<div class="col-12">
 			<h2 class="mb-3">5. Optional: Import your existing child theme</h2>
 			<p><i>Skip this step if you don't want to use a child theme.</i></p>
@@ -186,23 +236,10 @@
 
 	<div class="row mt-2">
 		<div class="col-12">
-			<h2 class="mb-3">6. Develop, commit, have fun!</h2>
+			<h2 class="mb-3">5. Develop, commit, have fun!</h2>
 
-			<p>You can now work with your site locally.</p>
-
-			{#if $pullType == 'ssh'}
-				<p>
-					Your live site changed? New images were added? You can pull the latest site content
-					anytime you want. Just run <i>ddev pull ssh</i> again to pull the latest content. Your database
-					and files will be overriden (expect for the child theme defined in ".ddev/config.yaml").
-				</p>
-			{/if}
 			<p>
-				Pro tip: When you add or update your settings in the <i>config.yaml</i>-file afterwards, a
-				<i>ddev restart</i> is necessary.
-			</p>
-			<p>
-				If you run into issues, please see <a
+				You can now work with your site locally. If you run into issues, please see <a
 					href="https://github.com/mandrasch/ddev-pull-wp-scripts#troubleshooting"
 					target="_blank">Troubleshooting</a
 				>
@@ -211,56 +248,83 @@
 					>create an issue</a
 				>.
 			</p>
+
+			{#if $pullType == 'ssh'}
+				<p>
+					Your live sites content changed, new images were added for example? You can pull the
+					latest site content anytime you want.
+				</p>
+
+				<Highlight language={shell} code="ddev pull ssh" />
+				<p class="form-text">
+					<span class="badge rounded-pill bg-warning text-dark">Info</span> Your local database and files
+					will be overwritten with the latest database and files from your live site (expect for the
+					child theme folder defined in .ddev/providers/ssh.yaml).
+				</p>
+			{/if}
+			<p />
 		</div>
 	</div>
+	{#if $pullType == 'ssh'}
+		<div class="row mt-2">
+			<div class="col-12">
+				<h2 class="mb-3">
+					6. <span class="badge bg-danger">Experimental</span> Push your child theme via SSH
+				</h2>
 
-	<div class="row mt-2">
-		<div class="col-12">
-			<h2 class="mb-3">7. Add / update your child theme via git</h2>
+				<p>
+					You can push your local child theme folder via SSH (rsync) to your live site. While this
+					is a quick and easy way of deploying for single developers, this can cause trouble in team
+					projects (See alternatives below). Please check your path configuration beforehand and
+					create a backup.
+				</p>
 
-			<p>
-				Use your child theme via <a href="//wppusher.com" target="_blank">WPPusher plugin</a> on your
-				live site. WPPusher offers the option of pulling the child theme from a repository subfolder.
-				The best thing: Git is not required on your webspace, because WPPusher uses the HTTPS-API to
-				get the repository contents. See example for adding a child theme from GitHub here:
-			</p>
-			<p>
-				🎥 Screencast: <a href="https://youtu.be/lEGL65H-hts?t=145" target="_blank"
-					>Pull a WordPress site into a local DDEV project (2022 edition - ddev pull ssh)
-				</a>
-			</p>
-			<p>
-				See WPPusher documentation for more information: <a
-					href="https://docs.wppusher.com/article/17-setting-up-a-plugin-or-theme-on-github"
-					target="_blank">WPPusher - Setting up a theme</a
-				>
-			</p>
+				<Highlight language={shell} code="ddev push ssh --skip-db" />
 
-			<p>
+				<small style="font-style:italic;">
+					You can as well use 'ddev push ssh' and ignore the warning about the database push - the
+					ssh.yaml-script skips the database_push command. Rsync "--delete" is also disabled
+					currently.
+				</small>
+
+				<p class="mt-3">
+					<b>Alternatives for deployment:</b>
+				</p>
+				<ul>
+					<li>
+						Deploy your child theme via <a href="//wppusher.com" target="_blank">WPPusher plugin</a>
+						on your live site. WPPusher offers the option of pulling the child theme from a repository
+						subfolder. The best thing: Git is not required on your webspace, because WPPusher uses the
+						HTTPS-API to get the repository contents. See WPPusher documentation for more information:
+						<a
+							href="https://docs.wppusher.com/article/17-setting-up-a-plugin-or-theme-on-github"
+							target="_blank">WPPusher - Setting up a theme</a
+						>
+						and screencast example 🎥
+						<a href="https://youtu.be/lEGL65H-hts?t=145" target="_blank"
+							>Pull a WordPress site into a local DDEV project (2022 edition - ddev pull ssh)
+						</a>
+					</li>
+					<li style="color:grey;">
+						Use <a href="https://github.com/afragen/git-updater" target="_blank">git-updater</a> (doesn't
+						support subdirectory deployments, needs a workaround)
+					</li>
+					<li>Use a Github Action to deploy your child theme (via sftp/ssh)</li>
+				</ul>
+
+				<p />
+
+				<!-- <p>
 				<img
 					src="images/README_ddev_pull_ssh.png"
 					class="img-fluid"
 					alt="Technical concept between live site, ddev pull, local ddev site and wppusher which connects live site and GitHub"
 					style="border: 1px solid #999"
 				/>
-			</p>
-
-			<p>You could as well use a GitHub Action pipeline or other methods.</p>
-
-			<!-- <p>
-				TODO: provide documentation for integration of
-				<a
-					href="https://docs.wppusher.com/article/17-setting-up-a-plugin-or-theme-on-github"
-					target="_blank">WPPusher</a
-				> or similiar tools for deploying the git-managed child theme from the repository in an easy
-				way.
-			</p>
-			<p>
-				TODO: Provide documenation for creating a new child theme (Add folder, update config.yaml,
-				ddev restart, update gitnore, add to live site via WPPusher)
-			</p>-->
+			</p> -->
+			</div>
 		</div>
-	</div>
+	{/if}
 </div>
 
 <style lang="scss">

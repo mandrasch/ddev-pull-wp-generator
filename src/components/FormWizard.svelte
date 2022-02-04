@@ -200,22 +200,7 @@
 					</div>
 				</fieldset>
 			</div>
-			<div class="mb-3">
-				<label class="form-label" for="childThemeFolderName"
-					>Child theme folder name (in wp-content/themes/)</label
-				>
-				<input
-					class="form-control"
-					id="childThemeFolderName"
-					type="text"
-					placeholder="twentytwentyone-child"
-					bind:value={$childThemeFolderName}
-				/>
-				<div class="form-text">
-					If you don't use a child theme currently, just keep "twentytwentyone-child". It can be
-					changed later as well.
-				</div>
-			</div>
+
 			{#if $pullType == 'ssh'}
 				<div class="mb-3">
 					<label class="form-label" for="sshUsername">SSH username</label>
@@ -255,6 +240,23 @@
 					</div>
 				</div>
 			{/if}
+			<div class="mb-3">
+				<label class="form-label" for="childThemeFolderName"
+					>Optional: Child theme folder name</label
+				>
+				<input
+					class="form-control"
+					id="childThemeFolderName"
+					type="text"
+					placeholder="twentytwentyone-child"
+					bind:value={$childThemeFolderName}
+				/>
+				<div class="form-text">
+					If you don't use a child theme currently, just keep "twentytwentyone-child". It can be
+					changed later as well. If you use a child theme which you manage in git: Just enter the
+					folder name without slashes from /wp-content/themes/.
+				</div>
+			</div>
 		</div>
 		<div class="col-lg-6">
 			<div class="d-none d-lg-block">
