@@ -23,8 +23,6 @@ const config = {
 		paths: {
 			base: pathsBase
 		},
-		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte',
 		// add syntax highlighting via svelte-highlight (https://svhe.onrender.com/)
 		vite: {
 			optimizeDeps: {

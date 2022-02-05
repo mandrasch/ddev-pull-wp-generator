@@ -247,8 +247,9 @@ cd ${$projectName}/`;
 				<p>
 					You can always pull again, for example when your live sites content changed and new images
 					were added:
+					<!-- TODO: Submit bug report, when highlight is outside of <p> it will say ddev launch wp-admin/ as well? -->
+					<!-- <Highlight language={shell} code="ddev pull ssh" />-->
 				</p>
-
 				<Highlight language={shell} code="ddev pull ssh" />
 				<p class="form-text">
 					<span class="badge rounded-pill bg-warning text-dark">Info</span> Your local database and files

@@ -11,7 +11,6 @@
 		sshWpPath
 	} from '../stores/stores.js';
 
-	import DatabaseRadioButton from './DatabaseRadioButton.svelte';
 	import CodeGenerator from '../components/CodeGenerator.svelte';
 
 	// TODO: move them to store as well
