@@ -247,9 +247,9 @@ cd ${$projectName}/`;
 				<p>
 					You can always pull again, for example when your live sites content changed and new images
 					were added:
+					<Highlight language={shell} code="ddev pull ssh" />
 				</p>
 
-				<Highlight language={shell} code="ddev pull ssh" />
 				<p class="form-text">
 					<span class="badge rounded-pill bg-warning text-dark">Info</span> Your local database and files
 					will be overwritten with the latest database and files from your live site (expect for the
