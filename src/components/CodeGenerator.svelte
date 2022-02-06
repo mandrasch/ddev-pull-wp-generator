@@ -101,10 +101,6 @@ environment_variables:
   childThemeFolderName: ${$childThemeFolderName}
   # just the folder name in wp-content/themes/, no slashes
   # if you don't use a child theme currently, just leave 'twentytwentyone-child'
-  
-  remoteDbCharset: utf8
-  # utf8 is default, but check DB_CHARSET in your live sites wp-config.php 
-  # if you have trouble importing (e.g. emojis get lost)
 
 # -----------------------------  eo configuration  -------------------------------------------`;
 </script>
