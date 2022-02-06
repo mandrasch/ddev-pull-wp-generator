@@ -28,6 +28,7 @@ jobs:
 
       - name: Build again for SFTP transfer 🔧
         run: |
+          npm ci
           npm run build
         env:
           PATHS_BASE: ''
