@@ -1,11 +1,8 @@
-# DDEV pull wp generator (frontend)
-
 State: _Work in progress_
 
-This is a frontend generator for ddev-pull-wp-scripts, which generate DDEV config files to pull a WordPress site. This repository only contains information about the frontend generator, please see ddev-pull-wp-script for the main project information: https://github.com/mandrasch/ddev-pull-wp-scripts
+This is a frontend generator for [ddev-pull-wp-scripts](https://github.com/mandrasch/ddev-pull-wp-scripts)
 
-- Generator: **https://ddev-pull-wp.mandrasch.eu/**
-- Base project: **https://github.com/mandrasch/ddev-pull-wp-scripts**
+Live: **https://ddev-pull-wp.mandrasch.eu/**
 
 ## Development (SvelteKit)
 
@@ -16,13 +13,9 @@ npm run dev
 
 ## TODOs (frontend)
 
-- [ ] add screencast
 - [ ] add copy to clipboard function
-- [x] easier config.yaml, see https://twitter.com/randyfay/status/1481745262640914433
-- [x] add all form fields to store
-- [ ] ask fellow devs if we just can't use reverse rsync which includes from .gitignore with path instead of pattern and exludes everything else
 - [ ] optional: is it possible to generate a folder, zip it & download it?
-- [ ] exclude README.md from build pipeline to save energy
+- [ ] exclude README.md from build pipeline to save energy / carbon
 
 ## How was this created?
 
