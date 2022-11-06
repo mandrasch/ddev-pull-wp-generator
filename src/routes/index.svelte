@@ -286,8 +286,8 @@ cd ${$projectName}/`;
 				</p>
 				<ul>
 					<li>
-						Deploy your child theme via <a href="//wppusher.com" target="_blank">WPPusher plugin</a>
-						on your live site. WPPusher offers the option of pulling the child theme from a repository
+						Deploy your child theme via <a href="//wppusher.com" target="_blank">WPPusher plugin</a> or <a href="https://github.com/SayHelloGmbH/git-installer">SayHelloGmbH/git-installer</a> 
+						on your live site. Both solutions offers the option of pulling the child theme from a repository
 						subfolder. The best thing: Git is not required on your webspace, because WPPusher uses the
 						HTTPS-API to get the repository contents. See WPPusher documentation for more information:
 						<a

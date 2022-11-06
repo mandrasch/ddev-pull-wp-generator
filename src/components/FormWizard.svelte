@@ -175,9 +175,13 @@
 			<div class="mb-2"><b>DDEV local project settings</b></div>
 			<CodeGenerator showOnlyConfigYaml={true} />
 
-			<details>
+			<details open>
 				<summary style="font-weight:bold;"> ✏️ Edit web server settings</summary>
 				<div class="mb-3">
+					<small>Please make sure these settings match your live environment, especially the database type (MariaDB or MySQL). You can figure these out via WordPress <a href="https://yoast.com/wordpress-site-health/"><span style="font-style:italique;">Site Health</span></a> screen (<i>I'm also testing a small WordPress plugin
+						<a href="https://github.com/mandrasch/ddev-pull-wp-helper-plugin" target="_blank"
+							>ddev-pull-wp-helper</a
+						> for this</i>).
 					<fieldset>
 						<legend>PHP version</legend>
 
@@ -271,7 +275,7 @@
 				</div>
 			</details>
 
-			<details>
+			<!-- <details>
 				<summary>FAQ: What settings should I choose?</summary>
 				<p>
 					If you are unsure about the server settings, just leave the defaults. They are good to go.
@@ -285,7 +289,7 @@
 						>ddev-pull-wp-helper</a
 					> which helps getting the information with one click.
 				</p>
-			</details>
+			</details> -->
 		</div>
 	</div>
 
