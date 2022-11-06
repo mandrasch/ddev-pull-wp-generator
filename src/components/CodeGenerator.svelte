@@ -192,7 +192,7 @@ environment_variables:
 					>
 					<br />
 					<br />
-					This file is work in progress. Please copy the latest version from Github:
+					This file is work in progress. Please copy the latest version from Github and rename child theme to your child themes name:
 				</p>
 				<ul>
 					<li>
