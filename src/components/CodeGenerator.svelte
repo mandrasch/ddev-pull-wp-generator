@@ -70,6 +70,7 @@ web_environment:
 !/.ddev/providers
 /.ddev/providers/*
 !/.ddev/providers/ssh.yaml
+!/.ddev/providers/backup.yaml
 
 # Child theme:
 !/wp-content
