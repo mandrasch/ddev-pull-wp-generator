@@ -11,7 +11,8 @@
 		sshHost,
 		sshUser,
 		sshWpPath,
-		providersYamlFromGithub
+		providersSshYamlFromGithub,
+		providersBackupYamlFromGithub
 	} from '../stores/stores.js';
 
 	import Highlight from 'svelte-highlight';
@@ -23,7 +24,8 @@
 
 	const code = 'const add = (a: number, b: number) => a + b;';
 
-	$: providersYamlScriptPart = $providersYamlFromGithub;
+	$: providersSshYamlScriptPart = $providersSshYamlFromGithub; // ssh
+	$: providersBackupYamlScriptPart = $providersBackupYamlFromGithub; // backup
 
 	$: configYaml = `name: ${$projectName}
 type: wordpress
@@ -79,8 +81,8 @@ web_environment:
 /wp-content/themes/*
 !/wp-content/themes/${$childThemeFolderName}
 `;
-	// TODO: move to separate file, because it's huge ;-)
-	$: providersYamlConfigurationPart = `# Pull a live site WordPress site into DDEV
+	// TODO: move to separate file, because it's huuuge ;-)
+	$: providersSshYamlConfigurationPart = `# Pull a live site WordPress site into DDEV
 
 # Commands:
 #   'ddev pull ssh' - pulls a live wordpress site via SSH/mysqldump and rsync into DDEV.
@@ -102,6 +104,26 @@ environment_variables:
   childThemeFolderName: ${$childThemeFolderName}
   # just the folder name in wp-content/themes/, no slashes
   # if you don't use a child theme currently, just leave 'twentytwentyone-child'
+
+# -----------------------------  eo configuration  -------------------------------------------`;
+
+	$: providersBackupYamlConfigurationPart = `# ddev pull backup
+# Imports a backup.zip from docroot into the DDEV project
+
+# - This script extracts and imports a .zip-backup-file created with
+#   plugin BackWPup https://wordpress.org/plugins/backwpup/
+# - The script will automatically replace (migrate) the URLs in database
+#   in the last step (See: files_import_command)
+# - The child theme folder will not be overwritten when files are imported
+
+# - Requires DDEV version >= 1.18.2 !
+#   (https://github.com/drud/ddev/releases/tag/v1.18.2)
+
+# --------- configuration  ------------
+
+environment_variables:
+  backupfile: backup.zip # needs to be in docroot (your project folder)
+  childThemeFolderName: "${$childThemeFolderName}"
 
 # -----------------------------  eo configuration  -------------------------------------------`;
 </script>
@@ -148,7 +170,7 @@ environment_variables:
 				<p>
 					<Highlight
 						language={yaml}
-						code={providersYamlConfigurationPart + providersYamlScriptPart}
+						code={providersSshYamlConfigurationPart + providersSshYamlScriptPart}
 						style="max-height:375px"
 					/>
 				</p>
@@ -183,32 +205,16 @@ environment_variables:
 			<div class="card-body">
 				<h5 class="card-title">2.2 DDEV provider script</h5>
 				<h6 class="card-subtitle mb-2 text-muted">.ddev/providers/backup.yaml</h6>
-				<p class="card-text">
-					<small
-						>Requirement: <a
-							href="https://github.com/drud/ddev/releases/tag/v1.18.2"
-							target="_blank">DDEV >= 1.18.2</a
-						></small
-					>
-					<br />
-					<br />
-					This file is work in progress. Please copy the latest version from Github and rename child theme to your child themes name:
-				</p>
-				<ul>
-					<li>
-						<b
-							><a
-								href="https://github.com/mandrasch/ddev-pull-wp-scripts/blob/main/.ddev/providers/backup.yaml"
-								target="_blank">.ddev/providers/backup.yaml</a
-							></b
-						>
-					</li>
-				</ul>
-				<p>
-					(It will be added later here for copy & paste).
-					<!-- 
-				<Highlight language={yaml} code={providersYaml} />-->
 
+				<p>
+					<Highlight
+						language={yaml}
+						code={providersBackupYamlConfigurationPart + providersBackupYamlScriptPart}
+						style="max-height:375px"
+					/>
+				</p>
+
+				<p>
 					<details>
 						<summary>Why is this file needed?</summary>
 						<p>

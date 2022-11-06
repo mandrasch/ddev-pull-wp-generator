@@ -5,9 +5,10 @@
 	// current version from script is pulled from github while static site generation [server-side]
 	// TODO: github raw seems to be updated not immediately, is there a workaround?
 	export async function load({ params, fetch, session, stuff }) {
-		console.log('Loading providers.yaml from raw github');
-		const response = await fetch(
-			//'https://raw.githubusercontent.com/mandrasch/ddev-pull-wp-scripts/dev/.ddev/providers/ssh.yaml',
+
+		// providers/ssh.yaml
+		console.log('Loading providers/ssh.yaml from raw github');
+		const responseSsh = await fetch(
 			'https://raw.githubusercontent.com/mandrasch/ddev-pull-wp-scripts/main/.ddev/providers/ssh.yaml',
 			{
 				headers: {
@@ -15,24 +16,51 @@
 				}
 			}
 		);
-		console.log('Status returned:', response.status);
+		console.log('Status returned:', responseSsh.status);
 
-		let sourceCode;
-		if (response.ok) {
-			// strip out upper part (-- configuration -- part is prepared in generator)
+		let sourceCodeSsh;
+		if (responseSsh.ok) {
+			// strip out upper part (the -- configuration -- part is prepared in frontend generator via user provided values)
 			let customStringForSplitting = '# eo configuration';
-			sourceCode = await response.text();
-			sourceCode = sourceCode.substring(
-				sourceCode.indexOf(customStringForSplitting) + customStringForSplitting.length
+			sourceCodeSsh = await responseSsh.text();
+			sourceCodeSsh = sourceCodeSsh.substring(
+				sourceCodeSsh.indexOf(customStringForSplitting) + customStringForSplitting.length
 			);
 		} else {
-			sourceCode = false;
+			sourceCodeSsh = false;
+		}
+
+		// providers/backup.yaml
+		console.log('Loading providers/backup.yaml from raw github');
+		const responseBackup = await fetch(
+			'https://raw.githubusercontent.com/mandrasch/ddev-pull-wp-scripts/main/.ddev/providers/backup.yaml',
+			{
+				headers: {
+					'Cache-Control': 'no-cache'
+				}
+			}
+		);
+		console.log('Status returned:', responseBackup.status);
+
+		let sourceCodeBackup;
+		if (responseBackup.ok) {
+			// strip out upper part (the -- configuration -- part is prepared in frontend generator via user provided values)
+			let customStringForSplitting = '# eo configuration';
+			sourceCodeBackup = await responseBackup.text();
+			sourceCodeBackup = sourceCodeBackup.substring(
+				sourceCodeBackup.indexOf(customStringForSplitting) + customStringForSplitting.length
+			);
+		} else {
+			sourceCodeBackup = false;
 		}
 
 		return {
-			status: response.status,
+			status: responseSsh.status, // TODO: needed? Also for Backup?
 			props: {
-				providersYamlFromGithubFetchResult: sourceCode // consumed in CodeGenerator.svelte
+				// received in the script part down below, saved to stores & 
+				// finally consumed in CodeGenerator.svelte
+				providersSshYamlFromGithubFetchResult: sourceCodeSsh, 
+				providersBackupYamlFromGithubFetchResult: sourceCodeBackup
 			}
 		};
 	}
@@ -42,7 +70,8 @@
 	import {
 		childThemeFolderName,
 		projectName,
-		providersYamlFromGithub,
+		providersSshYamlFromGithub,
+		providersBackupYamlFromGithub,
 		pullType,
 		sshHost,
 		sshUser,
@@ -63,9 +92,11 @@
 	$: createDirCmd = `mkdir ${$projectName}
 cd ${$projectName}/`;
 
-	// receive providersYamlFromGithub fetch & save to store
-	export let providersYamlFromGithubFetchResult;
-	providersYamlFromGithub.set(providersYamlFromGithubFetchResult);
+	// receive vars from upper server side fetch & save to store
+	export let providersSshYamlFromGithubFetchResult;
+	export let providersBackupYamlFromGithubFetchResult;
+	providersSshYamlFromGithub.set(providersSshYamlFromGithubFetchResult);
+	providersBackupYamlFromGithub.set(providersBackupYamlFromGithubFetchResult);
 </script>
 
 <div class="container px-5 my-5">

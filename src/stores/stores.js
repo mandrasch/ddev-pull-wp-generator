@@ -13,7 +13,8 @@ export const sshWpPath = writable('/sites/my-website/wordpress');
 export const selectedDbVersionType = derived(selectedDbVersionString, $selectedDbVersionString => $selectedDbVersionString.includes("maria") ? "mariadb_version" : "mysql_version");
 export const selectedDbVersionNumber = derived(selectedDbVersionString, $selectedDbVersionString => $selectedDbVersionString.substring($selectedDbVersionString.indexOf('-') + 1));
 
-export const providersYamlFromGithub = writable("");
+export const providersSshYamlFromGithub = writable(""); // ssh
+export const providersBackupYamlFromGithub = writable(""); //backup
 
 /* 
 export const greeting = derived(
